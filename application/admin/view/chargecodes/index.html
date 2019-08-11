@@ -1,15 +1,15 @@
 {extend name="pub/base" /}
 {block name="title"}
-<title>vip码管理</title>
+<title>充值码管理</title>
 {/block}
 
 {block name="body"}
 <section class="Hui-admin-article">
     <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        vip码管理
+        充值码管理
         <span class="c-gray en">&gt;</span>
-        vip码列表
+        充值码列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -17,7 +17,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="text-c">
-                    <input type="text" placeholder="生效天数" style="width:250px" id="days" class="input-text">
+                    <input type="text" placeholder="充值面额" style="width:250px" id="money" class="input-text">
                     <span class="select-box" style="width:150px;">
                             <select id="used" class="select" size="1">
                                 <option value="" selected="selected">全部</option>
@@ -32,9 +32,9 @@
                 </div>
                 <script>
                     function search() {
-                        var days = $('#days').val();
+                        var money = $('#money').val();
                         var used = $('#used option:selected').val();
-                        location.href = "search?used=" + used + "&days=" + days;
+                        location.href = "search?used=" + used + "&money=" + money;
                     }
                 </script>
             </div>
@@ -49,7 +49,7 @@
                                 <script>
                                     function exp() {
                                         $.ajax({
-                                            url:'/admin/vipcodes/export',
+                                            url:'/admin/chargecodes/export',
                                             type:'post',
                                             success:function (res) {
                                                 layer.open({
@@ -60,8 +60,8 @@
                                         })
                                     }
                                 </script>
-                                <a class="btn btn-primary radius" href="/api/common/genvipcode?api_key={$api_key}">
-                                    生成vip码
+                                <a class="btn btn-primary radius" href="/api/common/genchargecode?api_key={$api_key}">
+                                    生成充值码
                                 </a>
                                 &nbsp;
                                 <span style="color: red">注意！本功能是按照后台既有的配置来生成</span>
@@ -73,8 +73,8 @@
                         <thead>
                         <tr class="text-c">
                             <th width="80">ID</th>
-                            <th width="120">VIP码</th>
-                            <th width="100">生效天数</th>
+                            <th width="120">充值码</th>
+                            <th width="100">面额</th>
                             <th width="100">状态</th>
                             <th width="120">创建时间</th>
                             <th width="120">使用时间</th>
@@ -86,7 +86,7 @@
                         <tr class="text-c">
                             <td>{$vo.id}</td>
                             <td>{$vo.code}</td>
-                            <td>{$vo.add_day}</td>
+                            <td>{$vo.money}</td>
                             <td>
                                 {switch $vo.used}
                                 {case 1}未使用{/case}

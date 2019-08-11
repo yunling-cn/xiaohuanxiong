@@ -1,44 +1,47 @@
 {extend name="pub/base" /}
 {block name="title"}
-<title>vip码生成设置</title>
+<title>缓存配置</title>
 {/block}
 {block name="body"}
 <div class="Hui-admin-article">
     <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
         首页
         <span class="c-gray en">/</span>
-        vip码生成设置
+        缓存配置
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
     <div class="Hui-article">
         <article class="clearfix pd-20">
-            <form action="/admin/vipcodes/config" method="post" class="form form-horizontal">
+            <form action="/admin/index/redis" method="post" class="form form-horizontal">
+
                 <div class="row clearfix">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>加密方式：</label>
+                    <label class="form-label col-xs-4 col-sm-3">redis地址：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <label>
-                            <input name="salt" class="input-radio" type="radio" value="id_salt" {$salt=='id_salt'?'checked':''} />
-                            id盐
-                        </label>
-                        <label>
-                            <input name="salt" class="input-radio" type="radio" value="salt" {$salt=='salt'?'checked':''} />
-                            密码盐
-                        </label>
+                        <input type="text" class="input-text" value="{$redis_host}" name="redis_host">
                     </div>
                 </div>
 
                 <div class="row clearfix">
-                    <label class="form-label col-xs-4 col-sm-3">vip天数：</label>
+                    <label class="form-label col-xs-4 col-sm-3">redis端口：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="{$day}" name="day">
+                        <input type="text" class="input-text" value="{$redis_port}" name="redis_port">
                     </div>
                 </div>
 
                 <div class="row clearfix">
-                    <label class="form-label col-xs-4 col-sm-3">生成个数：</label>
+                    <label class="form-label col-xs-4 col-sm-3">redis密码：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="{$num}" name="num">
+                        <input type="text" class="input-text" value="{$redis_auth}" name="redis_auth"
+                               placeholder="不设置密码请留空">
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <label class="form-label col-xs-4 col-sm-3">redis前缀：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" readonly="readonly" class="input-text" value="{$redis_prefix}"
+                               name="redis_prefix">
                     </div>
                 </div>
 

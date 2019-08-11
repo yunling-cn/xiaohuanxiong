@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use think\facade\App;
 use think\facade\Cache;
 use think\facade\Env;
+use think\Request;
 
 class Index extends BaseAdmin
 {
@@ -22,10 +23,6 @@ class Index extends BaseAdmin
         $salt = config('site.salt');
         $id_salt = config('site.id_salt');
         $api_key = config('site.api_key');
-        $redis_host = config('cache.host');
-        $redis_port = config('cache.port');
-        $redis_auth = config('cache.password');
-        $redis_prefix = config('cache.prefix');
         $front_tpl = config('site.tpl');
         $payment = config('site.payment');
 
@@ -36,10 +33,6 @@ class Index extends BaseAdmin
             'salt' => $salt,
             'id_salt' => $id_salt,
             'api_key' => $api_key,
-            'redis_host' => $redis_host,
-            'redis_port' => $redis_port,
-            'redis_auth' => $redis_auth,
-            'redis_prefix' => $redis_prefix,
             'front_tpl' => $front_tpl,
             'payment' => $payment
         ]);
@@ -54,10 +47,6 @@ class Index extends BaseAdmin
         $salt = input('salt');
         $id_salt = input('id_salt');
         $api_key = input('api_key');
-        $redis_host = input('redis_host');
-        $redis_port = input('redis_port');
-        $redis_auth = input('redis_auth');
-        $redis_prefix = input('redis_prefix');
         $front_tpl = input('front_tpl');
         $payment = input('payment');
         $site_code = <<<INFO
@@ -74,8 +63,16 @@ class Index extends BaseAdmin
         ];
 INFO;
         file_put_contents(App::getRootPath() . 'config/site.php', $site_code);
+        $this->success('修改成功', 'index', '', 1);
+    }
 
-        $cache_code = <<<INFO
+    public function redis(){
+        if ($this->request->isPost()){
+            $redis_host = input('redis_host');
+            $redis_port = input('redis_port');
+            $redis_auth = input('redis_auth');
+            $redis_prefix = input('redis_prefix');
+            $cache_code = <<<INFO
         <?php
         return [
             // 驱动方式
@@ -91,8 +88,20 @@ INFO;
             'expire' => 600,
         ];
 INFO;
-        file_put_contents(App::getRootPath() . 'config/cache.php', $cache_code);
-        $this->success('修改成功', 'index', '', 1);
+            file_put_contents(App::getRootPath() . 'config/cache.php', $cache_code);
+            $this->success('修改成功');
+        }
+        $redis_host = config('cache.host');
+        $redis_port = config('cache.port');
+        $redis_auth = config('cache.password');
+        $redis_prefix = config('cache.prefix');
+        $this->assign([
+            'redis_host' => $redis_host,
+            'redis_port' => $redis_port,
+            'redis_auth' => $redis_auth,
+            'redis_prefix' => $redis_prefix,
+        ]);
+        return view();
     }
 
     public function clearCache()
@@ -113,8 +122,11 @@ INFO;
         $serverFileUrl = $server . "/public/static/html/version.txt";
         $res = $client->request('GET', $serverFileUrl);
         $serverVersion = (int)str_replace('.', '', $res->getBody());
-        $msg = array();
-        array_push($msg, '<p></p>');
+        //$msg = array();
+        //array_push($msg, '<p></p>');
+        echo '<p></p>';
+        ob_flush();
+        flush();
 
         if ($serverVersion > $localVersion) {
             for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
@@ -131,22 +143,72 @@ INFO;
                             mkdir($dir, 0777,true);
                         }
                         file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
-                        array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
+                        //array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
+                        echo '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>';
+                        ob_flush();
+                        flush();
                     }
                     foreach ($json['delete'] as $value) {
                         $flag = unlink(Env::get('root_path') . '/' . $value);
                         if ($flag) {
-                            array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                            //array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                            echo '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>';
+                            ob_flush();
+                            flush();
                         } else {
-                            array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                            //array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                            echo '<p style="margin-left: 15px;color:darkred">删除文件失败</p>';
+                            ob_flush();
+                            flush();
                         }
                     }
                 }
             }
-            array_push($msg, '<p style="margin-left:15px;">升级完成</p>');
+           // array_push($msg, '<p style="margin-left:15px;">升级完成</p>');
+            echo '<p style="margin-left:15px;">升级完成</p>';
         } else {
-            $msg = ['已经是最新版本！当前版本是' . $localVersion];
+            //$msg = ['已经是最新版本！当前版本是' . $localVersion];
+            echo '已经是最新版本！当前版本是' . $localVersion;
+            ob_flush();
+            flush();
         }
-        return implode('', $msg);
+        //return implode('', $msg);
+    }
+
+    public function kamiconfig(Request $request)
+    {
+        if ($request->isPost()) {
+            $data = $request->param();
+            $validate = new \app\admin\validate\Vipcode();
+            if ($validate->check($data)) {
+                $str = <<<INFO
+        <?php
+        return [
+            'salt' => 'salt',
+            'vipcode' => [
+                'day' => '{$data["vipcode_day"]}',
+                'num' => '{$data["vipcode_num"]}'
+            ],
+            'chargecode' => [
+                'money' => '{$data["chargecode_money"]}',
+                'num' => '{$data["chargecode_num"]}'
+            ]
+        ];
+INFO;
+                file_put_contents(App::getRootPath() . 'config/kami.php', $str);
+                $this->success('保存成功');
+            } else {
+                $this->error($validate->getError());
+            }
+        } else {
+            $this->assign([
+                'salt' => config('kami.salt'),
+                'vipcode_day' => config('kami.vipcode.day'),
+                'vipcode_num' => config('kami.vipcode.num'),
+                'chargecode_money' => config('kami.chargecode.money'),
+                'chargecode_num' => config('kami.chargecode.num')
+            ]);
+            return view();
+        }
     }
 }

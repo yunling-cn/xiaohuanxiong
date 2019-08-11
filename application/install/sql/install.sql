@@ -63,7 +63,7 @@ CREATE TABLE `xwx_user_order`  (
   `user_id` int(10) NOT NULL DEFAULT 0,
   `money` decimal(10,2) NOT NULL DEFAULT 0 COMMENT '充值金额',
   `status` tinyint(4) not null default 0 COMMENT '0为未支付，1为已支付',
-  `pay_type` tinyint(4) default 1 COMMENT '0为未知，1为支付宝，2为QQ钱包，3为微信支付',
+  `pay_type` tinyint(4) default 1 COMMENT '0为未知，1为支付宝，2为QQ钱包，3为微信支付，4为卡密',
   `summary` text COMMENT '备注',
   `order_id` varchar(100) default '' COMMENT '云端订单号',
   `create_time` int(11) DEFAULT '0',
@@ -285,12 +285,27 @@ DROP TABLE IF EXISTS `xwx_vip_code`;
 CREATE TABLE `xwx_vip_code`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'vip码',
-  `add_day` int(11) DEFAULT NULL COMMENT '增加时间',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
- `used` tinyint(4) DEFAULT -1 COMMENT '1.未使用 2.已发出 3.已使用',
+  `add_day` int(11) DEFAULT 0 COMMENT '增加时间',
+  `create_time` int(11) DEFAULT 0,
+  `update_time` int(11) DEFAULT 0,
+ `used` tinyint(4) DEFAULT 1 COMMENT '1.未使用 2.已发出 3.已使用',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `code`(`code`) USING BTREE,
   INDEX `used`(`used`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for xwx_charge_code
+-- ----------------------------
+DROP TABLE IF EXISTS `xwx_charge_code`;
+CREATE TABLE `xwx_charge_code`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '卡密',
+  `money` decimal(4, 2) NOT NULL COMMENT '面额',
+   `used` tinyint(4) DEFAULT 1 COMMENT '1.未使用 2.已发出 3.已使用',
+  `create_time` int(11) NULL DEFAULT NULL,
+  `update_time` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `code`(`code`) USING BTREE,
+  INDEX `used`(`used`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;

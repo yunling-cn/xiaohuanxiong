@@ -3,14 +3,15 @@
 
 namespace app\admin\controller;
 
-use app\model\VipCode;
+
+use app\model\ChargeCode;
 use think\facade\Env;
 
-class Vipcodes extends BaseAdmin
+class Chargecodes extends BaseAdmin
 {
     public function index()
     {
-        $data = VipCode::order('id', 'desc');
+        $data = ChargeCode::order('id', 'desc');
         $codes = $data->paginate(5, false,
             [
                 //'query' => request()->param(),
@@ -29,15 +30,15 @@ class Vipcodes extends BaseAdmin
     public function search()
     {
         $where = array();
-        $days = input('days');
+        $money = input('money');
         if (!empty($days)) {
-            $where[] = ['add_day', '=', $days];
+            $where[] = ['money', '=', $money];
         }
         $used = input('used');
         if (!empty($used)) {
             $where[] = ['used', '=', $used];
         }
-        $data = VipCode::where($where)->order('id', 'desc');
+        $data = ChargeCode::where($where)->order('id', 'desc');
 
         $codes = $data->paginate(5, false,
             [
@@ -56,13 +57,13 @@ class Vipcodes extends BaseAdmin
 
     public function export()
     {
-        $data = VipCode::where('used', '=', 1)->select()->toArray();
+        $data = ChargeCode::where('used', '=', 1)->select()->toArray();
         if (empty($data)) {
             return json(['err=>1', 'msg' => '没有可导出的']);
         }
         $arr = array();
         foreach ($data as $code) {
-            VipCode::update([
+            ChargeCode::update([
                 'id' => $code['id'],
                 'used' => 2,
                 'update_time' => time()
@@ -73,7 +74,7 @@ class Vipcodes extends BaseAdmin
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
         }
-        $file = $dir . '/vipcode.txt';
+        $file = $dir . '/chargecode.txt';
         if (file_exists($file)) {
             delete_dir_file($file);
         }
