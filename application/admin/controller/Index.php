@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use GuzzleHttp\Client;
+use think\Exception;
 use think\facade\App;
 use think\facade\Cache;
 use think\facade\Env;
@@ -115,64 +116,68 @@ INFO;
 
     public function checkupdate()
     {
-        $client = new Client();
-        $srcUrl = Env::get('root_path') . "/public/static/html/version.txt";
-        $localVersion = (int)str_replace('.', '', file_get_contents($srcUrl));
-        $server = "http://update.xhxcms.xyz";
-        $serverFileUrl = $server . "/public/static/html/version.txt";
-        $res = $client->request('GET', $serverFileUrl);
-        $serverVersion = (int)str_replace('.', '', $res->getBody());
-        //$msg = array();
-        //array_push($msg, '<p></p>');
-        echo '<p></p>';
-        ob_flush();
-        flush();
+        try{
+            $client = new Client();
+            $srcUrl = Env::get('root_path') . "/public/static/html/version.txt";
+            $localVersion = (int)str_replace('.', '', file_get_contents($srcUrl));
+            $server = "http://update.xhxcms.xyz";
+            $serverFileUrl = $server . "/public/static/html/version.txt";
+            $res = $client->request('GET', $serverFileUrl);
+            $serverVersion = (int)str_replace('.', '', $res->getBody());
+            //$msg = array();
+            //array_push($msg, '<p></p>');
+            echo '<p></p>';
+            ob_flush();
+            flush();
 
-        if ($serverVersion > $localVersion) {
-            for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
-                $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
-                if((int)($res->getStatusCode()) == 200)
-                {
-                    $json = json_decode($res->getBody(), true);
+            if ($serverVersion > $localVersion) {
+                for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
+                    $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
+                    if((int)($res->getStatusCode()) == 200)
+                    {
+                        $json = json_decode($res->getBody(), true);
 
-                    foreach ($json['update'] as $value) {
-                        $data = $client->request('GET', $server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
-                        $saveFileName = Env::get('root_path') . $value;
-                        $dir = dirname($saveFileName);
-                        if (!file_exists($dir)) {
-                            mkdir($dir, 0777,true);
+                        foreach ($json['update'] as $value) {
+                            $data = $client->request('GET', $server . '/' . $value)->getBody(); //根据配置读取升级文件的内容
+                            $saveFileName = Env::get('root_path') . $value;
+                            $dir = dirname($saveFileName);
+                            if (!file_exists($dir)) {
+                                mkdir($dir, 0777,true);
+                            }
+                            file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
+                            //array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
+                            echo '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>';
+                            ob_flush();
+                            flush();
                         }
-                        file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
-                        //array_push($msg, '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>');
-                        echo '<p style="margin-left: 15px;color:blue">升级文件' . $value . '</p>';
-                        ob_flush();
-                        flush();
-                    }
-                    foreach ($json['delete'] as $value) {
-                        $flag = unlink(Env::get('root_path') . '/' . $value);
-                        if ($flag) {
-                            //array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
-                            echo '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>';
-                            ob_flush();
-                            flush();
-                        } else {
-                            //array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
-                            echo '<p style="margin-left: 15px;color:darkred">删除文件失败</p>';
-                            ob_flush();
-                            flush();
+                        foreach ($json['delete'] as $value) {
+                            $flag = unlink(Env::get('root_path') . '/' . $value);
+                            if ($flag) {
+                                //array_push($msg, '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>');
+                                echo '<p style="margin-left: 15px;color:blue">删除文件' . $value . '</p>';
+                                ob_flush();
+                                flush();
+                            } else {
+                                //array_push($msg, '<p style="margin-left: 15px;color:darkred">删除文件失败</p>');
+                                echo '<p style="margin-left: 15px;color:darkred">删除文件失败</p>';
+                                ob_flush();
+                                flush();
+                            }
                         }
                     }
                 }
+                // array_push($msg, '<p style="margin-left:15px;">升级完成</p>');
+                echo '<p style="margin-left:15px;">升级完成</p>';
+            } else {
+                //$msg = ['已经是最新版本！当前版本是' . $localVersion];
+                echo '已经是最新版本！当前版本是' . $localVersion;
+                ob_flush();
+                flush();
             }
-           // array_push($msg, '<p style="margin-left:15px;">升级完成</p>');
-            echo '<p style="margin-left:15px;">升级完成</p>';
-        } else {
-            //$msg = ['已经是最新版本！当前版本是' . $localVersion];
-            echo '已经是最新版本！当前版本是' . $localVersion;
-            ob_flush();
-            flush();
+        } catch (Exception $exception){
+            echo $exception->getMessage();
         }
-        //return implode('', $msg);
+
     }
 
     public function kamiconfig(Request $request)
