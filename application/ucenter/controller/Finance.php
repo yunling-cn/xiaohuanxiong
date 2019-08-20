@@ -155,7 +155,7 @@ class Finance extends BaseUcenter
                 return json(['err' => 1, 'msg' => '该充值码不存在']);
             } else {
                 if ((int)$code->used == 3) {
-                    return json(['err' => 1, 'msg' => '该vip码已经被使用']);
+                    return json(['err' => 1, 'msg' => '该充值码已经被使用']);
                 }
 
                 $code->used = 3; //变更状态为使用
@@ -171,9 +171,9 @@ class Finance extends BaseUcenter
 
                     $promotionService = new PromotionService();
                     $promotionService->rewards($this->uid, $code->money, 1); //调用推广处理函数
-                    return json(['err' => 0, 'msg' => 'vip码使用成功']);
+                    return json(['err' => 0, 'msg' => '充值码使用成功']);
                 } else {
-                    return json(['err' => 1, 'msg' => 'vip码使用失败']);
+                    return json(['err' => 1, 'msg' => '充值码使用失败']);
                 }
 
 
@@ -329,12 +329,14 @@ class Finance extends BaseUcenter
                     if ($vip_expire_time <= 0) {
                         $vip_expire_time = time();
                     }
+                    $new_expire_time = strtotime('+' . (int)$code->add_day . ' day', $vip_expire_time);
                     Db::table($this->prefix . 'user')->update([
-                        'vip_expire_time' => strtotime('+' . (int)$code->add_day . ' day', $vip_expire_time),
+                        'vip_expire_time' => $new_expire_time,
                         'id' => $this->uid
                     ]);
                     // 提交事务
                     Db::commit();
+                    session('xwx_vip_expire_time', $new_expire_time);
                 } catch (\Exception $e) {
                     // 回滚事务
                     Db::rollback();
