@@ -61,10 +61,10 @@ class Common extends Controller
     {
         $api_key = input('api_key');
         if (empty($api_key) || is_null($api_key)) {
-            return json(['err' => 1, 'msg' => 'api密钥错误']);
+            $this->error('api密钥错误');
         }
         if ($api_key != config('site.api_key')) {
-            return json(['err' => 1, 'msg' => 'api密钥错误']);
+            $this->error('api密钥错误');
         }
         $num = (int)config('kami.vipcode.num'); //产生多少个
         $day = config('kami.vipcode.day');
@@ -76,7 +76,7 @@ class Common extends Controller
             ],
             'app\admin\validate\Vipcode');
         if (true !== $result){
-            return json(['success' => 0, 'msg' => '后台配置错误']) ;
+            $this->error('后台配置错误');
         }
 
         $salt = config('site.' . config('kami.salt'));//根据配置，获取盐的方式
@@ -88,16 +88,16 @@ class Common extends Controller
             ]);
             sleep(1);
         }
-        return json(['success' => 1, 'msg' => '成功生成vip码']) ;
+        $this->success('成功生成vip码');
     }
 
     public function genchargecode(){
         $api_key = input('api_key');
         if (empty($api_key) || is_null($api_key)) {
-            return json(['err' => 1, 'msg' => 'api密钥错误']);
+            $this->error('api密钥错误');
         }
         if ($api_key != config('site.api_key')) {
-            return json(['err' => 1, 'msg' => 'api密钥错误']);
+            $this->error('api密钥错误');
         }
         $num = (int)config('kami.chargecode.num'); //产生多少个
         $money = config('kami.chargecode.money');
@@ -109,7 +109,7 @@ class Common extends Controller
             ],
             'app\admin\validate\Chargecode');
         if (true !== $result){
-            return json(['success' => 0, 'msg' => '后台配置错误']) ;
+            $this->error('后台配置错误');
         }
 
         $salt = config('site.' . config('kami.salt'));//根据配置，获取盐的方式
@@ -121,6 +121,6 @@ class Common extends Controller
             ]);
             sleep(1);
         }
-        return json(['success' => 1, 'msg' => '成功生成充值码']) ;
+        $this->success('成功生成充值码');
     }
 }

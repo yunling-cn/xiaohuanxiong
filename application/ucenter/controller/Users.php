@@ -179,7 +179,7 @@ class Users extends BaseUcenter
         if (!$validate->check($data)) {
             return ['msg' => '手机格式不正确'];
         }
-        $sms = new \Util\Sms();
+        $sms = new \util\Sms();
         $result = $sms->sendcode($this->uid, $phone, $code);
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
