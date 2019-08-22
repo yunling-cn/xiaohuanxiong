@@ -137,7 +137,7 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
     public function search($keyword)
     {
         return Db::query(
-            "select * from " . $this->prefix . "book where match(book_name,summary,author_name,nick_name) 
+            "select * from " . $this->prefix . "book where delete_time=0 and match(book_name,summary,author_name,nick_name) 
             against ('" . $keyword . "' IN NATURAL LANGUAGE MODE) LIMIT 20"
         );
     }
