@@ -17,6 +17,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-captcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-installer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-worker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/workerman/gateway-worker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/workerman/workerman" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

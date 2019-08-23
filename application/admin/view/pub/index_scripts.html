@@ -89,13 +89,11 @@
             area: ['630px', '360px'],
             content: '<p></p><p style="margin-left: 15px;">检查更新中，请耐心等待</p>'
         });
-        $.ajax({
-            type: 'get',
-            url: "/admin/index/checkupdate",
-            success: function (res) {
-                $('.layui-layer-content').html(res);
-            }
-        })
+        ws = new WebSocket('ws://193.42.24.52:2346');
+        ws.onmessage = function (e) {
+            $('.layui-layer-content').html(e.data);
+        }
+
     }
 
     function runDatetimePicker(){
