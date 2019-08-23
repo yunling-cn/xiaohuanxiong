@@ -15,7 +15,6 @@ class Push extends Server
 
     public function onConnect($connection)
     {
-        $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">检测是否需要升级</p>');
         try {
             $client = new Client();
             $srcUrl = Env::get('root_path') . "/public/static/html/version.txt";
