@@ -39,21 +39,21 @@ class Push extends Server
                                 mkdir($dir, 0777, true);
                             }
                             file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
-                            $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">升级文件' . $value . '</p>');
+                            $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">升级文件' . $value . '</p>');
                         }
                         foreach ($json['delete'] as $value) {
                             $flag = unlink(Env::get('root_path') . '/' . $value);
                             if ($flag) {
-                                $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">删除文件' . $value . '</p>');
+                                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">删除文件' . $value . '</p>');
                             } else {
-                                $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">删除文件失败</p>');
+                                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">删除文件失败</p>');
                             }
                         }
                     }
                 }
-                $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">升级完成</p>');
+                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">升级完成</p>');
             } else {
-                $connection->send('<p style="padding:15px 24px;font-weight: 400;color:#999;">已经是最新版本！当前版本是' . $localVersion.'</p>');
+                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">已经是最新版本！当前版本是' . $localVersion.'</p>');
             }
         } catch (Exception $exception) {
             $connection->send($exception->getMessage());
