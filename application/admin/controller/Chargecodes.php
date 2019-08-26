@@ -81,7 +81,7 @@ class Chargecodes extends BaseAdmin
         file_put_contents($file, implode("\r\n", $arr));
 
 
-        return json(['err=>0', 'msg' => '成功导出到' . $file]);
+        return json(['err=>0', 'msg' => '成功导出，<a href="{$site_url}/downloads/chargecode.txt">点击下载</a>']);
     }
 
     public function delete($id){
@@ -91,5 +91,9 @@ class Chargecodes extends BaseAdmin
         }
         $code->delete();
         return json(['err' => '0','msg' => '删除成功']);
+    }
+
+    public function deleteAll($ids){
+        ChargeCode::destroy($ids);
     }
 }

@@ -2,22 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/worker/Push.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/gateway_worker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/worker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/worker_server.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/workerman/workerman.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hanman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hanman.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/400.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/403.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/500.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/501.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/502.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/503.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/504.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/505.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/506.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/507.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/509.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error/510.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Areas.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Areas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Authors.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Authors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Banners.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Banners.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/BaseAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/BaseAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Mc.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Mc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/areas/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/areas/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/authors/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/authors/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/banners/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/banners/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/books/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chapters/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/chargecodes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/comment/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/comment/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/mc/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/mc/message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/users/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/users/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/vipcodes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/vipcodes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/worker/Push.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/worker/Push.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +79,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -91,7 +115,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/Program Files/Git/bin/git.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -499,6 +523,14 @@
       <workItem from="1566447217777" duration="1463000" />
       <workItem from="1566463144256" duration="585000" />
       <workItem from="1566551541061" duration="4992000" />
+      <workItem from="1566615417538" duration="177000" />
+      <workItem from="1566704720841" duration="1289000" />
+      <workItem from="1566709265433" duration="812000" />
+      <workItem from="1566788875653" duration="1090000" />
+      <workItem from="1566791970771" duration="593000" />
+      <workItem from="1566796150811" duration="823000" />
+      <workItem from="1566798402943" duration="1644000" />
+      <workItem from="1566809865924" duration="5587000" />
     </task>
     <servers />
   </component>

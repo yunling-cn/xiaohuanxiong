@@ -66,7 +66,22 @@ class Mc extends BaseAdmin
     }
 
     public function delete($id){
-        Message::destroy($id);
-        return ['err' => '0','msg' => '删除成功'];
+        $message=Message::get($id);
+        if (empty($message)){
+            return ['err' => '1','msg' => '删除失败'];
+        }
+        $result=$message->delete();
+        if ($result){
+
+        }
+        if ($result) {
+            return ['err' => '0','msg' => '删除成功'];
+        } else {
+            return ['err' => '1','msg' => '删除失败'];
+        }
+    }
+
+    public function deleteAll($ids){
+        Message::destroy($ids);
     }
 }

@@ -12,6 +12,14 @@ use think\worker\Server;
 class Push extends Server
 {
     protected $socket = 'websocket://0.0.0.0:2346';
+//    protected $context = [
+//        'ssl' => [
+//            'local_cert' => '磁盘路径/server.pem',
+//            'local_pk' => '磁盘路径/server.key',
+//            'verify_peer' => false,
+//        ],
+//    ];
+//    protected $transport = 'ssl';
 
     public function onConnect($connection)
     {
@@ -51,9 +59,9 @@ class Push extends Server
                         }
                     }
                 }
-                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">升级完成</p>');
+                $connection->send('<p style="padding-left:15px;font-weight: 400;color:#999;">升级完成</p>');
             } else {
-                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">已经是最新版本！当前版本是' . $localVersion.'</p>');
+                $connection->send('<p style="padding-left:15px;font-weight: 400;color:#999;">已经是最新版本！当前版本是' . $localVersion.'</p>');
             }
         } catch (Exception $exception) {
             $connection->send($exception->getMessage());
