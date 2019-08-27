@@ -25,7 +25,6 @@ class BaseAdmin extends Controller
     {
         parent::__construct($app);
         $img_site = config('site.img_site');
-        $site_url = config('site.url');
         $version = file_get_contents(\think\facade\App::getRootPath().'public/static/html/version.txt');
         View::share([
             'img_site' => $img_site,

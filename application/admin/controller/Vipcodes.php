@@ -78,9 +78,9 @@ class Vipcodes extends BaseAdmin
             delete_dir_file($file);
         }
         file_put_contents($file, implode("\r\n", $arr));
+        $site_url = config('site.url');
 
-
-        return json(['err=>0', 'msg' => '成功导出，<a href="{$site_url}/downloads/chargecode.txt">点击下载</a>']);
+        return json(['err=>0', 'msg' => '成功导出，<a href="' . $site_url.'/downloads/chargecode.txt">点击下载</a>']);
     }
     
     public function delete($id){
