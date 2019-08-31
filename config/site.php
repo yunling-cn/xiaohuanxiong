@@ -4,7 +4,8 @@
             'img_site' => 'http://hm.com',
             'site_name' => '哈哈漫画',
             'salt' => 'hm',
-            'api_key' => 'hahaha',   
-            'tpl' => 'default',
-            'payment' => 'Vkzf'            
-            ];
+            'id_salt' => '',
+            'api_key' => 'hahaha', 
+            'tpl' => 'zymk',
+            'payment' => 'Zhapay'         
+        ];

@@ -130,6 +130,10 @@ class Account extends Controller
     {
         session('xwx_user', null);
         session('xwx_user_id', null);
+        session('xwx_nick_name', null);
+                    session('xwx_user_mobile',null);
+                    session('xwx_user_level', null);
+                    session('xwx_vip_expire_time', null);
         $this->success('成功登出', '/login');
     }
 

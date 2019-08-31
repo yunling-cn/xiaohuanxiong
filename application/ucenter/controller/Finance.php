@@ -175,8 +175,6 @@ class Finance extends BaseUcenter
                 } else {
                     return json(['err' => 1, 'msg' => '充值码使用失败']);
                 }
-
-
             }
         }
         $url = config('payment.kami.url');

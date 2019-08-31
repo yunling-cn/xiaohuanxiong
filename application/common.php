@@ -1,6 +1,8 @@
 <?php
 use think\facade\App;
 // 应用公共文件
+define('spider_db_conn', 'xxx');
+
 function delete_dir_file($dir_name)
 {
     $result = false;

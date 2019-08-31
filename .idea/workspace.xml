@@ -2,10 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/api/model/BookLogs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/api/model/ChapterLogs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/css/vendor.ddc039.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/e30cfb0adc4049a19e7a3936b59fb3d2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/index/index/pc_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/js/entry.index.572ed7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/js/vendor.ddc039.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/zymk/pub/pc_base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/BaseAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/BaseAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Write.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Write.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/install/sql/install.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/sql/install.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +97,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Program Files/Git/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/template/zymk/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -88,19 +105,19 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xiaohuanxiong\public\template\zymk\images" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\css" />
+      <recent name="D:\wwwroot\xiaohuanxiong\public\static\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xiaohuanxiong\public\template\zymk\index\index" />
       <recent name="F:\xiaohuanxiong\application\worker" />
       <recent name="D:\wwwroot\xiaohuanxiong\application\admin\view\index" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\users" />
       <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\account" />
-      <recent name="D:\wwwroot\xiaohuanxiong\application\api\controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\js" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\images" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\admin\images" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\admin\js" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -497,6 +514,11 @@
       <workItem from="1566798402943" duration="1644000" />
       <workItem from="1566809865924" duration="5587000" />
       <workItem from="1566871727719" duration="454000" />
+      <workItem from="1566873376239" duration="5740000" />
+      <workItem from="1566891227466" duration="2580000" />
+      <workItem from="1567149029132" duration="3733000" />
+      <workItem from="1567178298226" duration="2591000" />
+      <workItem from="1567220507158" duration="4247000" />
     </task>
     <servers />
   </component>

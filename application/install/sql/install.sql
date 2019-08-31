@@ -301,7 +301,7 @@ DROP TABLE IF EXISTS `xwx_charge_code`;
 CREATE TABLE `xwx_charge_code`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '卡密',
-  `money` decimal(4, 2) NOT NULL COMMENT '面额',
+  `money` decimal(5, 2) NOT NULL COMMENT '面额',
    `used` tinyint(4) DEFAULT 1 COMMENT '1.未使用 2.已发出 3.已使用',
   `create_time` int(11) NULL DEFAULT NULL,
   `update_time` int(11) NULL DEFAULT NULL,
