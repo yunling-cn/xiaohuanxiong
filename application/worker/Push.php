@@ -29,11 +29,13 @@ class Push extends Server
             $localVersion = (int)str_replace('.', '', file_get_contents($srcUrl));
             $server = "http://update.xhxcms.xyz";
             $serverFileUrl = $server . "/public/static/html/version.txt";
-            $res = $client->request('GET', $serverFileUrl);
+            $res = $client->request('GET', $serverFileUrl); //读取版本号
             $serverVersion = (int)str_replace('.', '', $res->getBody());
             $connection->send('<p></p>');
 
             if ($serverVersion > $localVersion) {
+                file_put_contents($srcUrl, $res, true); //将版本号写入到本地文件
+                $connection->send('<p style="padding-left:15px 24px;font-weight: 400;color:#999;">覆盖版本号</p>');
                 for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
                     $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
                     if ((int)($res->getStatusCode()) == 200) {
