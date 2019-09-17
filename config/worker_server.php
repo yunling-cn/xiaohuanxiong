@@ -21,7 +21,7 @@ return [
     'socket'         => '', // 完整监听地址
     'context'        => [], // socket 上下文选项
     'worker_class'   => [
-        //'app\worker\Push',
+        'app\worker\Push',
         'app\worker\Gen'
     ], // 自定义Workerman服务类名 支持数组定义多个服务
 
