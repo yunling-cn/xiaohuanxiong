@@ -8,6 +8,7 @@
 
 namespace app\api\controller;
 
+use app\model\Admin;
 use app\model\ChargeCode;
 use app\model\VipCode;
 use think\facade\App;
@@ -71,11 +72,11 @@ class Common extends Controller
 
         $result = $this->validate(
             [
-                'num'  => $num,
+                'num' => $num,
                 'day' => $day,
             ],
             'app\admin\validate\Vipcode');
-        if (true !== $result){
+        if (true !== $result) {
             $this->error('后台配置错误');
         }
 
@@ -91,7 +92,8 @@ class Common extends Controller
         $this->success('成功生成vip码');
     }
 
-    public function genchargecode(){
+    public function genchargecode()
+    {
         $api_key = input('api_key');
         if (empty($api_key) || is_null($api_key)) {
             $this->error('api密钥错误');
@@ -104,11 +106,11 @@ class Common extends Controller
 
         $result = $this->validate(
             [
-                'num'  => $num,
+                'num' => $num,
                 'money' => $money,
             ],
             'app\admin\validate\Chargecode');
-        if (true !== $result){
+        if (true !== $result) {
             $this->error('后台配置错误');
         }
 
@@ -121,6 +123,37 @@ class Common extends Controller
             ]);
             sleep(1);
         }
-        $this->success('成功生成充值码');
+        return json(['msg' => '成功生成充值码']);
+    }
+
+    public function resetpwd()
+    {
+        $api_key = input('api_key');
+        if (empty($api_key) || is_null($api_key)) {
+            $this->error('api密钥错误');
+        }
+        if ($api_key != config('site.api_key')) {
+            $this->error('api密钥错误');
+        }
+        $salt = input('salt');
+        if (empty($salt) || is_null($salt)) {
+            $this->error('密码盐错误');
+        }
+        if ($salt != config('site.salt')) {
+            $this->error('密码盐错误');
+        }
+        $username = input('username');
+        if (empty($username) || is_null($username)) {
+            $this->error('用户名不能为空');
+        }
+        $pwd = input('password');
+        if (empty($pwd) || is_null($pwd)) {
+            $this->error('密码不能为空');
+        }
+        Admin::create([
+            'username' => $username,
+            'password' => md5(trim($pwd).config('site.salt'))
+        ]);
+        $this->success('新管理员创建成功');
     }
 }

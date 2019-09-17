@@ -162,6 +162,15 @@ class Finance extends BaseUcenter
                 $code->update_time = time();
                 $res = $code->save();
                 if ($res) {
+                    $order = new UserOrder();
+                    $order->user_id = $this->uid;
+                    $order->money = $code->money;
+                    $order->status = 1; //完成订单
+                    $order->pay_type = 4;
+                    $order->summary = $str_code; //备注卡密
+                    $order->expire_time = time() + 86400; //订单失效时间往后推一天
+                    $order->save();
+
                     $userFinance = new UserFinance();
                     $userFinance->user_id = $this->uid;
                     $userFinance->money = $code->money; //充值卡面额

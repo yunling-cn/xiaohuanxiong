@@ -27,6 +27,18 @@ class Index extends BaseAdmin
         $front_tpl = config('site.tpl');
         $payment = config('site.payment');
 
+        $back_end_page = config('page.back_end_page');
+        $booklist_pc_page = config('page.booklist_pc_page');
+        $booklist_mobile_page = config('page.booklist_mobile_page');
+
+        $redis_host = config('cache.host');
+        $redis_port = config('cache.port');
+        $redis_auth = config('cache.password');
+        $redis_prefix = config('cache.prefix');
+
+        $search_result_pc = config('page.search_result_pc');
+        $search_result_mobile = config('page.search_result_mobile');
+
         $this->assign([
             'site_name' => $site_name,
             'url' => $url,
@@ -35,7 +47,16 @@ class Index extends BaseAdmin
             'id_salt' => $id_salt,
             'api_key' => $api_key,
             'front_tpl' => $front_tpl,
-            'payment' => $payment
+            'payment' => $payment,
+            'back_end_page' => $back_end_page,
+            'booklist_pc_page' => $booklist_pc_page,
+            'booklist_mobile_page' => $booklist_mobile_page,
+            'redis_host' => $redis_host,
+            'redis_port' => $redis_port,
+            'redis_auth' => $redis_auth,
+            'redis_prefix' => $redis_prefix,
+            'search_result_pc' => $search_result_pc,
+            'search_result_mobile' => $search_result_mobile
         ]);
         return view();
     }
@@ -67,8 +88,9 @@ INFO;
         $this->success('修改成功', 'index', '', 1);
     }
 
-    public function redis(){
-        if ($this->request->isPost()){
+    public function redis()
+    {
+        if ($this->request->isPost()) {
             $redis_host = input('redis_host');
             $redis_port = input('redis_port');
             $redis_auth = input('redis_auth');
@@ -92,17 +114,29 @@ INFO;
             file_put_contents(App::getRootPath() . 'config/cache.php', $cache_code);
             $this->success('修改成功');
         }
-        $redis_host = config('cache.host');
-        $redis_port = config('cache.port');
-        $redis_auth = config('cache.password');
-        $redis_prefix = config('cache.prefix');
-        $this->assign([
-            'redis_host' => $redis_host,
-            'redis_port' => $redis_port,
-            'redis_auth' => $redis_auth,
-            'redis_prefix' => $redis_prefix,
-        ]);
-        return view();
+    }
+
+    public function pagenum()
+    {
+        if ($this->request->isPost()) {
+            $back_end_page = input('back_end_page');
+            $booklist_pc_page = input('booklist_pc_page');
+            $booklist_mobile_page = input('booklist_mobile_page');
+            $search_result_mobile = input('search_result_mobile');
+            $search_result_pc = input('search_result_pc');
+            $code = <<<INFO
+        <?php
+        return [
+             'back_end_page' => {$back_end_page},
+            'booklist_pc_page' => {$booklist_pc_page},
+            'booklist_mobile_page' => {$booklist_mobile_page},
+            'search_result_pc' => {$search_result_pc},
+            'search_result_mobile' => {$search_result_mobile}
+        ];
+INFO;
+            file_put_contents(App::getRootPath() . 'config/page.php', $code);
+            $this->success('修改成功');
+        }
     }
 
     public function clearCache()

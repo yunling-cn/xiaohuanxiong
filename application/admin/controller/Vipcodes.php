@@ -26,6 +26,15 @@ class Vipcodes extends BaseAdmin
         return view();
     }
 
+    public function detail(){
+        $this->assign([
+            'salt' => config('kami.salt'),
+            'vipcode_day' => config('kami.vipcode.day'),
+            'vipcode_num' => config('kami.vipcode.num')
+        ]);
+        return view();
+    }
+
     public function search()
     {
         $where = array();

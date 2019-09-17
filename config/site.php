@@ -5,7 +5,7 @@
             'site_name' => '哈哈漫画',
             'salt' => 'hm',
             'id_salt' => '',
-            'api_key' => 'hahaha', 
+            'api_key' => 'hehehe', 
             'tpl' => 'zymk',
-            'payment' => 'Zhapay'         
+            'payment' => 'kami'         
         ];

@@ -92,6 +92,7 @@ class Users extends BaseUcenter
         if ($time > 0) {
             $day = ceil(($user->vip_expire_time - time()) / (60 * 60 * 24));
         }
+        session('xwx_vip_expire_time', $user->vip_expire_time); //在session里更新用户vip过期时间
         $this->assign([
             'balance' => $balance,
             'user' => $user,

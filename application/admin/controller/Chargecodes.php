@@ -27,6 +27,15 @@ class Chargecodes extends BaseAdmin
         return view();
     }
 
+    public function detail(){
+        $this->assign([
+            'salt' => config('kami.salt'),
+            'chargecode_money' => config('kami.chargecode.money'),
+            'chargecode_num' => config('kami.chargecode.num')
+        ]);
+        return view();
+    }
+
     public function search()
     {
         $where = array();

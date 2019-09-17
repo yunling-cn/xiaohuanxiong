@@ -26,11 +26,6 @@ function delete_dir_file($dir_name)
     return $result;
 }
 
-function img_process($file,$width,$height,$path){
-    $image = think\Image::open($file);
-    $image->thumb($width, $height,think\Image::THUMB_FIXED)->save($path);
-}
-
 function subtext($text, $length)
 {
     $text2 = strip_tags($text);
@@ -199,39 +194,11 @@ function dex($str){
     return base_convert($str,16,10);
 }
 
-function curl( $url, $postFields = null ) {
-    $ch = curl_init();
-    curl_setopt( $ch, CURLOPT_URL, $url );
-    curl_setopt( $ch, CURLOPT_FAILONERROR, false );
-    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-
-    $postBodyString = "";
-    $encodeArray = Array();
-    $postMultipart = false;
-
-    if ( is_array( $postFields ) && 0 < count( $postFields ) ) {
-        foreach ( $postFields as $k => $v ) {
-            $postBodyString .= $k . '=' . urlencode( $v ) . '&';
-        }
-        unset ( $k, $v );
-        curl_setopt( $ch, CURLOPT_POST, true );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, substr( $postBodyString, 0, -1 ) );
+function random_color(){
+    mt_srand((double)microtime()*1000000);
+    $c = '';
+    while(strlen($c)<6){
+        $c .= sprintf("%02X", mt_rand(0, 255));
     }
-    $headers = array( 'content-type: application/x-www-form-urlencoded;charset=UTF-8' );
-    curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-
-    $reponse = curl_exec( $ch );
-
-    if ( curl_errno( $ch ) ) {
-        throw new Exception( curl_error( $ch ), 0 );
-    } else {
-        $httpStatusCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-        if ( 200 !== $httpStatusCode ) {
-            throw new Exception( $reponse, $httpStatusCode );
-        }
-    }
-
-    curl_close( $ch );
-    return $reponse;
+    return $c;
 }

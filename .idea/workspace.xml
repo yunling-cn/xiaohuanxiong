@@ -2,27 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/api/model/BookLogs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/api/model/ChapterLogs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/css/vendor.ddc039.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/e30cfb0adc4049a19e7a3936b59fb3d2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/fonts/pc_zymk.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/index/index/pc_index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/js/entry.index.572ed7.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/js/vendor.ddc039.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/zymk/pub/pc_base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/admin/view/vipcodes/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/worker/Gen.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/page.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/downloads/chargecode.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/api/controller/Write.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Write.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Photos.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Photos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/chargecodes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/index/redis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/photos/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/photos/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/pub/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/vipcodes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/vipcodes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Common.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Common.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/install/sql/install.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/sql/install.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Rank.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Rank.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Tags.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/AdminService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/AdminService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/AuthorService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/AuthorService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/BookService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/BookService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/ChapterService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/ChapterService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/FinanceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/FinanceService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/PhotoService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/PhotoService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/TagsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/TagsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/UserService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/worker_server.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/worker_server.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extend/util/Page.php" beforeDir="false" afterPath="$PROJECT_DIR$/extend/util/Page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/workerman/workerman.log" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/workerman/workerman.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +79,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -97,27 +123,27 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/template/zymk/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/template/zymk/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\xiaohuanxiong\public\template\zymk\images" />
-      <recent name="D:\xiaohuanxiong\public\template\zymk" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\css" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\static\js" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\fonts" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\images" />
+      <recent name="D:\xiaohuanxiong\extend" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xiaohuanxiong\public\template\zymk\index" />
+      <recent name="D:\xiaohuanxiong\config" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\index\index" />
       <recent name="F:\xiaohuanxiong\application\worker" />
       <recent name="D:\wwwroot\xiaohuanxiong\application\admin\view\index" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\users" />
-      <recent name="D:\wwwroot\xiaohuanxiong\public\template\default\ucenter\account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -519,6 +545,29 @@
       <workItem from="1567149029132" duration="3733000" />
       <workItem from="1567178298226" duration="2591000" />
       <workItem from="1567220507158" duration="4247000" />
+      <workItem from="1567304418006" duration="9242000" />
+      <workItem from="1567394099120" duration="20878000" />
+      <workItem from="1567483615634" duration="168000" />
+      <workItem from="1567495898918" duration="2640000" />
+      <workItem from="1567501556369" duration="3801000" />
+      <workItem from="1567566059052" duration="20383000" />
+      <workItem from="1567652113325" duration="14295000" />
+      <workItem from="1567745704603" duration="5336000" />
+      <workItem from="1567942338823" duration="82000" />
+      <workItem from="1567999656816" duration="622000" />
+      <workItem from="1568013741750" duration="2653000" />
+      <workItem from="1568032136056" duration="553000" />
+      <workItem from="1568085409044" duration="1865000" />
+      <workItem from="1568089243691" duration="3965000" />
+      <workItem from="1568100458053" duration="6200000" />
+      <workItem from="1568271391210" duration="11224000" />
+      <workItem from="1568431842206" duration="1857000" />
+      <workItem from="1568447249995" duration="9867000" />
+      <workItem from="1568519390015" duration="131000" />
+      <workItem from="1568519546406" duration="16612000" />
+      <workItem from="1568604226621" duration="5275000" />
+      <workItem from="1568692956568" duration="6609000" />
+      <workItem from="1568700057000" duration="4349000" />
     </task>
     <servers />
   </component>

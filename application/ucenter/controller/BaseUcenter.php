@@ -29,6 +29,13 @@ class BaseUcenter extends Controller
         if (is_null($this->uid)){
             $this->redirect(url('/login'));
         }
+
+        $vip_expire_time = session('vip_expire_time');
+        if (!empty($vip_expire_time)){
+            if($vip_expire_time - time() <= 0){ //计算出会员是否过期
+                session('xwx_vip_expire_time', null);
+            }
+        }
     }
 
     public function __construct(App $app = null)

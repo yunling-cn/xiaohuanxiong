@@ -110,7 +110,6 @@ class Account extends Controller
                     session('xwx_user_id', $user->id);
                     session('xwx_nick_name', $user->nick_name);
                     session('xwx_user_mobile', $user->mobile);
-                    session('xwx_user_level', $user->level);
                     session('xwx_vip_expire_time', $user->vip_expire_time);
                     return ['err' => 0, 'msg' => '登录成功'];
                 }
@@ -132,7 +131,6 @@ class Account extends Controller
         session('xwx_user_id', null);
         session('xwx_nick_name', null);
                     session('xwx_user_mobile',null);
-                    session('xwx_user_level', null);
                     session('xwx_vip_expire_time', null);
         $this->success('成功登出', '/login');
     }
