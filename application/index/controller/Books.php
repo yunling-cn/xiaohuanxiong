@@ -243,9 +243,10 @@ class Books extends Base
 
     public function update()
     {
-        $books = $this->bookService->getPagedBooks('last_time', '1=1', 150, 100);
+        $data = $this->bookService->getPagedBooks('last_time', '1=1', 150, 100);
         $this->assign([
-            'books' => $books
+            'books' => $data['books'],
+            'page' => $data['page'],
         ]);
         return view($this->tpl);
     }
