@@ -4,8 +4,6 @@
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/install/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/controller/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/install/view/index/step3.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/view/index/step3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/service/PhotoService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/PhotoService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -528,6 +526,7 @@
       <workItem from="1568700057000" duration="4349000" />
       <workItem from="1568794628211" duration="1022000" />
       <workItem from="1568950534677" duration="4320000" />
+      <workItem from="1568964920954" duration="1219000" />
     </task>
     <servers />
   </component>
