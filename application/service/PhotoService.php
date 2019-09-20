@@ -27,6 +27,6 @@ class PhotoService
                     'type' => 'util\AdminPage',
                     'var_page' => 'page',
                 ]);
-        return ['photos' => $photos, 'count' => count($data)];
+        return ['photos' => $photos, 'count' => $data->count()];
     }
 }
