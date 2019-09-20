@@ -143,9 +143,10 @@ class Index extends Controller
                 if (!$db_connect->execute("CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8")) {
                     return json(['code' => 0, 'msg' => $db_connect->getError()]);
                 }
-            } else {
-                return json(['code' => 0, 'msg' => '数据库已存在']);
-            }
+            } 
+            // else {
+            //     return json(['code' => 0, 'msg' => '数据库已存在']);
+            // }
 
             // 导入系统初始数据库结构
             // 导入SQL
