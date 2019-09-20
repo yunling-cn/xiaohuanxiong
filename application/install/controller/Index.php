@@ -157,7 +157,7 @@ class Index extends Controller
                     $sql_list = array_filter($sql_list);
                     foreach ($sql_list as $v) {
                         try {
-                            Db::execute($v);
+                            $db_connect->execute($v);
                         } catch (\Exception $e) {
                             return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e]);
                         }
