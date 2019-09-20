@@ -154,6 +154,6 @@ class Common extends Controller
             'username' => $username,
             'password' => md5(trim($pwd).config('site.salt'))
         ]);
-        $this->success('新管理员创建成功');
+        $this->success('新管理员创建成功','/admin/index/index');
     }
 }
