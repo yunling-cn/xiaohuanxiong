@@ -44,7 +44,7 @@ class BaseUcenter extends Controller
         $this->redis_prefix = config('cache.prefix');
         $this->prefix = config('database.prefix');
         $this->id_salt = config('site.id_salt');
-        $tpl_root = './template/'.config('site.tpl').'/ucenter/';
+        $tpl_root = './template/default/ucenter/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
         if ($this->request->isMobile()){

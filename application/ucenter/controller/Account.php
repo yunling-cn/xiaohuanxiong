@@ -23,7 +23,7 @@ class Account extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $tpl_root = Env::get('root_path') . '/public/template/' . config('site.tpl') . '/ucenter/';
+        $tpl_root = Env::get('root_path') . '/public/template/default/ucenter/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
         if ($this->request->isMobile()) {
