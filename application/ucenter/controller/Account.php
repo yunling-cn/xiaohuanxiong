@@ -46,7 +46,6 @@ class Account extends Controller
             if ($redis->exists('user_reg:' . $ip)) {
                 return ['err' => 1, 'msg' => '操作太频繁'];
             } else {
-                $redis->set('user_reg:'.$ip,1,60); //写入锁
                 $data = $request->param();
                 $validate = new \app\ucenter\validate\User();
                 if ($validate->check($data)) {
@@ -64,6 +63,7 @@ class Account extends Controller
                     $user->pid = $pid; //设置用户上线id
                     $result = $user->save();
                     if ($result) {
+                        $redis->set('user_reg:'.$ip,1,60); //写入锁
                         $promotionService = new PromotionService();
                         $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
                         return ['err' => 0, 'msg' => '注册成功，请登录'];

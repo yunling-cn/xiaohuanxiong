@@ -55,9 +55,9 @@
             <a class="paginate-btn" href="/booklist?page={$page.current_page-1}{$param}" title="上一页"> < </a>
             {/if}
             {if $page.current_page == $page.last_page}
-            <a class="paginate-disabled-btn" href="#"> < </a>
+            <a class="paginate-disabled-btn" href="#"> > </a>
             {else/}
-            <a class="paginate-btn" href="/booklist?page={$page.current_page+1}{$param}" title="下一页"> < </a>
+            <a class="paginate-btn" href="/booklist?page={$page.current_page+1}{$param}" title="下一页"> > </a>
             {/if}
         {/if}
     </div>

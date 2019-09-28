@@ -92,6 +92,7 @@
         ws = new WebSocket('ws://{$host_ip}:2346');
         ws.onmessage = function (e) {
             $('.layui-layer-content').append(e.data);
+            console.log(e.data);
         }
 
     }

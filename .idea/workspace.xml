@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/install/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/worker/Push.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/worker/Push.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cache.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -526,7 +533,13 @@
       <workItem from="1568700057000" duration="4349000" />
       <workItem from="1568794628211" duration="1022000" />
       <workItem from="1568950534677" duration="4320000" />
-      <workItem from="1568964920954" duration="1219000" />
+      <workItem from="1568964920954" duration="1413000" />
+      <workItem from="1569124173328" duration="3136000" />
+      <workItem from="1569139630562" duration="2023000" />
+      <workItem from="1569393316970" duration="3538000" />
+      <workItem from="1569642058132" duration="190000" />
+      <workItem from="1569642274321" duration="751000" />
+      <workItem from="1569654499319" duration="1886000" />
     </task>
     <servers />
   </component>
