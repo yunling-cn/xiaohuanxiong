@@ -6,6 +6,6 @@
             'salt' => 'yymh2019',
             'id_salt' => '',
             'api_key' => 'hehehe', 
-            'tpl' => 'zymk',
+            'tpl' => 'default',
             'payment' => 'Zhapay'         
         ];

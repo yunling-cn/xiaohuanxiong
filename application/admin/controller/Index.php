@@ -30,14 +30,15 @@ class Index extends BaseAdmin
         $back_end_page = config('page.back_end_page');
         $booklist_pc_page = config('page.booklist_pc_page');
         $booklist_mobile_page = config('page.booklist_mobile_page');
+        $update_pc_page = config('update_pc_page');
+        $update_mobile_page = config('update_mobile_page');
+        $search_result_pc = config('page.search_result_pc');
+        $search_result_mobile = config('page.search_result_mobile');
 
         $redis_host = config('cache.host');
         $redis_port = config('cache.port');
         $redis_auth = config('cache.password');
         $redis_prefix = config('cache.prefix');
-
-        $search_result_pc = config('page.search_result_pc');
-        $search_result_mobile = config('page.search_result_mobile');
 
         $this->assign([
             'site_name' => $site_name,
@@ -51,6 +52,8 @@ class Index extends BaseAdmin
             'back_end_page' => $back_end_page,
             'booklist_pc_page' => $booklist_pc_page,
             'booklist_mobile_page' => $booklist_mobile_page,
+            'update_pc_page' => $update_pc_page,
+            'update_mobile_page' => $update_mobile_page,
             'redis_host' => $redis_host,
             'redis_port' => $redis_port,
             'redis_auth' => $redis_auth,
@@ -122,6 +125,8 @@ INFO;
             $back_end_page = input('back_end_page');
             $booklist_pc_page = input('booklist_pc_page');
             $booklist_mobile_page = input('booklist_mobile_page');
+            $update_pc_page = input('update_pc_page');
+            $update_mobile_page = input('update_mobile_page');
             $search_result_mobile = input('search_result_mobile');
             $search_result_pc = input('search_result_pc');
             $code = <<<INFO
@@ -131,7 +136,9 @@ INFO;
             'booklist_pc_page' => {$booklist_pc_page},
             'booklist_mobile_page' => {$booklist_mobile_page},
             'search_result_pc' => {$search_result_pc},
-            'search_result_mobile' => {$search_result_mobile}
+            'search_result_mobile' => {$search_result_mobile},
+            'update_pc_page' => {$update_pc_page},
+            'update_mobile_page' => {$update_mobile_page}
         ];
 INFO;
             file_put_contents(App::getRootPath() . 'config/page.php', $code);

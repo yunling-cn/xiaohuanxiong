@@ -243,10 +243,28 @@ class Books extends Base
 
     public function update()
     {
-        $data = $this->bookService->getPagedBooks('last_time', '1=1', 150, 100);
+        $update_pc_page = config('page.update_pc_page');
+        $update_mobile_page = config('update_mobile_page');
+        $date = input('date');
+        $day = input('day');
+        if (empty($date)) {
+            $time = 0;
+        } else {
+            $time = strtotime($date);
+        }
+        $where[] = ['last_time' , '>=', $time];
+        $data = $this->bookService->getPagedBooks('last_time', $where, $update_pc_page, $update_mobile_page);
+        unset($data['page']['query']['page']);
+        $param = '';
+        foreach ($data['page']['query'] as $k => $v) {
+            $param .= '&' . $k . '=' . $v;
+        }
         $this->assign([
             'books' => $data['books'],
             'page' => $data['page'],
+            'param' => $param,
+            'day' => $day == null ? -1 : $day,
+            'header_title' => '更新',
         ]);
         return view($this->tpl);
     }
