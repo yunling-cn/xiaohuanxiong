@@ -30,8 +30,8 @@ class Index extends BaseAdmin
         $back_end_page = config('page.back_end_page');
         $booklist_pc_page = config('page.booklist_pc_page');
         $booklist_mobile_page = config('page.booklist_mobile_page');
-        $update_pc_page = config('update_pc_page');
-        $update_mobile_page = config('update_mobile_page');
+        $update_pc_page = config('page.update_pc_page');
+        $update_mobile_page = config('page.update_mobile_page');
         $search_result_pc = config('page.search_result_pc');
         $search_result_mobile = config('page.search_result_mobile');
 
@@ -66,15 +66,16 @@ class Index extends BaseAdmin
 
     public function update()
     {
-        $site_name = input('site_name');
-        $url = input('url');
-        $img_site = input('img_site');
-        $salt = input('salt');
-        $id_salt = input('id_salt');
-        $api_key = input('api_key');
-        $front_tpl = input('front_tpl');
-        $payment = input('payment');
-        $site_code = <<<INFO
+        if ($this->request->isPost()) {
+            $site_name = input('site_name');
+            $url = input('url');
+            $img_site = input('img_site');
+            $salt = input('salt');
+            $id_salt = input('id_salt');
+            $api_key = input('api_key');
+            $front_tpl = input('front_tpl');
+            $payment = input('payment');
+            $site_code = <<<INFO
         <?php
         return [
             'url' => '{$url}',
@@ -87,8 +88,9 @@ class Index extends BaseAdmin
             'payment' => '{$payment}'         
         ];
 INFO;
-        file_put_contents(App::getRootPath() . 'config/site.php', $site_code);
-        $this->success('修改成功', 'index', '', 1);
+            file_put_contents(App::getRootPath() . 'config/site.php', $site_code);
+            $this->success('修改成功', 'index', '', 1);
+        }
     }
 
     public function redis()
@@ -119,9 +121,14 @@ INFO;
         }
     }
 
-    public function pagenum()
+    public function pagenum(Request $request)
     {
-        if ($this->request->isPost()) {
+        if ($request->isPost()) {
+            $data = $request->param();
+            $validate = new \app\admin\validate\Page;
+            if (!$validate->check($data)) {
+                $this->error($validate->getError());
+            }
             $back_end_page = input('back_end_page');
             $booklist_pc_page = input('booklist_pc_page');
             $booklist_mobile_page = input('booklist_mobile_page');
