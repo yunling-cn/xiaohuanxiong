@@ -64,7 +64,15 @@
                                 <div class="row clearfix">
                                     <label class="form-label col-xs-4 col-sm-3">模板目录名：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$front_tpl}" name="front_tpl">
+                                        <select name="front_tpl" class="select">
+                                            {volist name="tpl_dirs" id="vo"}
+                                            <option value="{$vo}"
+                                                    {if $vo == $front_tpl}
+                                                    selected
+                                                    {/if}
+                                                >{$vo}</option>
+                                            {/volist}
+                                        </select>
                                     </div>
                                 </div>
 
@@ -75,7 +83,7 @@
                             <option value="Zhapay"
                                     {if $payment == 'Zhapay'}
                                     selected
-                                {/if}
+                                    {/if}
                             >幻兮支付</option>
                             <option value="kami"
                                     {if $payment == 'kami'}

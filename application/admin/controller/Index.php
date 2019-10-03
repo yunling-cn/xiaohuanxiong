@@ -2,11 +2,9 @@
 
 namespace app\admin\controller;
 
-use GuzzleHttp\Client;
-use think\Exception;
+use DirectoryIterator;
 use think\facade\App;
 use think\facade\Cache;
-use think\facade\Env;
 use think\Request;
 
 class Index extends BaseAdmin
@@ -40,6 +38,14 @@ class Index extends BaseAdmin
         $redis_auth = config('cache.password');
         $redis_prefix = config('cache.prefix');
 
+        $dirs = array();
+        $dir = new DirectoryIterator(App::getRootPath().  'public/template/');
+        foreach ($dir as $fileinfo) {
+            if ($fileinfo->isDir() && !$fileinfo->isDot()) {
+                array_push($dirs,$fileinfo->getFilename());
+            }
+        }
+
         $this->assign([
             'site_name' => $site_name,
             'url' => $url,
@@ -59,7 +65,8 @@ class Index extends BaseAdmin
             'redis_auth' => $redis_auth,
             'redis_prefix' => $redis_prefix,
             'search_result_pc' => $search_result_pc,
-            'search_result_mobile' => $search_result_mobile
+            'search_result_mobile' => $search_result_mobile,
+            'tpl_dirs' => $dirs
         ]);
         return view();
     }
