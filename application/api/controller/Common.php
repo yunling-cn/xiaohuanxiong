@@ -53,7 +53,10 @@ class Common extends Controller
             $clicks->book_id = $k;
             $clicks->clicks = $v;
             $clicks->cdate = $day;
-            $clicks->save();
+            $result = $clicks->save();
+            if ($result) {
+                $redis->zRem('click:'.$day, $k); //同步到数据库之后，删除redis中的这个日期的这本漫画的点击数
+            }
         }
         return json(['success' => 1, 'msg' => '同步完成']);
     }
