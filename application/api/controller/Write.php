@@ -97,9 +97,9 @@ class Write extends Controller
         if (empty($chapterlog)) {
             $chapter = new Chapter();
             $chapter->chapter_name = trim($data['chapter_name']);
-            $chapter->book_id = $book->id;
+            $chapter->book_id = $book_id;
             $lastChapterOrder = 0;
-            $lastChapter = $this->chapterService->getLastChapter($book->id);
+            $lastChapter = $this->chapterService->getLastChapter($book_id);
             if ($lastChapter) {
                 $lastChapterOrder = $lastChapter->chapter_order;
             }
