@@ -219,7 +219,7 @@ INFO;
         echo '<p></p>';
 
         if ($serverVersion > $localVersion) {
-            file_put_contents($srcUrl, $$res->getBody(), true); //将版本号写入到本地文件
+            file_put_contents($srcUrl, (string)$res->getBody(), true); //将版本号写入到本地文件
             echo '<p style="padding-left:15px;font-weight: 400;color:#999;">覆盖版本号</p>';
             for ($i = $localVersion + 1; $i <= $serverVersion; $i++) {
                 $res = $client->request('GET', "http://config.xhxcms.xyz/" . $i . ".json");
