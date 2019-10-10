@@ -56,10 +56,15 @@
             area: ['630px', '360px'],
             content: '<p></p><p style="padding-left:15px;font-weight: 400;color:#999;">生成中，请耐心等待</p>'
         });
-        ws = new WebSocket('ws://{$host_ip}:2347?p=vip');
-        ws.onmessage = function (e) {
-            $('.layui-layer-content').append(e.data);
-        }
+
+        $.ajax({
+            url: '/admin/vipcodes/gencodes',
+            type: 'post',
+            data: $("form").serialize(),
+            success(data){
+                $('.layui-layer-content').append(data);
+            }
+        })
     }
 </script>
 {/block}

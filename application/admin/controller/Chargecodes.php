@@ -36,6 +36,31 @@ class Chargecodes extends BaseAdmin
         return view();
     }
 
+    public function gencodes(){
+        $num = input('chargecode_num'); //产生多少个
+        $money = input('chargecode_money');
+
+        $data = [
+            'num' => $num,
+            'money' => $money,
+        ];
+        $validate = new \app\admin\validate\Chargecode();
+        if (!$validate->check($data)) {
+            echo '设置错误';
+        }
+
+        $salt = config('site.' . config('kami.salt'));//根据配置，获取盐的方式
+        for ($i = 1; $i <= $num; $i++) {
+            $code = substr(md5($salt . time()), 8, 16);
+            ChargeCode::create([
+                'code' => $code,
+                'money' => $money
+            ]);
+           echo '<p style="padding-left:15px;font-weight: 400;color:#999;">' . '生成' . $code . '，金额为' . $money . '</p>';
+            sleep(1);
+        }
+    }
+
     public function search()
     {
         $where = array();

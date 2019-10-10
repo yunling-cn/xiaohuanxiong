@@ -35,6 +35,31 @@ class Vipcodes extends BaseAdmin
         return view();
     }
 
+    public function gencodes(){
+        $num = input('vipcode_num'); //产生多少个
+        $day = input('vipcode_day');
+
+        $data = [
+            'num' => $num,
+            'day' => $day,
+        ];
+        $validate = new \app\admin\validate\Vipcode();
+        if (!$validate->check($data)) {
+           echo '设置错误';
+        }
+
+        $salt = config('site.' . config('kami.salt'));//根据配置，获取盐的方式
+        for ($i = 1; $i <= $num; $i++) {
+            $code = substr(md5($salt . time()), 8, 16);
+            VipCode::create([
+                'code' => $code,
+                'add_day' => $day
+            ]);
+            echo '<p style="padding-left:15px;font-weight: 400;color:#999;">' . '生成' . $code . '，天数为' . $day . '</p>';
+            sleep(1);
+        }
+    }
+
     public function search()
     {
         $where = array();

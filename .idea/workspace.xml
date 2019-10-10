@@ -2,15 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/template/default/index/books/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Chargecodes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Vipcodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/vipcodes/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/vipcodes/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/worker/Gen.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/worker/Push.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/page.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/400.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/403.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/501.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/502.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/503.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/504.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/505.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/506.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/507.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/509.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/510.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,27 +104,27 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/template/zymk/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
-      <recent name="D:\xiaohuanxiong\public\template\zymk\css" />
-      <recent name="D:\xiaohuanxiong\public\template\zymk\fonts" />
-      <recent name="D:\xiaohuanxiong\public\template\zymk\images" />
-      <recent name="D:\xiaohuanxiong\extend" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xiaohuanxiong\public\template\zymk\index" />
       <recent name="D:\xiaohuanxiong\config" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\index\index" />
       <recent name="F:\xiaohuanxiong\application\worker" />
       <recent name="D:\wwwroot\xiaohuanxiong\application\admin\view\index" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\css" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\fonts" />
+      <recent name="D:\xiaohuanxiong\public\template\zymk\images" />
+      <recent name="D:\xiaohuanxiong\extend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -540,6 +559,12 @@
       <workItem from="1569642274321" duration="751000" />
       <workItem from="1569654499319" duration="1886000" />
       <workItem from="1569831454834" duration="7690000" />
+      <workItem from="1570013729171" duration="766000" />
+      <workItem from="1570072786242" duration="164000" />
+      <workItem from="1570073661989" duration="4964000" />
+      <workItem from="1570446017328" duration="415000" />
+      <workItem from="1570616582444" duration="678000" />
+      <workItem from="1570684146927" duration="2779000" />
     </task>
     <servers />
   </component>

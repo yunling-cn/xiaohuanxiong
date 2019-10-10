@@ -16,9 +16,9 @@ return [
     // 数据库名
     'database'        => 'hm',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'hiliqi',
     // 密码
-    'password'        => 'root',
+    'password'        => '123456',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
@@ -44,7 +44,7 @@ return [
     // 数据集返回类型
     'resultset_type'  => 'array',
     // 自动写入时间戳字段
-    'auto_timestamp'  => true,
+    'auto_timestamp'  => false,
     // 时间字段取出后的默认时间格式
     'datetime_format' => false,
     // 是否需要进行SQL性能分析
