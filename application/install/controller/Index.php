@@ -117,54 +117,30 @@ class Index extends Controller
             }
             // 不存在的数据库会导致连接失败
             $database = $data['database'];
-            $data['database'] = 'information_schema';
+            unset($data['database']);
+            // 创建数据库连接
             $db_connect = Db::connect($data);
-            $check = $db_connect->execute('SELECT * FROM information_schema.schemata WHERE schema_name="' . $database . '"');
-             if (!$check) {
-                // 创建数据库
-                $result = $db_connect->execute("CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8");
-                if (!$result) {
-                    return json(['code' => 0, 'msg' => '创建数据库失败']);
-                }
-            } else {
-                 return json(['code' => 0, 'msg' => '创建数据库成功']);
-             }
-
             // 检测数据库连接
-            try {
-                $version = $db_connect->query('select version()');
-                $num = str_replace('.', '', $version);
-                if ($num < '570') {
-                    return json(['code' => 0, 'msg' => 'MySQL版本不能低于5.7']);
-                }
-            } catch (\Exception $e) {
-                return json(['code' => 0, 'msg' => '数据库连接失败，请检查数据库配置！']);
+            try{
+                $db_connect->execute('select version()');
+            }catch(\Exception $e){
+                $this->error('数据库连接失败，请检查数据库配置！');
             }
 
-//            // 生成数据库配置文件
+            // 生成数据库配置文件
             $data['database'] = $database;
             self::make_database($data);
 
 
-
-            // 导入系统初始数据库结构
-            // 导入SQL
-            $sql_file = App::getRootPath() . 'application/install/sql/install.sql';
-            if (file_exists($sql_file)) {
-                $sql = file_get_contents($sql_file);
-                $sql_list = xwxcms_parse_sql($sql, 0, ['xwx_' => $config['prefix']]);
-                if ($sql_list) {
-                    $sql_list = array_filter($sql_list);
-                    foreach ($sql_list as $v) {
-                        try {
-                            $db_connect->execute($v);
-                        } catch (\Exception $e) {
-                            return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e]);
-                        }
-                    }
-                }
+            $check = $db_connect->execute('SELECT * FROM information_schema.schemata WHERE schema_name="'.$database.'"');
+            if ($check) {
+                $this->success('该数据库已存在，可直接安装。如需覆盖，请选择覆盖数据库！','');
             }
 
+            // 创建数据库
+            if (!$db_connect->execute("CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8")) {
+                return $this->error($db_connect->getError());
+            }
             return json(['code' => 1, 'msg' => '数据库连接成功', '']);
         } else {
             return json(['code' => 1, 'msg' => '非法访问']);
@@ -200,6 +176,25 @@ class Index extends Controller
 
         $this->setSiteConfig(trim($param['salt'])); //写入网站配置文件
         $this->setCacheConfig(trim($param['redis_prefix'])); //写入cache配置文件
+
+        // 导入系统初始数据库结构
+        // 导入SQL
+        $sql_file = App::getRootPath() . 'application/install/sql/install.sql';
+        if (file_exists($sql_file)) {
+            $sql = file_get_contents($sql_file);
+            $sql_list = xwxcms_parse_sql($sql, 0, ['xwx_' => $config['prefix']]);
+            if ($sql_list) {
+                $sql_list = array_filter($sql_list);
+                foreach ($sql_list as $v) {
+                    try {
+                        Db::execute($v);
+                    } catch (\Exception $e) {
+                        return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e]);
+                    }
+                }
+            }
+        }
+
         // 注册管理员账号
         $data = [
             'username' => $param['username'],
@@ -339,6 +334,7 @@ INFO;
             ['pdo', '支持', 'yes', '类'],
             ['pdo_mysql', '支持', 'yes', '模块'],
             ['zip', '支持', 'yes', '模块'],
+            ['curl', '支持', 'yes', '模块'],
             ['xml', '支持', 'yes', '函数'],
             ['file_get_contents', '支持', 'yes', '函数'],
             ['mb_strlen', '支持', 'yes', '函数'],
