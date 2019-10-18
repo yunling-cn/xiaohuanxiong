@@ -117,10 +117,19 @@ class Index extends Controller
             }
             // 不存在的数据库会导致连接失败
             $database = $data['database'];
-
-            unset($data['database']);
-            // 创建数据库连接
+            $data['database'] = 'information_schema';
             $db_connect = Db::connect($data);
+            $check = $db_connect->execute('SELECT * FROM information_schema.schemata WHERE schema_name="' . $database . '"');
+             if (!$check) {
+                // 创建数据库
+                $result = $db_connect->execute("CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8");
+                if (!$result) {
+                    return json(['code' => 0, 'msg' => '创建数据库失败']);
+                }
+            } else {
+                 return json(['code' => 0, 'msg' => '创建数据库成功']);
+             }
+
             // 检测数据库连接
             try {
                 $version = $db_connect->query('select version()');
@@ -132,21 +141,11 @@ class Index extends Controller
                 return json(['code' => 0, 'msg' => '数据库连接失败，请检查数据库配置！']);
             }
 
-
-            // 生成数据库配置文件
+//            // 生成数据库配置文件
             $data['database'] = $database;
             self::make_database($data);
 
-            $check = $db_connect->execute('SELECT * FROM information_schema.schemata WHERE schema_name="' . $database . '"');
-            if (!$check) {
-                // 创建数据库
-                if (!$db_connect->execute("CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8")) {
-                    return json(['code' => 0, 'msg' => $db_connect->getError()]);
-                }
-            } 
-            // else {
-            //     return json(['code' => 0, 'msg' => '数据库已存在']);
-            // }
+
 
             // 导入系统初始数据库结构
             // 导入SQL
@@ -158,7 +157,7 @@ class Index extends Controller
                     $sql_list = array_filter($sql_list);
                     foreach ($sql_list as $v) {
                         try {
-                            Db::execute($v);
+                            $db_connect->execute($v);
                         } catch (\Exception $e) {
                             return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e]);
                         }
@@ -182,7 +181,7 @@ class Index extends Controller
 
         $config = include App::getRootPath() . 'config/database.php';
         if (empty($config['hostname']) || empty($config['database']) || empty($config['username'])) {
-            return $this->error('请先点击测试数据库连接！');
+            return json(['code' => 0, '请先点击测试数据库连接！']);
         }
 
         $rule = [
