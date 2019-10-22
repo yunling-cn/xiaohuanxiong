@@ -15,6 +15,7 @@ class Rank extends Base
 
     protected function initialize()
     {
+        parent::initialize();
         $this->bookService = new \app\service\BookService();
     }
 

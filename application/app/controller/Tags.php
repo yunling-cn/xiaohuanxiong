@@ -82,11 +82,11 @@ class Tags extends Base
 
     public function getBanners(){
         $num = input('num');
-        $banners = cache('banners_homepage');
+        $banners = cache('bannersHomepage');
         if (!$banners) {
             $banners = Db::query('SELECT * FROM xwx_banner WHERE id >= 
 ((SELECT MAX(id) FROM xwx_banner)-(SELECT MIN(id) FROM xwx_banner)) * RAND() + (SELECT MIN(id) FROM xwx_banner) LIMIT '.$num);
-            cache('banners_homepage', $banners, null, 'redis');
+            cache('bannersHomepage', $banners, null, 'redis');
         }
         return json(['success' => 1, 'banners' => $banners]);
     }

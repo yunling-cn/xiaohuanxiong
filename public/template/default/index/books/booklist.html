@@ -48,7 +48,7 @@
         {/volist}
     </ul>
     <div class="pagination">
-        {if $page.total_page > 1}
+        {if $page.last_page > 1}
             {if $page.current_page == 1}
             <a class="paginate-disabled-btn" href="#"> < </a>
             {else/}

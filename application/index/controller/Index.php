@@ -11,6 +11,7 @@ class Index extends Base
 
     protected function initialize()
     {
+        parent::initialize();
         $this->bookService = new \app\service\BookService();
     }
 
@@ -20,32 +21,32 @@ class Index extends Base
         if ($pid) { //如果有推广pid
             cookie('xwx_promotion', $pid); //将pid写入cookie
         }
-        $banners = cache('banners_homepage');
+        $banners = cache('bannersHomepage');
         if (!$banners) {
             $banners = Db::query('SELECT * FROM xwx_banner WHERE id >= 
 ((SELECT MAX(id) FROM xwx_banner)-(SELECT MIN(id) FROM xwx_banner)) * RAND() + (SELECT MIN(id) FROM xwx_banner) LIMIT 5');
-            cache('banners_homepage', $banners, null, 'redis');
+            cache('bannersHomepage', $banners, null, 'redis');
         }
 
-        $hot_books = cache('hot_books');
+        $hot_books = cache('hotBooks');
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
-            cache('hot_books', $hot_books, null, 'redis');
+            cache('hotBooks', $hot_books, null, 'redis');
         }
 
-        $newest = cache('newest_homepage');
+        $newest = cache('newestHomepage');
         if (!$newest) {
             $newest = $this->bookService->getBooks('last_time', '1=1', 14);
-            cache('newest_homepage', $newest, null, 'redis');
+            cache('newestHomepage', $newest, null, 'redis');
         }
 
-        $ends = cache('ends_homepage');
+        $ends = cache('endsHomepage');
         if (!$ends) {
             $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 14);
-            cache('ends_homepage', $ends, null, 'redis');
+            cache('endsHomepage', $ends, null, 'redis');
         }
 
-        $most_charged = cache('most_charged');
+        $most_charged = cache('mostCharged');
         if (!$most_charged) {
             $arr = $this->bookService->getMostChargedBook();
             if (count($arr) > 0) {
@@ -55,7 +56,7 @@ class Index extends Base
             } else {
                 $arr = [];
             }
-            cache('most_charged', $most_charged, null, 'redis');
+            cache('mostCharged', $most_charged, null, 'redis');
         }
 
         $tags = cache('tags');

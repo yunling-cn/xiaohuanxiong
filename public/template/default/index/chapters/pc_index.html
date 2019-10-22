@@ -34,10 +34,29 @@
 <div class="container">
     <div id="content">
         <div class="fanye">
-            {if $prev != "null"}
+            {if $prev == "null"}
+            <a class="block" style="color: lightgrey">上一章</a>
+            {else/}
             <a href="/chapter/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
             {/if}
-            {if $next != "null"}
+
+            {if $page.last_page > 1}
+                {if $page.current_page == 1}
+                <a style="color: lightgrey">上一页</a>
+                {else/}
+                <a href="/chapter/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
+                {/if}
+
+                {if $page.current_page == $page.last_page}
+                <a style="color: lightgrey">下一页</a>
+                {else/}
+                <a href="/chapter/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
+                {/if}
+            {/if}
+
+            {if $next == "null"}
+            <a class="block" style="color: lightgrey">下一章</a>
+            {else/}
             <a href="/chapter/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
             {/if}
         </div>
@@ -57,10 +76,29 @@
             </div>
         </div>
         <div class="fanye">
-            {if $prev != "null"}
+            {if $prev == "null"}
+            <a class="block" style="color: lightgrey">上一章</a>
+            {else/}
             <a href="/chapter/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
             {/if}
-            {if $next != "null"}
+
+            {if $page.last_page > 1}
+                {if $page.current_page == 1}
+                <a style="color: lightgrey">上一页</a>
+                {else/}
+                <a href="/chapter/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
+                {/if}
+
+                {if $page.current_page == $page.last_page}
+                <a style="color: lightgrey">下一页</a>
+                {else/}
+                <a href="/chapter/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
+                {/if}
+            {/if}
+
+            {if $next == "null"}
+            <a class="block" style="color: lightgrey">下一章</a>
+            {else/}
             <a href="/chapter/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
             {/if}
         </div>

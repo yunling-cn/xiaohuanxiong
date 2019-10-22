@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use DirectoryIterator;
 use GuzzleHttp\Client;
+use think\Db;
 use think\facade\App;
 use think\facade\Cache;
 use think\facade\Env;
@@ -34,6 +35,7 @@ class Index extends BaseAdmin
         $update_mobile_page = config('page.update_mobile_page');
         $search_result_pc = config('page.search_result_pc');
         $search_result_mobile = config('page.search_result_mobile');
+        $img_per_page = config('page.img_per_page');
 
         $redis_host = config('cache.host');
         $redis_port = config('cache.port');
@@ -68,6 +70,7 @@ class Index extends BaseAdmin
             'redis_prefix' => $redis_prefix,
             'search_result_pc' => $search_result_pc,
             'search_result_mobile' => $search_result_mobile,
+            'img_per_page' => $img_per_page,
             'tpl_dirs' => $dirs
         ]);
         return view();
@@ -145,6 +148,7 @@ INFO;
             $update_mobile_page = input('update_mobile_page');
             $search_result_mobile = input('search_result_mobile');
             $search_result_pc = input('search_result_pc');
+            $img_per_page = input('img_per_page');
             $code = <<<INFO
         <?php
         return [
@@ -154,7 +158,8 @@ INFO;
             'search_result_pc' => {$search_result_pc},
             'search_result_mobile' => {$search_result_mobile},
             'update_pc_page' => {$update_pc_page},
-            'update_mobile_page' => {$update_mobile_page}
+            'update_mobile_page' => {$update_mobile_page},
+            'img_per_page' => {$img_per_page}
         ];
 INFO;
             file_put_contents(App::getRootPath() . 'config/page.php', $code);
@@ -236,6 +241,7 @@ INFO;
                         file_put_contents($saveFileName, $data, true); //将内容写入到本地文件
                        echo '<p style="padding-left:15px;font-weight: 400;color:#999;">升级文件' . $value . '</p>';
                     }
+
                     foreach ($json['delete'] as $value) {
                         $flag = unlink(Env::get('root_path') . '/' . $value);
                         if ($flag) {
@@ -243,6 +249,12 @@ INFO;
                         } else {
                             echo '<p style="padding-left:15px;font-weight: 400;color:#999;">删除文件失败</p>';
                         }
+                    }
+
+                    foreach ($json['sql'] as $value) {
+                        //Db::execute('ALTER TABLE aaa ADD `name` INT(0) NOT NULL DEFAULT 0');
+                        Db::execute($value);
+                        echo '成功执行以下SQL语句：'.$value;
                     }
                 }
             }

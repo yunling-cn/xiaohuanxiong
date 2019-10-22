@@ -22,13 +22,13 @@ class Book extends Model
     public static function init()
     {
         self::event('after_insert', function ($book) {
-            cache('newest_homepage',null);
-            cache('ends_homepage',null);
+            cache('newestHomepage',null);
+            cache('endsHomepage',null);
         });
 
         self::event('after_update', function ($book){
-            cache('book' . $book->id,null);
-            cache('book' . $book->id . 'tags',null);
+            cache('book:' . $book->id,null);
+            cache('tags:book:' . $book->id,null);
         });
     }
 

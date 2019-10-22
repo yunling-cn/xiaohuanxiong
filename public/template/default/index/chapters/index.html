@@ -55,14 +55,37 @@
 </a>
 <ul class="view-bottom-bar">
     {if $prev == "null"}
-    <li style="width:50%;opacity: 0.6;"><a class="view-bottom-bar-item" href="javascript:void(0)">上一章</a></li>
+    <li style="width:25%;opacity: 0.6;"><a class="view-bottom-bar-item">上一章</a></li>
     {else /}
-    <li style="width:50%;"><a class="view-bottom-bar-item" href="/chapter/{$prev.id}">上一章</a></li>
+    <li style="width:25%;"><a class="view-bottom-bar-item" href="/chapter/{$prev.id}">上一章</a></li>
     {/if}
+
+    {if $page.last_page > 1}
+        {if $page.current_page == 1}
+    <li style="width:25%;opacity: 0.6;">
+        <a class="view-bottom-bar-item">上一页</a>
+    </li>
+        {else/}
+    <li style="width:25%;">
+        <a class="view-bottom-bar-item" href="/chapter/{$chapter.id}?page={$page.current_page-1}">上一页</a>
+    </li>
+        {/if}
+
+        {if $page.current_page == $page.last_page}
+    <li style="width:25%;opacity: 0.6;">
+        <a class="view-bottom-bar-item">下一页</a>
+    </li>
+        {else/}
+    <li style="width:25%;">
+        <a class="view-bottom-bar-item" href="/chapter/{$chapter.id}?page={$page.current_page+1}">下一页</a>
+    </li>
+        {/if}
+    {/if}
+
     {if $next == "null"}
-    <li style="width:50%;opacity: 0.6;"><a class="view-bottom-bar-item" href="javascript:void(0)">下一章</a></li>
+    <li style="width:25%;opacity: 0.6;"><a class="view-bottom-bar-item" href="javascript:void(0)">下一章</a></li>
     {else /}
-    <li style="width:50%;"><a class="view-bottom-bar-item" href="/chapter/{$next.id}">下一章</a></li>
+    <li style="width:25%;"><a class="view-bottom-bar-item" href="/chapter/{$next.id}">下一章</a></li>
     {/if}
 </ul>
 <div class="view-fix-bottom-bar" mode="0">
@@ -72,7 +95,7 @@
     </a>
     <a class="view-fix-bottom-bar-item" style="visibility:hidden">占位</a>
     {if $prev == "null"}
-    <a class="view-fix-bottom-bar-item" href="javascript:void(0)" style="opacity: 0.6;">
+    <a class="view-fix-bottom-bar-item" style="opacity: 0.6;">
         <img class="view-fix-bottom-bar-logo" src="/static/images/view-bottom-logo-5.png">
         <p class="view-fix-bottom-bar-title">上一章</p>
     </a>
@@ -82,8 +105,9 @@
         <p class="view-fix-bottom-bar-title">上一章</p>
     </a>
     {/if}
+
     {if $next == "null"}
-    <a class="view-fix-bottom-bar-item" href="javascript:void(0)" style="opacity: 0.6;">
+    <a class="view-fix-bottom-bar-item" style="opacity: 0.6;">
         <img class="view-fix-bottom-bar-logo" src="/static/images/view-bottom-logo-6.png">
         <p class="view-fix-bottom-bar-title">下一章</p>
     </a>

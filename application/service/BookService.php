@@ -35,7 +35,6 @@ class BookService extends Base
                 'per_page' => $books['per_page'],
                 'current_page' => $books['current_page'],
                 'last_page' => $books['last_page'],
-                'total_page' => (int)ceil($books['total'] / $books['per_page']),
                 'query' => request()->param()
             ]
         ];

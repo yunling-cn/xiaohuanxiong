@@ -16,6 +16,7 @@ class Books extends Base
 
     public function initialize()
     {
+        parent::initialize();
         cookie('nav_switch', 'booklist'); //设置导航菜单active
         $this->bookService = new \app\service\BookService();
     }
@@ -39,43 +40,43 @@ class Books extends Base
 
         $this->savehot($book);
 
-        $hot_books = cache('hot_books'); //总点击
+        $hot_books = cache('hotBooks'); //总点击
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
-            cache('hot_books', $hot_books, null, 'redis');
+            cache('hotBooks', $hot_books, null, 'redis');
         }
 
-        $hot_books_month = cache('hot_books_month'); //月点击
+        $hot_books_month = cache('hotBooksMonth'); //月点击
         if (!$hot_books_month) {
             $date = date('Y-m-d', strtotime('-1 mouth'));
             $hot_books_month = $this->bookService->getHotBooks($date);
-            cache('hot_books_month', $hot_books, null, 'redis');
+            cache('hotBooksMonth', $hot_books, null, 'redis');
         }
 
-        $hot_books_day = cache('hot_books_day'); //日点击
+        $hot_books_day = cache('hotBooksDay'); //日点击
         if (!$hot_books_day) {
             $date = date('Y-m-d', strtotime('-1 day'));
             $hot_books_day = $this->bookService->getHotBooks($date);
-            cache('hot_books_day', $hot_books, null, 'redis');
+            cache('hotBooksDay', $hot_books, null, 'redis');
         }
 
-        $recommand = cache('rand_books');
+        $recommand = cache('randBooks');
         if (!$recommand) {
             $recommand = $this->bookService->getRecommand($book->tags);
-            cache('rand_books', $recommand, null, 'redis');
+            cache('randBooks', $recommand, null, 'redis');
         }
 
-        $updates = cache('update_books');
+        $updates = cache('updateBooks');
         if (!$updates) {
             $updates = $this->bookService->getBooks('last_time', [], 10);
-            cache('update_books', $updates, null, 'redis');
+            cache('updateBooks', $updates, null, 'redis');
         }
 
-        $start = cache('book_start:' . $bid);
+        $start = cache('bookStart:' . $bid);
         if ($start == false) {
             $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $bid . ' ORDER BY id LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
-            cache('book_start:' . $bid, $start, null, 'redis');
+            cache('bookStart:' . $bid, $start, null, 'redis');
         }
 
         $comments = $this->getComments($book->id);
@@ -90,7 +91,7 @@ class Books extends Base
             }
         }
 
-        $start_pay = cache('max_chapter_order:' . $bid);
+        $start_pay = cache('maxChapterOrder:' . $bid);
         if (!$start_pay) {
             if ($book->start_pay >= 0) {
                 $start_pay = $book->start_pay; //如果是正序，则开始付费章节就是设置的
@@ -98,15 +99,15 @@ class Books extends Base
                 $abs = abs($book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
                 $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
                     ['id' => $bid])[0]['max'];
-                cache('max_chapter_order:' . $bid, $max_chapter_order);
+                cache('maxChapterOrder:' . $bid, $max_chapter_order);
                 $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
             }
         }
 
-        $clicks = cache('book_clicks:' . $book->id);
+        $clicks = cache('bookClicks:' . $book->id);
         if (!$clicks) {
             $clicks = $this->bookService->getClicks($book->id);
-            cache('book_clicks:' . $book->id, $clicks);
+            cache('bookClicks:' . $book->id, $clicks);
         }
 
         $this->assign([
@@ -170,24 +171,24 @@ class Books extends Base
         $mobile_page = config('page.booklist_mobile_page');
         $data = $this->bookService->getPagedBooks('create_time', $map, $pc_page, $mobile_page);
 
-        $hot_books = cache('hot_books'); //总点击
+        $hot_books = cache('hotBooks'); //总点击
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
-            cache('hot_books', $hot_books, null, 'redis');
+            cache('hotBooks', $hot_books, null, 'redis');
         }
 
-        $hot_books_month = cache('hot_books_month'); //月点击
+        $hot_books_month = cache('hotBooksMonth'); //月点击
         if (!$hot_books_month) {
             $date = date('Y-m-d', strtotime('-1 mouth'));
             $hot_books_month = $this->bookService->getHotBooks($date);
-            cache('hot_books_month', $hot_books, null, 'redis');
+            cache('hotBooksMonth', $hot_books, null, 'redis');
         }
 
-        $hot_books_day = cache('hot_books_day'); //日点击
+        $hot_books_day = cache('hotBooksDay'); //日点击
         if (!$hot_books_day) {
             $date = date('Y-m-d', strtotime('-1 day'));
             $hot_books_day = $this->bookService->getHotBooks($date);
-            cache('hot_books_day', $hot_books, null, 'redis');
+            cache('hotBooksDay', $hot_books, null, 'redis');
         }
         unset($data['page']['query']['page']);
         $param = '';

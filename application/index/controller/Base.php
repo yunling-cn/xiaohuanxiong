@@ -48,10 +48,10 @@ class Base extends Controller
         }else{
             $this->tpl = $tpl_root.$controller.'/'.'pc_'.$action.'.html';
         }
-        $links = cache('friendship_link');
+        $links = cache('friendshipLink');
         if ($links == false){
             $links = FriendshipLink::all();
-            cache('friendship_link',$links,null,'redis');
+            cache('friendshipLink',$links,null,'redis');
         }
         View::share([
             'url' => config('site.url'),

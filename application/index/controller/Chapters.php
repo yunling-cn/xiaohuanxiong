@@ -9,17 +9,23 @@
 namespace app\index\controller;
 
 use app\model\Chapter;
-use app\model\UserBook;
 use app\model\UserBuy;
+use app\service\PhotoService;
 use think\Db;
 
 class Chapters extends Base
 {
+    protected $photoService;
+
+    protected function initialize()
+    {
+        parent::initialize();
+        $this->photoService = new PhotoService();
+    }
+
     public function index($id)
     {
-        $chapter = Chapter::with(['photos' => function ($query) {
-            $query->order('pic_order');
-        }], 'book')->cache('chapter:' . $id, 600, 'redis')->find($id);
+        $chapter = Chapter::with('book')->cache('chapter:' . $id, 600, 'redis')->find($id);
         $flag = true;
         if ($chapter->book->start_pay >= 0) {
             if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章序大于起始付费章节，则是付费章节
@@ -27,11 +33,11 @@ class Chapters extends Base
             }
         } else { //如果是倒序付费设置
             $abs = abs($chapter->book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
-            $max_chapter_order = cache('max_chapter_order:' . $chapter->book_id);
+            $max_chapter_order = cache('maxChapterOrder:' . $chapter->book_id);
             if (!$max_chapter_order) {
                 $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
                     ['id' => $chapter->book_id])[0]['max'];
-                cache('max_chapter_order:' . $chapter->book_id, $max_chapter_order);
+                cache('maxChapterOrder:' . $chapter->book_id, $max_chapter_order);
             }
             $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
             if ($chapter->chapter_order >= $start_pay) { //如果本章序大于起始付费章节，则是付费章节
@@ -56,11 +62,15 @@ class Chapters extends Base
             }
         }
         if ($flag) {
+            $num = config('page.img_per_page');
+            $page = empty(input('page')) ? '1' : input('page');
+            $data = $this->photoService->getPaged($chapter->id, $page, $num); //图片分页数据
+
             $book_id = $chapter->book_id;
-            $chapters = cache('mulu' . $book_id);
+            $chapters = cache('mulu:' . $book_id);
             if (!$chapters) {
                 $chapters = Chapter::where('book_id', '=', $book_id)->select();
-                cache('mulu' . $book_id, $chapters, null, 'redis');
+                cache('mulu:' . $book_id, $chapters, null, 'redis');
             }
 
             $uid = session('xwx_user_id');
@@ -82,32 +92,35 @@ class Chapters extends Base
                     $redis->hDel($this->redis_prefix . ':history:' . $uid, $key); //按照key从hash表删除
                 }
             }
-            $prev = cache('chapter_prev:' . $id);
+            $prev = cache('chapterPrev:' . $id);
             if (!$prev) {
                 $prev = Db::query(
                     'select * from ' . $this->prefix . 'chapter where book_id=' . $book_id . ' and chapter_order<' . $chapter->chapter_order . ' order by chapter_order desc limit 1');
-                cache('chapter_prev:' . $id, $prev, null, 'redis');
-            }
-            $next = cache('chapter_next:' . $id);
-            if (!$next) {
-                $next = Db::query(
-                    'select * from ' . $this->prefix . 'chapter where book_id=' . $book_id . ' and chapter_order>' . $chapter->chapter_order . ' order by chapter_order limit 1');
-                cache('chapter_next:' . $id, $next, null, 'redis');
+                cache('chapterPrev:' . $id, $prev, null, 'redis');
             }
             if (count($prev) > 0) {
                 $this->assign('prev', $prev[0]);
             } else {
                 $this->assign('prev', 'null');
             }
+
+            $next = cache('chapterNext:' . $id);
+            if (!$next) {
+                $next = Db::query(
+                    'select * from ' . $this->prefix . 'chapter where book_id=' . $book_id . ' and chapter_order>' . $chapter->chapter_order . ' order by chapter_order limit 1');
+                cache('chapterNext:' . $id, $next, null, 'redis');
+            }
             if (count($next) > 0) {
                 $this->assign('next', $next[0]);
             } else {
                 $this->assign('next', 'null');
             }
+
             $this->assign([
                 'chapter' => $chapter,
+                'page' => $data['page'],
                 'chapters' => $chapters,
-                'photos' => $chapter->photos,
+                'photos' => $data['photos'],
                 'chapter_count' => count($chapters),
                 'site_name' => config('site.site_name')
             ]);
