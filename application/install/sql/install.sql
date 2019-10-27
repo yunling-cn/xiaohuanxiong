@@ -142,6 +142,7 @@ CREATE TABLE `xwx_book` (
   KEY `tags` (`tags`) USING BTREE,
   KEY `end` (`end`) USING BTREE,
   KEY `author_id` (`author_id`) USING BTREE,
+  -- KEY `book_name` (`book_name`) USING BTREE
   FULLTEXT KEY `fidx` (`book_name`,`summary`,`nick_name`,`author_name`) with parser ngram
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
