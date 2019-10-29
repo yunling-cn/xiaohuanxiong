@@ -37,12 +37,12 @@
                 } else if (url.indexOf('end=1') > -1) {
                     $('.header-title li a').eq(2).addClass('active');
                 } else {
-                    $('.header-title li a').eq(4).addClass('active');
+                    $('.header-title li a').eq(5).addClass('active');
                 }
             }  else if (url.indexOf('rank') > -1) {
+                $('.header-title li a').eq(4).addClass('active');
+            } else if (url.indexOf('update') > -1) {
                 $('.header-title li a').eq(3).addClass('active');
-            } else if (url.indexOf('search') > -1) {
-
             } else {
                 $('.header-title li a').eq(0).addClass('active');
             }

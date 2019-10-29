@@ -169,6 +169,7 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
             if ($book) {
                 $book['chapter_count'] = count($book->chapters);
                 $book['taglist'] = explode('|', $book->tags);
+                $book['clicks'] = $val['clicks'];
                 array_push($books, $book);
             }
         }

@@ -1,7 +1,7 @@
 {extend name="./template/default/pub/pc_base.html" /}
 {block name="seo"}
 <title>漫画大全-{$site_name}</title>
-<meta name="description" content="{$site_name}为大家带来最新漫画大全，这里有超多漫画资源，无论是韩国漫画，少女漫画，还是恐怖漫画，总有一个让你酣畅淋漓">
+<meta name="description" content="{$site_name}为大家带来最新漫画大全，这里有超多漫画资源，无论是韩国漫画，耽美漫画，还是恐怖漫画，总有一个让你酣畅淋漓">
 {/block}
 {block name="content"}
 <div class="container">
@@ -52,47 +52,45 @@
 <script src="/static/js/shutter.js"></script>
 <script src="/static/js/velocity.js"></script>
 
-<section class="box container overflow-Show">
-    <header class="box-header"><i class="icon icon-cat"></i>
-        <h2>最近更新</h2>
-        <div class="pull-right">
-            <a class="more" href="/booklist?end=0">更多<i class="icon icon-arrow"></i></a></div>
-    </header>
-    <div class="box-body">
-        <section class="box-con-8n3">
-            <div class="box-8n3-pane js_box_pane active">
-                <ul class="mh-list col7">
-                    {volist name="newest" id="vo"}
-                    <li>
-                        <div class="mh-item">
-                            <a href="/book/{$id_salt}{$vo.id}" target="_blank">
-                                {if empty($vo.cover_url)}
-                                <p class="mh-cover "
-                                   style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
-                                {else /}
-                                <p class="mh-cover " style="background-image: url({$vo.cover_url})"></p>
-                                {/if}
-                            </a>
-                            <div class="mh-item-detali">
-                                <h2 class="title">
-                                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
-                                        {$vo.book_name}
-                                    </a>
-                                </h2>
-                                <p class="zl"><span>评分:</span><span class="mh-star-line star-4"></span></p>
-                                <p class="chapter"><span>总计</span>
-                                    <a href="/book/{$id_salt}{$vo.id}">{$vo.chapter_count}话</a>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    {/volist}
-                </ul>
-            </div>
-        </section>
+<div class="index-title">
+    <div class="container">
+        <img src="http://css99tel.cdndm5.com/v201910141105/blue/images/sd/index-title-7.png" class="index-title-logo">
+        <h2>上升最快</h2>
+        <a href="/manhua-rank/?t=7" class="index-title-more">更多</a>
     </div>
-    <footer></footer>
-</section>
+</div>
+
+<div class="index-manga">
+    <div class="container overflow-Show">
+        <ul class="mh-list col7">
+                {volist name="newest" id="vo" length="7"}
+                <li>
+                    <div class="mh-item">
+                        <a href="/book/{$id_salt}{$vo.id}" target="_blank">
+                            {if empty($vo.cover_url)}
+                            <p class="mh-cover "
+                               style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
+                            {else /}
+                            <p class="mh-cover " style="background-image: url({$vo.cover_url})"></p>
+                            {/if}
+                        </a>
+                        <div class="mh-item-detali">
+                            <h2 class="title">
+                                <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                                    {$vo.book_name}
+                                </a>
+                            </h2>
+                            <p class="zl"><span>评分:</span><span class="mh-star-line star-4"></span></p>
+                            <p class="chapter"><span>总计</span>
+                                <a href="/book/{$id_salt}{$vo.id}">{$vo.chapter_count}话</a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                {/volist}
+        </ul>
+    </div>
+</div>
 
 <div class="index-title">
     <div class="container">
@@ -104,25 +102,25 @@
 <div class="index-original">
     <div class="container">
         <div class="swiper-container">
-            <div class="swiper-wrapper"
-                 style="width: 7200px; height: 2711.88px; transform: translate3d(-1200px, 0px, 0px); transition-duration: 0s;">
-                <div class="swiper-slide swiper-slide-duplicate" style="width: 1200px; height: 2711.88px;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide swiper-slide-duplicate">
                     <ul class="index-original-list">
-                        {volist name="hot" id="vo"}
+                        {volist name="hot" id="vo" offset="0" length="6"}
                         <li>
                             <div class="cover">
                                 <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
                                     {if empty($vo.cover_url)}
                                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
+                                        style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {else /}
                                     <img src="{$vo.cover_url}" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
+                                        style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
                                     {/if}
                                 </a>
                             </div>
                             <div class="info">
-                                <p class="title"><a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                <p class="title"><a href="/book/{$id_salt}{$vo.id}"
+                                        title="{$vo.book_name}">{$vo.book_name}</a>
                                 </p>
                                 <div class="star"><span class="active"></span>
                                     <span class="active"></span>
@@ -130,12 +128,12 @@
                                     <span class="active"></span>
                                     <span></span>
                                 </div>
-                                <p class="subtitle" style="color: #252525;">更新至
+                                <p class="subtitle" style="color: #252525;">总点击
                                     <span>
-                                        <a href="/book/{$id_salt}{$vo.id}">第{$vo.chapter_count}话</a>
+                                        <a href="/book/{$id_salt}{$vo.id}">{$vo.clicks}</a>
                                     </span>
                                 </p>
-                                <p class="desc">{$vo.book_name}</p>
+                                <p class="desc">{$vo.author_name}</p>
                                 <div class="tag">
                                     {volist name="vo.taglist" id="tag"}
                                     <a href="/booklist/{$tag}" target="_blank">{$tag}</a>
@@ -146,54 +144,81 @@
                         {/volist}
                     </ul>
                 </div>
-                <div class="swiper-slide swiper-slide-duplicate" style="width: 1200px; height: 2711.88px;">
-                    <ul class="index-original-list">
-                        {volist name="hot" id="vo" offset="6" length="12"}
-                        <li>
-                            <div class="cover">
-                                <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
-                                    {if empty($vo.cover_url)}
-                                    <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
-                                    {else /}
-                                    <img src="{$vo.cover_url}" alt="{$vo.book_name}"
-                                         style="height:100%; max-width: 167px;_width:expression(this.width &gt; 167 ? '167px' : this.width);">
-                                    {/if}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <p class="title"><a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
-                                </p>
-                                <div class="star"><span class="active"></span>
-                                    <span class="active"></span>
-                                    <span class="active"></span>
-                                    <span class="active"></span>
-                                    <span></span>
-                                </div>
-                                <p class="subtitle" style="color: #252525;">更新至
-                                    <span>
-                                        <a href="/book/{$id_salt}{$vo.id}">第{$vo.chapter_count}话</a>
-                                    </span>
-                                </p>
-                                <p class="desc">{$vo.book_name}</p>
-                                <div class="tag">
-                                    {volist name="vo.taglist" id="tag"}
-                                    <a href="/booklist/{$tag}" target="_blank">{$tag}</a>
-                                    {/volist}
-                                </div>
-                            </div>
-                        </li>
-                        {/volist}
-                    </ul>
-                </div>
+
             </div>
         </div>
     </div>
-    <div class="index-original-control">
-        <a href="javascript:void(0);" class="active"></a>
-        <a href="javascript:void(0);"></a>
-    </div>
 </div>
+
+<section class="box container overflow-Show">
+    <header class="box-header"><i class="icon icon-cat"></i>
+        <h2>热门分类</h2>
+        <ul class="cat-tabs js-tabs">
+            {volist name="tags" id="vo"}
+            {in name="$vo.id" value="1,2"} <!-- value里的数字是后台分类ID，填哪几个数字就展示哪几个分类，必须和下面一致 -->
+            <li><a onclick="switchTag(this)" class="{$i == 1 ? 'active' : ''}" data-val="{$i}">{$vo.tag_name}</a></li>    
+            {/in}      
+            {/volist}
+        </ul>
+        <div class="pull-right">
+            <a class="more" href="/booklist?end=1">更多<i class="icon icon-arrow"></i></a>
+        </div>
+    </header>
+    <div class="box-body">
+        <section class="box-con-8n3">
+            <div class="box-8n3-pane js_box_pane active">
+                    {volist name="catelist" id="cateItem" key="k"}
+                    {in name="$cateItem.tag.id" value="1,2"} <!-- value里的数字是后台分类ID，填哪几个数字就展示哪几个分类，必须和上面一致 -->
+                <ul class="mh-list col7 switch-books" style="display: {$k == 1? 'block' : 'none'};" data-val="{$k}">
+                        {volist name="cateItem.books" id="vo" length="40"}
+                    <li>
+                        <div class="mh-item">
+                            <a href="/book/{$id_salt}{$vo.id}" target="_blank">
+                                {if empty($vo.cover_url)}
+                                <p class="mh-cover "
+                                    style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)">
+                                </p>
+                                {else /}
+                                <p class="mh-cover " style="background-image: url({$vo.cover_url})"></p>
+                                {/if}
+                            </a>
+                            <div class="mh-item-detali">
+                                <h2 class="title">
+                                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                                        {$vo.book_name}
+                                    </a>
+                                </h2>
+                                <p class="zl"><span>评分:</span><span class="mh-star-line star-4"></span></p>
+                                <p class="chapter"><span>更新至</span>
+                                    <a href="/book/{$id_salt}{$vo.id}">第{$vo.chapter_count}话</a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+                {/in}
+                {/volist}
+            </div>
+        </section>
+    </div>
+    <footer></footer>
+</section>
+<script>
+    function switchTag(obj){
+        var i = $(obj).attr('data-val');
+        console.log(i);
+        $('.switch-books').each(function(index,el){
+            if($(el).attr('data-val') == i) {
+                $(el).show();
+            } else {
+                $(el).hide();
+            }
+        })
+        $(obj).addClass('active').parent().siblings().children('a').removeClass('active');
+        console.log( $(obj));
+    }
+</script>
 
 <!-- 热门排行 -->
 <div class="container">
@@ -276,7 +301,7 @@
 
 
 <section class="box container overflow-Show">
-    <header class="box-header"><i class="icon icon-cat"></i>
+    <header class="box-header"><i class="icon icon-end"></i>
         <h2>完结优选</h2>
         <div class="pull-right">
             <a class="more" href="/booklist?end=1">更多<i class="icon icon-arrow"></i></a></div>
@@ -287,12 +312,12 @@
                 <ul class="mh-list col7">
                     {volist name="ends" id="vo"}
                     <li>
-
                         <div class="mh-item">
                             <a href="/book/{$id_salt}{$vo.id}" target="_blank">
                                 {if empty($vo.cover_url)}
                                 <p class="mh-cover "
-                                   style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
+                                    style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)">
+                                </p>
                                 {else /}
                                 <p class="mh-cover " style="background-image: url({$vo.cover_url})"></p>
                                 {/if}
@@ -330,24 +355,24 @@
 </div>
 <ul class="index-right-float" style="display: block;">
     <li><a href="javascript:void(0);"
-           onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(0).offset().top-80},500);"
-           class="active">最近<br>更新</a>
+            onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(0).offset().top-80},500);"
+            class="active">最近<br>更新</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$('html,body').stop().animate({ scrollTop:$('.index-title').eq(0).offset().top-80},500);"
-           class="">热门<br>漫画</a>
+            onclick="$('html,body').stop().animate({ scrollTop:$('.index-title').eq(0).offset().top-80},500);"
+            class="">热门<br>漫画</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$('html,body').stop().animate({ scrollTop:$('.index-rank').eq(0).offset().top-80},500);"
-           class="">排行<br>榜单</a>
+            onclick="$('html,body').stop().animate({ scrollTop:$('.index-rank').eq(0).offset().top-80},500);"
+            class="">排行<br>榜单</a>
     </li>
     <li><a href="javascript:void(0);"
-           onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(1).offset().top-80},500);">完结<br>佳作</a>
+            onclick="$('html,body').stop().animate({ scrollTop:$('.box-header').eq(1).offset().top-80},500);">完结<br>佳作</a>
     </li>
     <li><a href="/leavemsg">留言<br>反馈</a>
     </li>
     <li><a href="javascript:void(0);" onclick="$('html,body').stop().animate({ scrollTop:0},500);"
-           class="index-right-float-top"></a></li>
+            class="index-right-float-top"></a></li>
 </ul>
 <script type="text/javascript">
     $(function () {

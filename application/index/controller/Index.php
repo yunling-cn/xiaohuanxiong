@@ -3,6 +3,7 @@
 namespace app\index\controller;
 
 use app\model\Author;
+use app\model\Banner;
 use think\Db;
 
 class Index extends Base
@@ -23,9 +24,8 @@ class Index extends Base
         }
         $banners = cache('bannersHomepage');
         if (!$banners) {
-            $banners = Db::query('SELECT * FROM xwx_banner WHERE id >= 
-((SELECT MAX(id) FROM xwx_banner)-(SELECT MIN(id) FROM xwx_banner)) * RAND() + (SELECT MIN(id) FROM xwx_banner) LIMIT 5');
-            cache('bannersHomepage', $banners, null, 'redis');
+            $banners = Banner::where('banner_order','>', 0)->order('banner_order','desc')->select();
+            cache('bannersHomepage',$banners);
         }
 
         $hot_books = cache('hotBooks');
