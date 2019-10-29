@@ -25,7 +25,7 @@ class Index extends Base
         $banners = cache('bannersHomepage');
         if (!$banners) {
             $banners = Banner::where('banner_order','>', 0)->order('banner_order','desc')->select();
-            cache('bannersHomepage',$banners);
+            cache('bannersHomepage',$banners, null, 'redis');
         }
 
         $hot_books = cache('hotBooks');
