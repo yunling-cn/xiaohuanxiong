@@ -114,7 +114,9 @@ CREATE TABLE `xwx_banner` (
   `update_time` int(11) DEFAULT '0',
   `book_id` int(11) NOT NULL COMMENT '所属漫画ID',
   `title` varchar(50) NOT NULL COMMENT '轮播图标题',
-  PRIMARY KEY (`id`) USING BTREE
+    `banner_order` INT(11) DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+    KEY `banner_order` (`banner_order`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
