@@ -253,6 +253,7 @@ INFO;
 
                     foreach ($json['sql'] as $value) {
                         //Db::execute('ALTER TABLE aaa ADD `name` INT(0) NOT NULL DEFAULT 0');
+                        $value = str_replace('[prefix]',$this->prefix,$value);
                         Db::execute($value);
                         echo '成功执行以下SQL语句：'.$value;
                     }

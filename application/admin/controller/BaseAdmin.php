@@ -16,6 +16,7 @@ use think\facade\View;
 
 class BaseAdmin extends Controller
 {
+    protected $prefix;
     protected function initialize()
     {
         $this->checkAuth();
@@ -24,6 +25,7 @@ class BaseAdmin extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
+        $this->prefix = config('database.prefix');
         $img_site = config('site.img_site');
         $version = file_get_contents(\think\facade\App::getRootPath().'public/static/html/version.txt');
         View::share([
