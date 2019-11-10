@@ -11,7 +11,6 @@
 
 use think\facade\Route;
 
-
 Route::rule('/tag/[:name]', 'index/tags/index');
 Route::rule('/book/:id', 'index/books/index');
 Route::rule('/booklist', 'index/books/booklist');
@@ -52,9 +51,7 @@ Route::rule('/kami', 'ucenter/finance/kami');
 Route::rule('/vipexchange', 'ucenter/finance/vipexchange');
 
 Route::rule('/zhapaynotify', 'api/zhapaynotify/index');
-Route::rule('/vkzfnotify', 'api/vkzfnotify/index');
-Route::rule('/xunhunotify', 'api/xunhunotify/index');
-Route::rule('/kakapaynotify','api/kakapaynotify/index');
+Route::rule('/Paypalnotify','api/Paypalnotify/index');
 
 Route::rule('/login', 'ucenter/account/login');
 Route::rule('/register', 'ucenter/account/register');

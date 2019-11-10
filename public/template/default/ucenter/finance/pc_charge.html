@@ -11,7 +11,9 @@
                 <div class="top"><span class="label">充值账号：</span>
                     {$Think.session.xwx_nick_name|default="无昵称"} &nbsp;&nbsp;&nbsp;&nbsp;当前余额:{$balance}元
                 </div>
-                <div class="head"><span class="label">充值方式：</span></div>
+                <div class="head">
+                    <span class="label">充值方式：</span>
+                </div>
                 <ul class="channel-list">
                     {volist name="payments" id="vo"}
                     <li>
@@ -23,6 +25,15 @@
                          </label>
                     </li>
                     {/volist}
+                    <li>
+                        <label>
+                            <input type="radio" name="channel" class="channel" >
+                            <div onclick="location.href = '/kami'">
+                                <img src="/static/images/kami.png" alt="" style="width:auto;height:40px"> 购买卡密
+                            </div>
+                        </label>
+                    </li>
+
                 </ul>
                 <div class="head"><span class="label">充值金额：</span></div>
                 <ul class="amount-list">

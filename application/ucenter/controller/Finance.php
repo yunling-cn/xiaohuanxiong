@@ -132,9 +132,9 @@ class Finance extends BaseUcenter
             }
         } else {
             $payment = strtolower(config('site.payment'));
-            if ($payment == 'kami') {
-                return redirect('/kami');
-            }
+//            if ($payment == 'kami') {
+//                return redirect('/kami');
+//            }
             $payments = config('payment.' . $payment . '.channel');
             $this->assign([
                 'balance' => $this->balance,

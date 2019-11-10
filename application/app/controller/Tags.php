@@ -4,6 +4,7 @@
 namespace app\app\controller;
 
 
+use app\model\Banner;
 use app\model\Book;
 use app\model\Tags as Tag;
 use think\Db;
@@ -84,9 +85,11 @@ class Tags extends Base
         $num = input('num');
         $banners = cache('bannersHomepage');
         if (!$banners) {
-            $banners = Db::query('SELECT * FROM xwx_banner WHERE id >= 
-((SELECT MAX(id) FROM xwx_banner)-(SELECT MIN(id) FROM xwx_banner)) * RAND() + (SELECT MIN(id) FROM xwx_banner) LIMIT '.$num);
-            cache('bannersHomepage', $banners, null, 'redis');
+            $banners = Banner::where('banner_order','>', 0)->order('banner_order','desc')->select();
+            cache('bannersHomepage',$banners, null, 'redis');
+        }
+        foreach ($banners as &$banner) {
+            $banner['pic_name'] = $this->imgUrl.'/static/upload/banner/'.$banner['pic_name'];
         }
         return json(['success' => 1, 'banners' => $banners]);
     }

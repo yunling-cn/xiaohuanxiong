@@ -69,10 +69,14 @@
                             <td>
                                 {if $vo.pay_type ==1 }
                                 支付宝
-                                {elseif $vo.pay_type ==2}
+                                {elseif $vo.pay_type == 2}
                                 QQ钱包
-                                {elseif $vo.pay_type ==3}
+                                {elseif $vo.pay_type == 3}
                                 微信支付
+                                {elseif $vo.pay_type == 4}
+                                卡密
+                                {elseif $vo.pay_type == 5}
+                                PayPal
                                 {/if}
                             </td>
                             <td>{$vo.summary}</td>

@@ -17,12 +17,11 @@ return [
             ['type' => 'qqpay', 'code' => 2, 'img' => 'qq', 'title' => 'QQ钱包']
         ]
     ],
-    'kakapay' => [
-        'meid' => '',
-        'mekey' => '',
+    'paypal' => [
+        'clientId' => '',
+        'clientSecret' => '',
         'channel' => [
-            ['type' => 'aliwap', 'code' => 1, 'img' => 'alipay', 'title' => '支付宝'],
-            ['type' => 'wxwap', 'code' => 3, 'img' => 'weixin', 'title' => '微信支付']
+            ['type' => 'paypal', 'code' => 5, 'img' => 'paypal', 'title' => '贝宝支付'],
         ]
     ],
     'kami' => [

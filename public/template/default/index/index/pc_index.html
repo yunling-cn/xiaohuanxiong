@@ -170,7 +170,7 @@
                     {volist name="catelist" id="cateItem" key="k"}
                     {in name="$cateItem.tag.id" value="1,2"} <!-- value里的数字是后台分类ID，填哪几个数字就展示哪几个分类，必须和上面一致 -->
                 <ul class="mh-list col7 switch-books" style="display: {$k == 1? 'block' : 'none'};" data-val="{$k}">
-                        {volist name="cateItem.books" id="vo" length="40"}
+                        {volist name="cateItem.books" id="vo" length="14"}
                     <li>
                         <div class="mh-item">
                             <a href="/book/{$id_salt}{$vo.id}" target="_blank">

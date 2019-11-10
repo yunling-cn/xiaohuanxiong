@@ -17,12 +17,12 @@ class BaseAuth extends Controller
         $token = $this->request->param('token');
         $time = $this->request->param('time');
         if (time() - $time > 180) {
-            echo json_encode(['success' => 0, 'msg' => '非法请求1']);
+            echo json_encode(['success' => 0, 'msg' => '过期请求']);
             exit();
         }
         $key = config('site.api_key');
         if ($token != md5($key . $time)) {
-            echo json_encode(['success' => 0, 'msg' => '非法请求2']);
+            echo json_encode(['success' => 0, 'msg' => '未授权请求']);
             exit();
         }
 

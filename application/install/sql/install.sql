@@ -63,7 +63,7 @@ CREATE TABLE `xwx_user_order`  (
   `user_id` int(10) NOT NULL DEFAULT 0,
   `money` decimal(10,2) NOT NULL DEFAULT 0 COMMENT '充值金额',
   `status` tinyint(4) not null default 0 COMMENT '0为未支付，1为已支付',
-  `pay_type` tinyint(4) default 1 COMMENT '0为未知，1为支付宝，2为QQ钱包，3为微信支付，4为卡密',
+  `pay_type` tinyint(4) default 1 COMMENT '0为未知，1为支付宝，2为QQ钱包，3为微信支付，4为卡密，5为PayPal',
   `summary` text COMMENT '备注',
   `order_id` varchar(100) default '' COMMENT '云端订单号',
   `create_time` int(11) DEFAULT '0',
