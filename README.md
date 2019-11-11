@@ -3,7 +3,7 @@
 - 官方论坛：http://xhxcms.com
 - 文档地址：https://www.kancloud.cn/hiliqi/xwx_comic_cms
 - 官方QQ群：780362399
-![群二维码](https://ae01.alicdn.com/kf/H7908cee3f40943beaaa0b126a5df4848O.jpg)
+- 软件著作权登记号：2019SR1107266
 
 # 开源协议
 本程序采用MIT协议开源
