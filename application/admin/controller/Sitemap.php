@@ -43,10 +43,9 @@ class Sitemap extends BaseAdmin
         );
 
         $books = Book::all();
-        $id_salt = config('site.id_salt');
         foreach ($books as $key=>$book){ //这里构建所有的内容页数组
             $temp = array(
-                'loc' => $site_name.'/book/'.$id_salt.$book->id,
+                'loc' => $site_name.'/book/'.$book->id,
                 'priority' => '0.9',
             );
             array_push( $data,$temp);

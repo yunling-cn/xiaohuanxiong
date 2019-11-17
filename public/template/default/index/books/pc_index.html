@@ -34,14 +34,14 @@
                 <p class="subtitle">作者：{$book.author.author_name}</p>
                 <p class="tip">
                     <span class="block">状态：<span>{$book.end?'已完结':'连载中'}</span></span>
-                    <span class="block ticai">地区：<a href="/booklist/?area={$book.area_id}" target="_blank">{$book.area.area_name}</a></span>
+                    <span class="block ticai">地区：<a href="/{$booklist_act}/?area={$book.area_id}" target="_blank">{$book.area.area_name}</a></span>
                     <span class="block">更新时间：{$book.last_time|date='Y-m-d'}</span>
                     <span class="block">点击：{$clicks}</span>
                 </p>
                 <p class="tip" style="margin-top:10px;">
                     <span class="block">标签：
                         {volist name="tags" id="vo"}
-                        <a href="/booklist/?tag={$vo}" target="_blank">{$vo}</a>
+                        <a href="/{$booklist_act}/?tag={$vo}" target="_blank">{$vo}</a>
                         {/volist}
                     </span>
                 </p>
@@ -63,11 +63,7 @@
                     {if $start == -1}
                     <a href="#" class="btn-2" rel="nofollow">暂无章节</a>
                     {else /}
-                        {empty name="id_salt"}
-                        <a href="/chapter/{$start}" class="btn-2" rel="nofollow">开始阅读</a>
-                        {else /}
-                        <a href="/chapter/{$start}-{:dex($id_salt.$start)}" class="btn-2" rel="nofollow">开始阅读</a>
-                        {/empty}
+                        <a href="/{$chapter_ctrl}/{$start}" class="btn-2" rel="nofollow">开始阅读</a>                   
                     {/if}
                 </div>
             </div>
@@ -107,7 +103,7 @@
                     {volist name="hot" id="vo"}
                     <li>
                         <div class="cover">
-                            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
                                 <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}">
                                 {else /}
@@ -117,7 +113,7 @@
                         </div>
                         <div class="info">
                             <p class="title">
-                                <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
                             </p>
                             <p class="subtitle-new">{$vo.summary|subtext="15"}</p>
                             <p class="tip"><span>评分:</span><span class="mh-star-line star-5"></span></p>
@@ -132,7 +128,7 @@
                     {volist name="updates" id="vo"}
                     <li>
                         <div class="cover">
-                            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
                                 <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}">
                                 {else /}
@@ -142,7 +138,7 @@
                         </div>
                         <div class="info">
                             <p class="title">
-                                <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
                             </p>
                             <p class="subtitle-new">{$vo.summary|subtext="15"}</p>
                             <p class="tip"><span>评分:</span><span class="mh-star-line star-5"></span></p>
@@ -161,11 +157,7 @@
                     <ul class="view-win-list detail-list-select" id="detail-list-select">
                         {volist name="book.chapters" id="vo"}
                         <li>
-                            {empty name="id_salt"}
-                            <a href="/chapter/{$vo.id}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>
-                            {else /}
-                            <a href="/chapter/{$vo.id}-{:dex($id_salt.$vo.id)}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>
-                            {/empty}
+                            <a href="/{$chapter_ctrl}/{$vo.id}" target="_blank" rel="nofollow">{$vo.chapter_name}</a>                          
                             {if $vo.chapter_order >= $start_pay }
                             <img class="detail-list-3-info-right" src="/static/images/center-main-list-logo-4.png">
                             {/if}
@@ -202,16 +194,16 @@
                     {volist name="recommand" id="vo"}
                     <li>
                         <div class="mh-item">
-                            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
-                                <p class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
+                                <p class="mh-cover" style="background-image: url({$img_site}/static/upload/{$book_ctrl}/{$vo.id}/cover.jpg)"></p>
                                 {else /}
                                 <p class="mh-cover" style="background-image: url({$vo.cover_url})"></p>
                                 {/if}
                             </a>
                             <div class="mh-item-detali">
                                 <h2 class="title">
-                                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                    <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
                                 </h2>
                                 <p class="zl">{$vo.summary|subtext=13}...</p>
                                 <p class="chapter">

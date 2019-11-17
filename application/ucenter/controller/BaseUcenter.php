@@ -20,7 +20,6 @@ class BaseUcenter extends Controller
     protected $uid;
     protected $prefix;
     protected $redis_prefix;
-    protected $id_salt;
 
     protected function initialize()
     {
@@ -43,7 +42,6 @@ class BaseUcenter extends Controller
         parent::__construct($app);
         $this->redis_prefix = config('cache.prefix');
         $this->prefix = config('database.prefix');
-        $this->id_salt = config('site.id_salt');
         $tpl_root = './template/default/ucenter/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
@@ -57,8 +55,7 @@ class BaseUcenter extends Controller
         View::share([
             'url' => config('site.url'),
             'site_name' => config('site.site_name'),
-            'img_site' => config('site.img_site'),
-            'id_salt' => $this->id_salt
+            'img_site' => config('site.img_site')
         ]);
     }
 }

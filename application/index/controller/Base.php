@@ -20,7 +20,6 @@ class Base extends Controller
     protected $prefix;
     protected $redis_prefix;
     protected $uid;
-    protected $id_salt;
 
     protected function initialize()
     {
@@ -39,7 +38,6 @@ class Base extends Controller
         $this->uid = session('xwx_user_id');
         $this->prefix = config('database.prefix');
         $this->redis_prefix = config('cache.prefix');
-        $this->id_salt = config('site.id_salt');
         $tpl_root = './template/'.config('site.tpl').'/index/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
@@ -58,7 +56,14 @@ class Base extends Controller
             'site_name' => config('site.site_name'),
             'img_site' => config('site.img_site'),
             'links' => $links,
-            'id_salt' => $this->id_salt
+            'book_ctrl' => BOOKCTRL,
+            'chapter_ctrl' => CHAPTERCTRL,
+            'tag_ctrl' => TAGCTRL,
+            'booklist_act' => BOOKLISTACT,
+            'search_ctrl' => SEARCHCTRL,
+            'rank_ctrl' => RANKCTRL,
+            'update_act' => UPDATEACT,
+            'author_ctrl' => AUTHORCTRL
         ]);
     }
 }

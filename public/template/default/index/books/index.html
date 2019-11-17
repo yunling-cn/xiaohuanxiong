@@ -26,12 +26,12 @@
             <a href="#">{$book.author.author_name}</a>
         </p>
         <p class="detail-main-info-author">地区：
-            <a href="/booklist/?area={$book.area_id}">{$book.area.area_name}</a>
+            <a href="/{$booklist_act}/?area={$book.area_id}">{$book.area.area_name}</a>
         </p>
         <p class="detail-main-info-class">
             {volist name="tags" id="vo"}
             <span>
-                <a href="/booklist/?tag={$vo}">{$vo}</a>
+                <a href="/{$booklist_act}/?tag={$vo}">{$vo}</a>
             </span>
             {/volist}
         </p>
@@ -62,11 +62,7 @@
         <ul class="detail-list-1 detail-list-select" id="detail-list-select">
             {volist name="book.chapters" id="vo"}
             <li>
-                {empty name="id_salt"}
-                <a href="/chapter/{$vo.id}" title="{$vo.chapter_name}" class="chapteritem">{$vo.chapter_name}</a>
-                {else /}
-                <a href="/chapter/{$vo.id}-{:dex($id_salt.$vo.id)}" title="{$vo.chapter_name}" class="chapteritem">{$vo.chapter_name}</a>
-                {/empty}
+                <a href="/{$chapter_ctrl}/{$vo.id}" title="{$vo.chapter_name}" class="chapteritem">{$vo.chapter_name}</a>               
                 {if $vo.chapter_order >= $start_pay }
                 <img class="detail-list-3-info-right" src="/static/images/center-main-list-logo-4.png">
                 {/if}
@@ -95,12 +91,7 @@
             {if $start == -1}
             <a href="#" class="detail-bottom-btn">暂无章节</a>
             {else /}
-                {empty name="id_salt"}
-                <a href="/chapter/{$start}" class="detail-bottom-btn">开始阅读</a>
-                {else /}
-                <a href="/chapter/{$start}-{:dex($id_salt.$start)}" class="detail-bottom-btn">开始阅读</a>
-                {/empty}
-
+                <a href="/{$chapter_ctrl}/{$start}" class="detail-bottom-btn">开始阅读</a>            
             {/if}
         </div>
         <a class="detail-list-more" id="detail-list-more" href="javascript:void(0);" onclick="charpterMore(this);">展开全部章节</a>
@@ -187,7 +178,7 @@
         {volist name="recommand" id="vo"}
         <div class="buy-manga">
             <div class="buy-manga-cover">
-                <a href="/book/{$id_salt}{$vo.id}">
+                <a href="/{$book_ctrl}/{$vo.id}">
                     {if empty($vo.cover_url)}
                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg">
                     {else /}
@@ -197,14 +188,14 @@
                 <a class="buy-manga-cover-hover" href="javascript:void(0);" mid="2941" style="display:none;"></a>
             </div>
             <div class="buy-manga-info">
-                <a href="/book/{$id_salt}{$vo.id}" class="readlink" mid="2941">
+                <a href="/{$book_ctrl}/{$vo.id}" class="readlink" mid="2941">
                     <p class="buy-manga-title">{$vo.book_name}</p>
                 </a>
                 <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
-                <a href="/book/{$id_salt}{$vo.id}" class="readlink" mid="40683">
+                <a href="/{$book_ctrl}/{$vo.id}" class="readlink" mid="40683">
                     <p class="buy-manga-new">{$vo.summary|subtext=12}...</p>
                 </a>
-                <a class="buy-manga-right-a readlink" href="/book/{$id_salt}{$vo.id}">
+                <a class="buy-manga-right-a readlink" href="/{$book_ctrl}/{$vo.id}">
                     <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
                     <p class="buy-manga-right-title">阅读</p>
                 </a>

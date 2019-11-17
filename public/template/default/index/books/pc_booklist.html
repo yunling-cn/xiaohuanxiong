@@ -38,7 +38,7 @@
         var tag = $('#tags dd.active').attr('data-val');
         var area = $('#areas dd.active').attr('data-val');
         var end = $('#end dd.active').attr('data-val');
-        location.href = '/booklist?tag='+tag+'&area='+area+'&end='+end;
+        location.href = '/{$booklist_act}?tag='+tag+'&area='+area+'&end='+end;
     }
 </script>
 <section class="box container pb40 overflow-Show" style="min-height:400px;">
@@ -47,7 +47,7 @@
             {volist name="books" id="vo"}
             <li>
                 <div class="mh-item">
-                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+                    <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
                         {if empty($vo.cover_url)}
                         <p class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
                         {else /}
@@ -56,7 +56,7 @@
                     </a>
                     <div class="mh-item-detali">
                         <h2 class="title">
-                            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 {$vo.book_name}
                             </a>
                     </h2>
@@ -66,7 +66,7 @@
                         </p>
                         <p class="chapter" style="width: 181px;">
                             <span>已更新</span>
-                            <a href="/book/{$id_salt}{$vo.id}">{$vo.chapter_count}话</a>
+                            <a href="/{$book_ctrl}/{$vo.id}">{$vo.chapter_count}话</a>
                         </p>
                     </div>
                 </div>
@@ -83,21 +83,27 @@
                         {if $page.current_page == 1}
                         <li><a>&lt;</a></li>
                         {else/}
-                        <li><a id="prevPage" href="/booklist?page={$page.current_page-1}{$param}" title="上一页">&lt;</a></li>
+                        <li><a id="prevPage" href="/{$booklist_act}?page={$page.current_page-1}{$param}" title="上一页">&lt;</a></li>
                         {/if}
 
                         {for start="1" end="$page.last_page + 1"}
-                            {if $i == $page.current_page }
-                            <li><a href="/booklist?page={$i}{$param}" class="active">{$i}</a></li>
+                            {if ($i != 1 && $i != $page.last_page)
+                                and ($i < $page.current_page - 2 || $i > $page.current_page + 2)}
+                                <li>
+                                    .
+                                </li>
                             {else/}
-                            <li><a href="/booklist?page={$i}{$param}" title="第{$i}页">{$i}</a></li>
+                                {if $i == $page.current_page }
+                                <li><a href="/{$booklist_act}?page={$i}{$param}" class="active">{$i}</a></li>
+                                {else/}
+                                <li><a href="/{$booklist_act}?page={$i}{$param}" title="第{$i}页">{$i}</a></li>
+                                {/if}
                             {/if}
                         {/for}
-
                          {if $page.current_page == $page.last_page}
                         <li><a>&gt;</a></li>
                         {else/}
-                        <li><a id="nextPage" href="/booklist?page={$page.current_page+1}{$param}" title="下一页">&gt;</a></li>
+                        <li><a id="nextPage" href="/{$booklist_act}?page={$page.current_page+1}{$param}" title="下一页">&gt;</a></li>
                         {/if}
                     {/if}
                 </div>

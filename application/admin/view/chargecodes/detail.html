@@ -9,12 +9,7 @@
             <form class="form form-horizontal" onsubmit="gen();return false;">
                 <div class="row clearfix">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>加密方式：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <label>
-                            <input name="salt" class="input-radio" type="radio" value="id_salt"
-                                   {$salt=='id_salt'?'checked':''}/>
-                            id盐
-                        </label>
+                    <div class="formControls col-xs-8 col-sm-9">                      
                         <label>
                             <input name="salt" class="input-radio" type="radio" value="salt"
                                    {$salt=='salt'?'checked':''}/>

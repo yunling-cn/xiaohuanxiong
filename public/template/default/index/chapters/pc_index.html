@@ -25,7 +25,7 @@
         }
     </style>
     {if $next != "null"}
-    <link rel="prefetch prerender" href="/chapter/{$next.id}" />
+    <link rel="prefetch prerender" href="/{$chapter_ctrl}/{$next.id}" />
     {/if}
 </head>
 
@@ -37,27 +37,27 @@
             {if $prev == "null"}
             <a class="block" style="color: lightgrey">上一章</a>
             {else/}
-            <a href="/chapter/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
+            <a href="/{$chapter_ctrl}/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
             {/if}
 
             {if $page.last_page > 1}
                 {if $page.current_page == 1}
                 <a style="color: lightgrey">上一页</a>
                 {else/}
-                <a href="/chapter/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
+                <a href="/{$chapter_ctrl}/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
                 {/if}
 
                 {if $page.current_page == $page.last_page}
                 <a style="color: lightgrey">下一页</a>
                 {else/}
-                <a href="/chapter/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
+                <a href="/{$chapter_ctrl}/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
                 {/if}
             {/if}
 
             {if $next == "null"}
             <a class="block" style="color: lightgrey">下一章</a>
             {else/}
-            <a href="/chapter/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
+            <a href="/{$chapter_ctrl}/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
             {/if}
         </div>
         <div class="comiclist">
@@ -79,27 +79,27 @@
             {if $prev == "null"}
             <a class="block" style="color: lightgrey">上一章</a>
             {else/}
-            <a href="/chapter/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
+            <a href="/{$chapter_ctrl}/{$prev.id}" class="block" title="{$prev.chapter_name}">上一章</a>
             {/if}
 
             {if $page.last_page > 1}
                 {if $page.current_page == 1}
                 <a style="color: lightgrey">上一页</a>
                 {else/}
-                <a href="/chapter/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
+                <a href="/{$chapter_ctrl}/{$chapter.id}?page={$page.current_page-1}" title="上一页">上一页</a>
                 {/if}
 
                 {if $page.current_page == $page.last_page}
                 <a style="color: lightgrey">下一页</a>
                 {else/}
-                <a href="/chapter/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
+                <a href="/{$chapter_ctrl}/{$chapter.id}?page={$page.current_page+1}" title="下一页">下一页</a>
                 {/if}
             {/if}
 
             {if $next == "null"}
             <a class="block" style="color: lightgrey">下一章</a>
             {else/}
-            <a href="/chapter/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
+            <a href="/{$chapter_ctrl}/{$next.id}" class="block" title="{$next.chapter_name}">下一章</a>
             {/if}
         </div>
     </div>
@@ -109,7 +109,7 @@
     <div class="row">
         <div class="crumbs">
             <a href="/" title="{$site_name}">{$site_name}</a> &gt;
-            <a class="comic-name" href="/book/{$id_salt}{$chapter.book_id}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
+            <a class="comic-name" href="/{$book_ctrl}/{$chapter.book_id}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
         </div>
         <h1 class="title">{$chapter.book.book_name} {$chapter.chapter_name}</h1>
         <div class="shareBtn">
@@ -130,7 +130,7 @@
             <ul>
                     {volist name="chapters" id="vo"}
                     <li>
-                        <a href="/chapter/{$vo.id}" rel="nofollow">
+                        <a href="/{$chapter_ctrl}/{$vo.id}" rel="nofollow">
                             {$vo.chapter_name}
                         </a>
                     </li>

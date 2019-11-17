@@ -18,9 +18,9 @@
 <div class="search-label">
     {volist name="hot_search" id="vo"}
     {empty name="vo"}
-    <a class="search-label-item" href="/search?keyword=斗破苍穹">斗破苍穹</a>
+    <a class="search-label-item" href="/{$search_ctrl}?keyword=斗破苍穹">斗破苍穹</a>
     {else /}
-    <a class="search-label-item" href="/search?keyword={$vo}">{$vo}</a>
+    <a class="search-label-item" href="/{$search_ctrl}?keyword={$vo}">{$vo}</a>
     {/empty}
     {/volist}
 </div>
@@ -29,7 +29,7 @@
     {volist name="$books" id="vo"}
     <li>
         <div class="book-list-cover">
-            <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}">
+            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
                 {if empty($vo.cover_url)}
                 <img class="book-list-cover-img lazy" data-original="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
                 {else /}
@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="book-list-info">
-            <a href="/book/{$id_salt}{$vo.id}">
+            <a href="/{$book_ctrl}/{$vo.id}">
                 <p class="book-list-info-title">{$vo.book_name}</p>
                 <p class="book-list-info-desc">{$vo.summary|subtext=50}...</p>
             </a>
@@ -59,7 +59,7 @@
 <script>
     function doSearch() {
         var keyword = $('#searchtxt').val();
-        location.href = '/search?keyword=' + keyword;
+        location.href = '/{$search_ctrl}?keyword=' + keyword;
     }
 </script>
 {/block}

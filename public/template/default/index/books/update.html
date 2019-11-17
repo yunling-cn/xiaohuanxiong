@@ -14,7 +14,7 @@
         {volist name="books" id="vo"}
         <li>
             <div class="manga-list-2-cover">
-                <a href="/book/{$id_salt}{$vo.id}">
+                <a href="/{$book_ctrl}/{$vo.id}">
                     {if empty($vo.cover_url)}
                     <img class="manga-list-2-cover-img lazy" data-original="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                     {else /}
@@ -23,10 +23,10 @@
                 </a>
             </div>
             <p class="manga-list-2-title">
-                <a href="/book/{$id_salt}{$vo.id}">{$vo.book_name}</a>
+                <a href="/{$book_ctrl}/{$vo.id}">{$vo.book_name}</a>
             </p>
             <p class="manga-list-2-tip">
-                <a href="/book/{$id_salt}{$vo.id}">已更新 {$vo.chapter_count}话</a>
+                <a href="/{$book_ctrl}/{$vo.id}">已更新 {$vo.chapter_count}话</a>
             </p>
         </li>
         {/volist}
@@ -36,12 +36,12 @@
         {if $page.current_page == 1}
         <a class="paginate-disabled-btn" href="#"> < </a>
         {else/}
-        <a class="paginate-btn" href="/booklist?page={$page.current_page-1}{$param}" title="上一页"> < </a>
+        <a class="paginate-btn" href="/{$booklist_act}?page={$page.current_page-1}{$param}" title="上一页"> < </a>
         {/if}
         {if $page.current_page == $page.last_page}
         <a class="paginate-disabled-btn" href="#"> > </a>
         {else/}
-        <a class="paginate-btn" href="/booklist?page={$page.current_page+1}{$param}" title="下一页"> > </a>
+        <a class="paginate-btn" href="/{$booklist_act}?page={$page.current_page+1}{$param}" title="下一页"> > </a>
         {/if}
         {/if}
     </div>

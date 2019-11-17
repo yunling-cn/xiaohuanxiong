@@ -23,11 +23,11 @@
         <!-- 左侧菜单标题 -->
         <ul class="header-title">
             <li><a href="/">首页</a></li>
-            <li><a href="/booklist?end=0">连载</a></li>
-            <li><a href="/booklist?end=1">完结</a></li>
-            <li><a href="/update">更新</a></li>
-            <li><a href="/rank">排行</a></li>
-            <li><a href="/booklist"><i class="icon icon-cat" style="font-size:19px;vertical-align: sub;"></i></a></li>
+            <li><a href="/{$booklist_act}?end=0">连载</a></li>
+            <li><a href="/{$booklist_act}?end=1">完结</a></li>
+            <li><a href="/{$update_act}">更新</a></li>
+            <li><a href="/{$rank_ctrl}">排行</a></li>
+            <li><a href="/{$booklist_act}"><i class="icon icon-cat" style="font-size:19px;vertical-align: sub;"></i></a></li>
         </ul>
         <script>
             var url = location.href;
@@ -54,7 +54,7 @@
             <script>
                 $('#btnSearch').click(function () {
                     var keyword = $('#txtKeywords').val();
-                    window.location.href = '/search?keyword=' + keyword;
+                    window.location.href = '/{$search_ctrl}?keyword=' + keyword;
                 })
             </script>
         </div>

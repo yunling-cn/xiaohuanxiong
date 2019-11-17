@@ -33,7 +33,7 @@
                     {volist name="books" id="vo"}
                     <li>
                         <div class="mh-item">
-                            <a href="/book/{$id_salt}{$vo.id}">
+                            <a href="/{$book_ctrl}/{$vo.id}">
                                 {if empty($vo.cover_url)}
                                 <p class="mh-cover"
                                    style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)">
@@ -45,7 +45,7 @@
                             </a>
                             <div class="mh-item-detali">
                                 <h2 class="title">
-                                    <a href="/book/{$id_salt}{$vo.id}" title="{$vo.book_name}"
+                                    <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}"
                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                         {$vo.book_name}
                                     </a>
@@ -53,7 +53,7 @@
                                 <p class="zl"></p>
                                 <p class="chapter" style="width: 181px;">
                                     <span>总计</span>
-                                    <a href="/book/{$id_salt}{$vo.id}">{$vo.chapter_count}话</a>
+                                    <a href="/{$book_ctrl}/{$vo.id}">{$vo.chapter_count}话</a>
                                 </p>
                             </div>
 

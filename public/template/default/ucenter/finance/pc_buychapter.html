@@ -14,7 +14,7 @@
     <div class="row">
         <div class="crumbs">
             <a href="/" title="{$site_name}">{$site_name}</a> &gt;
-            <a class="comic-name" href="/book/{$chapter.book_id}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
+            <a class="comic-name" href="/{$book_ctrl}/{$chapter.book_id}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
         </div>
         <h1 class="title">{$chapter.book.book_name} {$chapter.chapter_name}</h1>
         <div class="shareBtn">
@@ -55,7 +55,7 @@
                 if (res.err == 0) {
                     ShowDialog(res.msg);
                     setTimeout(function () {
-                        location.href = '/chapter/{$chapter.id}';
+                        location.href = '/{$chapter_ctrl}/{$chapter.id}';
                     },1000);
                 } else {
                     ShowDialog(res.msg);

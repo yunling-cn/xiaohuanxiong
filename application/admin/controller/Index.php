@@ -23,7 +23,6 @@ class Index extends BaseAdmin
         $url = config('site.url');
         $img_site = config('site.img_site');
         $salt = config('site.salt');
-        $id_salt = config('site.id_salt');
         $api_key = config('site.api_key');
         $front_tpl = config('site.tpl');
         $payment = config('site.payment');
@@ -55,7 +54,6 @@ class Index extends BaseAdmin
             'url' => $url,
             'img_site' => $img_site,
             'salt' => $salt,
-            'id_salt' => $id_salt,
             'api_key' => $api_key,
             'front_tpl' => $front_tpl,
             'payment' => $payment,
@@ -83,7 +81,6 @@ class Index extends BaseAdmin
             $url = input('url');
             $img_site = input('img_site');
             $salt = input('salt');
-            $id_salt = input('id_salt');
             $api_key = input('api_key');
             $front_tpl = input('front_tpl');
             $payment = input('payment');
@@ -94,7 +91,6 @@ class Index extends BaseAdmin
             'img_site' => '{$img_site}',
             'site_name' => '{$site_name}',
             'salt' => '{$salt}',
-            'id_salt' => '{$id_salt}',
             'api_key' => '{$api_key}', 
             'tpl' => '{$front_tpl}',
             'payment' => '{$payment}'         

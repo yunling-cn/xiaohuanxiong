@@ -42,7 +42,7 @@
                 if (res.err == 0) {
                     ShowDialog(res.msg);
                     setTimeout(function () {
-                        location.href = '/chapter/{$chapter.id}';
+                        location.href = '/{$chapter_ctrl}/{$chapter.id}';
                     },1000);
                 } else {
                     ShowDialog(res.msg);

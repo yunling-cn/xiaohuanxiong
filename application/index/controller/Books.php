@@ -23,19 +23,18 @@ class Books extends Base
 
     public function index($id)
     {
-        $bid = str_replace(config('site.id_salt'), '', $id); //将id盐去除
-        $book = cache('book:' . $bid);
-        $tags = cache('tags:book:' . $bid);
+        $book = cache('book:' . $id);
+        $tags = cache('tags:book:' . $id);
         if ($book == false) {
             $book = Book::with(['chapters' => function ($query) {
                 $query->order('chapter_order');
-            }])->find($bid);
+            }])->find($id);
             $tags = [];
             if (!empty($book->tags) || is_null($book->tags)) {
                 $tags = explode('|', $book->tags);
             }
-            cache('book:' . $bid, $book, null, 'redis');
-            cache('tags:book:' . $bid, $tags, null, 'redis');
+            cache('book:' . $id, $book, null, 'redis');
+            cache('tags:book:' . $id, $tags, null, 'redis');
         }
 
         $this->savehot($book);
@@ -72,11 +71,11 @@ class Books extends Base
             cache('updateBooks', $updates, null, 'redis');
         }
 
-        $start = cache('bookStart:' . $bid);
+        $start = cache('bookStart:' . $id);
         if ($start == false) {
-            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $bid . ' ORDER BY id LIMIT 1');
+            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
-            cache('bookStart:' . $bid, $start, null, 'redis');
+            cache('bookStart:' . $id, $start, null, 'redis');
         }
 
         $comments = $this->getComments($book->id);
@@ -84,22 +83,22 @@ class Books extends Base
         $isfavor = 0;
         if (!is_null($this->uid)) {
             $where[] = ['user_id', '=', $this->uid];
-            $where[] = ['book_id', '=', $bid];
+            $where[] = ['book_id', '=', $id];
             $userfavor = UserBook::where($where)->find();
             if (!is_null($userfavor)) { //未收藏本漫画
                 $isfavor = 1;
             }
         }
 
-        $start_pay = cache('maxChapterOrder:' . $bid);
+        $start_pay = cache('maxChapterOrder:' . $id);
         if (!$start_pay) {
             if ($book->start_pay >= 0) {
                 $start_pay = $book->start_pay; //如果是正序，则开始付费章节就是设置的
             } else { //如果是倒序付费设置
                 $abs = abs($book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
                 $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
-                    ['id' => $bid])[0]['max'];
-                cache('maxChapterOrder:' . $bid, $max_chapter_order);
+                    ['id' => $id])[0]['max'];
+                cache('maxChapterOrder:' . $id, $max_chapter_order);
                 $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
             }
         }

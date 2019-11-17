@@ -11,15 +11,14 @@
 
 use think\facade\Route;
 
-Route::rule('/tag/[:name]', 'index/tags/index');
-Route::rule('/book/:id', 'index/books/index');
-Route::rule('/booklist', 'index/books/booklist');
-Route::rule('/ajaxlist', 'index/books/ajaxlist');
-Route::rule('/chapter/:id-[:salt]', 'index/chapters/index');
-Route::rule('/search/[:keyword]', 'index/search');
-Route::rule('/rank', 'index/rank/index');
-Route::rule('/update', 'index/books/update');
-Route::rule('/author/:id', 'index/authors/index');
+Route::rule('/'.TAGCTRL.'/[:name]', 'index/tags/index');
+Route::rule('/'.BOOKCTRL.'/:id', 'index/books/index');
+Route::rule('/'.BOOKLISTACT, 'index/books/booklist');
+Route::rule('/'.CHAPTERCTRL.'/:id', 'index/chapters/index');
+Route::rule('/'.SEARCHCTRL.'/[:keyword]', 'index/search');
+Route::rule('/'.RANKCTRL, 'index/rank/index');
+Route::rule('/'.UPDATEACT, 'index/books/update');
+Route::rule('/'.AUTHORCTRL.'/:id', 'index/authors/index');
 
 Route::rule('/ucenter', 'ucenter/users/ucenter');
 Route::rule('/bookshelf', 'ucenter/users/bookshelf');
