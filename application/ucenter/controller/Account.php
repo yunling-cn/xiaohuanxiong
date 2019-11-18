@@ -80,7 +80,15 @@ class Account extends Controller
             $this->assign([
                 'site_name' => config('site.site_name'),
                 'url' => config('site.url'),
-                'header_title' => '注册'
+                'header_title' => '注册',
+                'book_ctrl' => BOOKCTRL,
+                'chapter_ctrl' => CHAPTERCTRL,
+                'tag_ctrl' => TAGCTRL,
+                'booklist_act' => BOOKLISTACT,
+                'search_ctrl' => SEARCHCTRL,
+                'rank_ctrl' => RANKCTRL,
+                'update_act' => UPDATEACT,
+                'author_ctrl' => AUTHORCTRL
             ]);
             return view($this->tpl);
         }
@@ -119,7 +127,15 @@ class Account extends Controller
             $this->assign([
                 'site_name' => config('site.site_name'),
                 'url' => config('site.url'),
-                'header_title' => '登录'
+                'header_title' => '登录',
+                'book_ctrl' => BOOKCTRL,
+                'chapter_ctrl' => CHAPTERCTRL,
+                'tag_ctrl' => TAGCTRL,
+                'booklist_act' => BOOKLISTACT,
+                'search_ctrl' => SEARCHCTRL,
+                'rank_ctrl' => RANKCTRL,
+                'update_act' => UPDATEACT,
+                'author_ctrl' => AUTHORCTRL
             ]);
             return view($this->tpl);
         }

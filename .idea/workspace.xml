@@ -2,49 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Sitemap.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Sitemap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/index/kamiconfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/kamiconfig.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/vipcodes/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/vipcodes/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/rank/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/rank/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/index/tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/tags/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/pub/pc_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/pub/pc_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/pub/top1.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/pub/top1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/pub/top2.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/pub/top2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/pub/top3.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/pub/top3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/pub/top4.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/pub/top4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buychapter.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buychapter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buyhistory.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buyhistory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_kami.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_kami.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_vipexchange.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_vipexchange.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/bookshelf.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/bookshelf.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_bookshelf.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_bookshelf.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -598,6 +557,7 @@
       <workItem from="1573315074630" duration="1876000" />
       <workItem from="1573317253009" duration="1479000" />
       <workItem from="1573880404620" duration="15180000" />
+      <workItem from="1574046812964" duration="303000" />
     </task>
     <servers />
   </component>
