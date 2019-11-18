@@ -55,7 +55,15 @@ class BaseUcenter extends Controller
         View::share([
             'url' => config('site.url'),
             'site_name' => config('site.site_name'),
-            'img_site' => config('site.img_site')
+            'img_site' => config('site.img_site'),
+            'book_ctrl' => BOOKCTRL,
+            'chapter_ctrl' => CHAPTERCTRL,
+            'tag_ctrl' => TAGCTRL,
+            'booklist_act' => BOOKLISTACT,
+            'search_ctrl' => SEARCHCTRL,
+            'rank_ctrl' => RANKCTRL,
+            'update_act' => UPDATEACT,
+            'author_ctrl' => AUTHORCTRL
         ]);
     }
 }
