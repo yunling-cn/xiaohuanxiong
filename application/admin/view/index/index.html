@@ -20,7 +20,8 @@
                         <div class="tabCon">
                             <form action="/admin/index/update" method="post" class="form form-horizontal">
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>站点名称：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>站点名称：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
                                         <input type="text" class="input-text" value="{$site_name}" name="site_name">
                                     </div>
@@ -43,7 +44,8 @@
                                 <div class="row clearfix">
                                     <label class="form-label col-xs-4 col-sm-3">密码盐：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$salt}" name="salt" readonly="readonly">
+                                        <input type="text" class="input-text" value="{$salt}" name="salt"
+                                               readonly="readonly">
                                     </div>
                                 </div>
 
@@ -63,7 +65,7 @@
                                                     {if $vo == $front_tpl}
                                                     selected
                                                     {/if}
-                                                >{$vo}</option>
+                                            >{$vo}</option>
                                             {/volist}
                                         </select>
                                     </div>
@@ -74,12 +76,12 @@
                                     <span class="select-box" style="width:150px;">
                         <select class="select" name="payment" size="1">
                             <option value="Zhapay"
-                                    {if $payment == 'Zhapay'}
+                                    {if $payment== 'Zhapay'}
                                     selected
                                     {/if}
                             >幻兮支付</option>
                             <option value="Paypal"
-                                    {if $payment == 'Paypal'}
+                                    {if $payment== 'Paypal'}
                                     selected
                                     {/if}
                             >paypal支付</option>
@@ -90,7 +92,8 @@
 
                                 <div class="row clearfix">
                                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                                        <input class="btn btn-primary radius" type="submit"
+                                               value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                                     </div>
                                 </div>
                             </form>
@@ -98,64 +101,81 @@
                         <div class="tabCon">
                             <form action="/admin/index/pagenum" method="post" class="form form-horizontal">
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>后台分页数目：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>后台分页数目：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$back_end_page}" name="back_end_page">
+                                        <input type="text" class="input-text" value="{$back_end_page}"
+                                               name="back_end_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>pc端分类页展示数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>pc端分类页展示数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$booklist_pc_page}" name="booklist_pc_page">
+                                        <input type="text" class="input-text" value="{$booklist_pc_page}"
+                                               name="booklist_pc_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>移动端分类页展示数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>移动端分类页展示数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$booklist_mobile_page}" name="booklist_mobile_page">
+                                        <input type="text" class="input-text" value="{$booklist_mobile_page}"
+                                               name="booklist_mobile_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>pc端更新页展示数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>pc端更新页展示数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$update_pc_page}" name="update_pc_page">
+                                        <input type="text" class="input-text" value="{$update_pc_page}"
+                                               name="update_pc_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>移动端更新页展示数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>移动端更新页展示数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$update_mobile_page}" name="update_mobile_page">
+                                        <input type="text" class="input-text" value="{$update_mobile_page}"
+                                               name="update_mobile_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>pc端搜索结果数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>pc端搜索结果数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$search_result_pc}" name="search_result_pc">
+                                        <input type="text" class="input-text" value="{$search_result_pc}"
+                                               name="search_result_pc">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>移动端搜索结果数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>移动端搜索结果数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$search_result_mobile}" name="search_result_mobile">
+                                        <input type="text" class="input-text" value="{$search_result_mobile}"
+                                               name="search_result_mobile">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>阅读页图片展示数：</label>
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>阅读页图片展示数：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$img_per_page}" name="img_per_page">
+                                        <input type="text" class="input-text" value="{$img_per_page}"
+                                               name="img_per_page">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
                                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                                        <input class="btn btn-primary radius" type="submit"
+                                               value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                                     </div>
                                 </div>
                             </form>
@@ -188,14 +208,16 @@
                                 <div class="row clearfix">
                                     <label class="form-label col-xs-4 col-sm-3">redis前缀：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" readonly="readonly" class="input-text" value="{$redis_prefix}"
+                                        <input type="text" readonly="readonly" class="input-text"
+                                               value="{$redis_prefix}"
                                                name="redis_prefix">
                                     </div>
                                 </div>
 
                                 <div class="row clearfix">
                                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                                        <input class="btn btn-primary radius" type="submit"
+                                               value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                                     </div>
                                 </div>
                             </form>

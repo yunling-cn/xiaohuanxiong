@@ -51,6 +51,7 @@ Route::rule('/vipexchange', 'ucenter/finance/vipexchange');
 
 Route::rule('/zhapaynotify', 'api/zhapaynotify/index');
 Route::rule('/Paypalnotify','api/Paypalnotify/index');
+Route::rule('/Sevenpaynotify','api/Sevenpaynotify/index');
 
 Route::rule('/login', 'ucenter/account/login');
 Route::rule('/register', 'ucenter/account/register');
