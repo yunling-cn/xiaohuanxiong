@@ -91,7 +91,6 @@ class Tags extends Base
         }
         foreach ($banners as &$banner) {
             $banner['pic_name'] = $this->imgUrl . '/static/upload/banner/' . $banner['pic_name'];
-            $banner['nav_to'] = $this->url . '/' . $this->book_ctrl . '/' . $banner['id'];
         }
         return json(['success' => 1, 'banners' => $banners]);
     }
