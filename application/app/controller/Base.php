@@ -9,10 +9,11 @@ use think\facade\Response;
 
 class Base extends Controller
 {
-    protected $prefix;
-    protected $redis_prefix;
-    protected $uid;
-    protected $url;
+    public $prefix;
+    public $redis_prefix;
+    public $uid;
+    public $url;
+    public $book_ctrl;
 
     protected function initialize()
     {
@@ -33,5 +34,6 @@ class Base extends Controller
         $this->redis_prefix = config('cache.prefix');
         $this->url = config('site.url');
         $this->imgUrl = config('site.img_site');
+        $this->book_ctrl = BOOKCTRL;
     }
 }

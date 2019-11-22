@@ -69,7 +69,7 @@ class Tags extends Base
             $end_selector = $end;
             $map[] = ['end', '=', $end];
         }
-        $books = Book::where($map)->order('id', 'desc')->limit($startItem,$pageSize)->select();
+        $books = Book::where($map)->order('id', 'desc')->limit($startItem, $pageSize)->select();
         return json([
             'success' => 1,
             'books' => $books,
@@ -81,15 +81,17 @@ class Tags extends Base
         ]);
     }
 
-    public function getBanners(){
+    public function getBanners()
+    {
         $num = input('num');
         $banners = cache('bannersHomepage');
         if (!$banners) {
-            $banners = Banner::where('banner_order','>', 0)->order('banner_order','desc')->select();
-            cache('bannersHomepage',$banners, null, 'redis');
+            $banners = Banner::where('banner_order', '>', 0)->order('banner_order', 'desc')->select();
+            cache('bannersHomepage', $banners, null, 'redis');
         }
         foreach ($banners as &$banner) {
-            $banner['pic_name'] = $this->imgUrl.'/static/upload/banner/'.$banner['pic_name'];
+            $banner['pic_name'] = $this->imgUrl . '/static/upload/banner/' . $banner['pic_name'];
+            $banner['nav_to'] = $this->url . '/' . $this->book_ctrl . '/' . $banner['id'];
         }
         return json(['success' => 1, 'banners' => $banners]);
     }

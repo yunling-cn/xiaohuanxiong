@@ -25,6 +25,11 @@ class Books extends Base
         $newest = cache('newest_homepage');
         if (!$newest) {
             $newest = $this->bookService->getBooks('last_time', '1=1', 14);
+            foreach ($newest as &$book) {
+                if (empty($book['cover_url'])) {
+                    $book['cover_url'] = $this->url.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                }
+            }
             cache('newest_homepage', $newest, null, 'redis');
         }
         $result = [
