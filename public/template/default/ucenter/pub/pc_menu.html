@@ -25,16 +25,20 @@
     </ul>
     <script>
         var href = location.href;
-        if (href.indexOf('bookshelf') > -1){
+        if (href.indexOf('promotion') > -1) {
             $('.user-menu li a').eq(0).addClass('active');
-        }else if (href.indexOf('wallet') > -1){
+        } else if (href.indexOf('bookshelf') > -1) {
             $('.user-menu li a').eq(1).addClass('active');
-        } else if (href.indexOf('buy') > -1){
+        } else if (href.indexOf('wallet') > -1) {
             $('.user-menu li a').eq(2).addClass('active');
-        }else if (href.indexOf('vip') > -1){
+        } else if (href.indexOf('buyhistory') > -1) {
             $('.user-menu li a').eq(3).addClass('active');
-        }else if (href.indexOf('security') > -1){
-            $('.user-menu li a').eq(4).addClass('active');
+        } else if (href.indexOf('bindphone') > -1) {
+            $('.user-menu li a').eq(6).addClass('active');
+        } else if (href.indexOf('resetpwd') > -1) {
+            $('.user-menu li a').eq(7).addClass('active');
+        } else if (href.indexOf('leavemsg') > -1) {
+            $('.user-menu li a').eq(8).addClass('active');
         }
     </script>
 </aside>

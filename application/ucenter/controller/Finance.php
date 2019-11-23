@@ -46,7 +46,7 @@ class Finance extends BaseUcenter
 
         $charge_sum = cache('chargesum:' . $this->uid);
         if (!$charge_sum) {
-            $charge_sum = $this->financeService->getChargeSum();
+            $charge_sum = $this->financeService->getChargeSum($this->uid);
             cache('chargesum:' . $this->uid, $charge_sum, '', 'pay');
         }
 
