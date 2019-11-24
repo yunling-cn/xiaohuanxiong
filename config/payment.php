@@ -1,18 +1,14 @@
 <?php
 return [
+    'default' => [ //默认无支付模式
+        'channel' => [
+        ]
+    ],
     'zhapay' => [ //幻兮支付，官网地址:https://www.zhapay.com/
         'appid' => '',
         'appkey' => '',
         'channel' => [
             ['type' => 2, 'code' => 1, 'img' => 'alipay', 'title' => '支付宝'],
-            ['type' => 1, 'code' => 3, 'img' => 'weixin', 'title' => '微信支付']
-        ]
-    ],
-    'sevenpay' => [ //7c支付，官网地址：https://www.7cpo.com/
-        'token' => '',
-        'businessId' => '',
-        'channel' => [
-            ['type' => 0, 'code' => 1, 'img' => 'alipay', 'title' => '支付宝'],
             ['type' => 1, 'code' => 3, 'img' => 'weixin', 'title' => '微信支付']
         ]
     ],

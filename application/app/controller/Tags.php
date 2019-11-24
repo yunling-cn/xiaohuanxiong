@@ -90,7 +90,7 @@ class Tags extends Base
             cache('bannersHomepage', $banners, null, 'redis');
         }
         foreach ($banners as &$banner) {
-            $banner['pic_name'] = $this->imgUrl . '/static/upload/banner/' . $banner['pic_name'];
+            $banner['pic_name'] = $this->url . '/static/upload/banner/' . $banner['pic_name'];
         }
         return json(['success' => 1, 'banners' => $banners]);
     }

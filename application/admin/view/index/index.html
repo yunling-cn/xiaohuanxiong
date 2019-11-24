@@ -62,7 +62,7 @@
                                         <select name="front_tpl" class="select">
                                             {volist name="tpl_dirs" id="vo"}
                                             <option value="{$vo}"
-                                                    {if $vo == $front_tpl}
+                                                    {if $vo== $front_tpl}
                                                     selected
                                                     {/if}
                                             >{$vo}</option>
@@ -75,6 +75,11 @@
                                     <label class="form-label col-xs-4 col-sm-3">支付方式：</label>
                                     <span class="select-box" style="width:150px;">
                         <select class="select" name="payment" size="1">
+                             <option value="Default"
+                                     {if $payment== 'Default'}
+                                    selected
+                                    {/if}
+                            >无支付</option>
                             <option value="Zhapay"
                                     {if $payment== 'Zhapay'}
                                     selected

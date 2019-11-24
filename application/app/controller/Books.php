@@ -27,7 +27,7 @@ class Books extends Base
             $newest = $this->bookService->getBooks('last_time', '1=1', 14);
             foreach ($newest as &$book) {
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->url.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
                 }
             }
             cache('newest_homepage', $newest, null, 'redis');
@@ -43,11 +43,16 @@ class Books extends Base
         $hot_books = cache('hot_books');
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
+            foreach ($hot_books as &$book) {
+                if (empty($book['cover_url'])) {
+                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                }
+            }
             cache('hot_books', $hot_books, null, 'redis');
         }
         $result = [
             'success' => 1,
-            'hot' => $hot_books
+            'hots' => $hot_books
         ];
         return json($result);
     }
@@ -56,6 +61,11 @@ class Books extends Base
         $ends = cache('ends_homepage');
         if (!$ends) {
             $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 14);
+            foreach ($ends as &$book) {
+                if (empty($book['cover_url'])) {
+                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                }
+            }
             cache('ends_homepage', $ends, null, 'redis');
         }
         $result = [

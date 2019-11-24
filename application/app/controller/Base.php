@@ -13,6 +13,7 @@ class Base extends Controller
     public $redis_prefix;
     public $uid;
     public $url;
+    public $imgUrl;
     public $book_ctrl;
 
     protected function initialize()
