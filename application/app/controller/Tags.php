@@ -7,7 +7,6 @@ namespace app\app\controller;
 use app\model\Banner;
 use app\model\Book;
 use app\model\Tags as Tag;
-use think\Db;
 use think\Request;
 
 class Tags extends Base
@@ -93,5 +92,31 @@ class Tags extends Base
             $banner['pic_name'] = $this->url . '/static/upload/banner/' . $banner['pic_name'];
         }
         return json(['success' => 1, 'banners' => $banners]);
+    }
+
+    public function getBooksByTag(){
+        $str = input('str');
+        $tags = explode(',',$str);
+        $catelist = array(); //分类漫画数组
+        $cateItem = array();
+        foreach ($tags as $tag) {
+            $books = cache('booksFilterByTag:'.$tag);
+            if (!$books) {
+                $books = Book::where('tags', 'like', '%' . $tag . '%')
+                    ->order('id', 'desc')->limit(10)->select();
+                foreach ($books as &$book) {
+                    if (empty($book['cover_url'])) {
+                        $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                        $book['chapter_count'] = count($book->chapters);
+                    }
+                }
+                cache('booksFilterByTag:'.$tag, $books, null, 'redis');
+            }
+
+            $cateItem['books'] = $books->toArray();
+            $cateItem['tag'] = $tag;
+            $catelist[] = $cateItem;
+        }
+        return json(['success' => 1, 'cates' => $catelist]);
     }
 }

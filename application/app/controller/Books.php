@@ -4,6 +4,7 @@
 namespace app\app\controller;
 
 
+use app\model\Area;
 use app\model\Author;
 use app\model\Book;
 use app\model\Comments;
@@ -15,19 +16,21 @@ class Books extends Base
 {
     protected $bookService;
 
+
     public function initialize()
     {
         parent::initialize();
         $this->bookService = new \app\service\BookService();
     }
 
-    public function getNewest(){
+    public function getNewest()
+    {
         $newest = cache('newest_homepage');
         if (!$newest) {
             $newest = $this->bookService->getBooks('last_time', '1=1', 14);
             foreach ($newest as &$book) {
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
             }
             cache('newest_homepage', $newest, null, 'redis');
@@ -39,13 +42,14 @@ class Books extends Base
         return json($result);
     }
 
-    public function getHot(){
+    public function getHot()
+    {
         $hot_books = cache('hot_books');
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
             foreach ($hot_books as &$book) {
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
             }
             cache('hot_books', $hot_books, null, 'redis');
@@ -57,13 +61,14 @@ class Books extends Base
         return json($result);
     }
 
-    public function getEnds(){
+    public function getEnds()
+    {
         $ends = cache('ends_homepage');
         if (!$ends) {
             $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 14);
             foreach ($ends as &$book) {
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
             }
             cache('ends_homepage', $ends, null, 'redis');
@@ -75,7 +80,8 @@ class Books extends Base
         return json($result);
     }
 
-    public function getMostCharged(){
+    public function getMostCharged()
+    {
         $most_charged = cache('most_charged');
         if (!$most_charged) {
             $arr = $this->bookService->getMostChargedBook();
@@ -122,35 +128,35 @@ class Books extends Base
         return json($result);
     }
 
-    public function detail(){
+    public function detail()
+    {
         $id = input('id');
+        $uid = input('uid');
         $book = cache('book:' . $id);
-        $tags = cache('tags:book:' . $id );
-        if ($book ==false) {
-            $book = Book::with(['chapters' => function($query){
-                $query->order('chapter_order');
-            }])->find($id);
-            $tags = [];
-            if(!empty($book->tags) || is_null($book->tags)){
-                $tags = explode('|', $book->tags);
+        if ($book == false) {
+            $book = Book::with('area')->find($id);
+            if (!empty($book)) {
+                if (empty($book->cover_url)) {
+                    $book->cover_url = $this->imgUrl . '/static/upload/book/' . $id . '/cover.jpg';
+                }
             }
-            cache('book:' . $id, $book,null,'redis');
-            cache('tags:book:' . $id , $tags,null,'redis');
+
+            cache('book:' . $id, $book, null, 'redis');
         }
 
         $start = cache('book_start:' . $id);
         if ($start == false) {
-            $db = Db::query('SELECT id FROM '.$this->prefix.'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
+            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
-            cache('book_start:' . $id, $start,null,'redis');
+            cache('book_start:' . $id, $start, null, 'redis');
         }
 
         $isfavor = 0;
-        if (!is_null($this->uid)) {
-            $where[] = ['user_id', '=', $this->uid];
+        if ($this->isLogin) { //如果app端用户已登录
+            $where[] = ['user_id', '=', $uid];
             $where[] = ['book_id', '=', $id];
             $userfavor = UserBook::where($where)->find();
-            if (!is_null($userfavor)) { //未收藏本漫画
+            if (!is_null($userfavor)) { //收藏本漫画
                 $isfavor = 1;
             }
         }
@@ -159,20 +165,20 @@ class Books extends Base
         $book['isfavor'] = $isfavor;
         $result = [
             'success' => 1,
-            'book' => $book,
-            'tags' => $tags
+            'book' => $book
         ];
         return json($result);
     }
 
-    public function isfavor(){
+    public function isfavor()
+    {
         $id = input('id');
-        $uid=input('uid');
+        $uid = input('uid');
         $isfavor = 0;
-        $where[] = ['user_id','=',$uid];
-        $where[] = ['book_id','=',$id];
+        $where[] = ['user_id', '=', $uid];
+        $where[] = ['book_id', '=', $id];
         $userfavor = UserBook::where($where)->find();
-        if (!is_null($userfavor)){ //未收藏本漫画
+        if (!is_null($userfavor)) { //未收藏本漫画
             $isfavor = 1;
         }
         $result = [
@@ -182,21 +188,43 @@ class Books extends Base
         return json($result);
     }
 
-    public function getComments(){
+    public function getComments()
+    {
         $book_id = input('book_id');
-        $comments = cache('comments:'.$book_id);
-        if (!$comments){
-            $comments = Comments::where('book_id','=',$book_id)->order('create_time','desc')
-                ->limit(0,5)->select();
-            cache('comments:'.$book_id,$comments);
+        $comments = cache('comments:' . $book_id);
+        if (!$comments) {
+            $comments = Comments::with('user')->where('book_id', '=', $book_id)
+                ->order('create_time', 'desc')->limit(0, 10)->select();
+            cache('comments:' . $book_id, $comments);
         }
-        $dir = App::getRootPath().'public/static/upload/comments/'.$book_id;
-        foreach ($comments as &$comment){
-            $comment['content'] = file_get_contents($dir.'/'.$comment->id.'.txt');
-        }
+//        $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
+//        foreach ($comments as &$comment) {
+//            $comment['content'] = file_get_contents($dir . '/' . $comment->id . '.txt');
+//        }
         $result = [
             'success' => 1,
             'comments' => $comments
+        ];
+        return json($result);
+    }
+
+    public function getRecommend(){
+        $book_id = input('book_id');
+        $book = Book::get($book_id);
+        $recommends = cache('randBooks:'.$book->tags);
+        if (!$recommends) {
+            $recommends = $this->bookService->getRecommand($book->tags);
+            cache('randBooks:'.$book->tags, $recommends, null, 'redis');
+        }
+        foreach ($recommends as &$recommend){
+            if (empty($recommend['cover_url'])) {
+                $recommend['cover_url'] = $this->imgUrl . '/static/upload/book/' . $recommend['id'] . '/cover.jpg';
+            }
+            $recommend['area_name'] = Area::get($recommend['area_id'])['area_name'];
+        }
+        $result = [
+            'success' => 1,
+            'recommends' => $recommends
         ];
         return json($result);
     }

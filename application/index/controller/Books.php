@@ -59,10 +59,10 @@ class Books extends Base
             cache('hotBooksDay', $hot_books, null, 'redis');
         }
 
-        $recommand = cache('randBooks');
+        $recommand = cache('randBooks:'.$book->tags);
         if (!$recommand) {
             $recommand = $this->bookService->getRecommand($book->tags);
-            cache('randBooks', $recommand, null, 'redis');
+            cache('randBooks:'.$book->tags, $recommand, null, 'redis');
         }
 
         $updates = cache('updateBooks');

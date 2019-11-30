@@ -65,17 +65,18 @@ class Index extends Base
             cache('tags', $tags, null, 'redis');
         }
 
-        $catelist = cache('catelist');
-        if (!$catelist) {
-            $catelist = array(); //分类漫画数组
-            $cateItem = array();
-            foreach ($tags as $tag) {
+        $catelist = array(); //分类漫画数组
+        $cateItem = array();
+        foreach ($tags as $tag) {
+            $books = cache('booksFilterByTag:'.$tag);
+            if (!$books) {
                 $books = $this->bookService->getByTag($tag->tag_name);
-                $cateItem['books'] = $books->toArray();
-                $cateItem['tag'] = ['id' => $tag->id, 'tag_name' => $tag->tag_name];
-                $catelist[] = $cateItem;
+                cache('booksFilterByTag:'.$tag, $books, null, 'redis');
             }
-            cache('catelist', $catelist, null, 'redis');
+
+            $cateItem['books'] = $books->toArray();
+            $cateItem['tag'] = ['id' => $tag->id, 'tag_name' => $tag->tag_name];
+            $catelist[] = $cateItem;
         }
 
         $this->assign([

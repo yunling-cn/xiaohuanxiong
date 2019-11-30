@@ -6,6 +6,7 @@ namespace app\app\controller;
 use think\App;
 use think\Controller;
 use think\facade\Response;
+use think\Request;
 
 class Base extends Controller
 {
@@ -15,6 +16,7 @@ class Base extends Controller
     public $url;
     public $imgUrl;
     public $book_ctrl;
+    protected $isLogin;
 
     protected function initialize()
     {
@@ -30,11 +32,23 @@ class Base extends Controller
             exit();
         }
 
-        $this->uid = session('xwx_user_id');
         $this->prefix = config('database.prefix');
         $this->redis_prefix = config('cache.prefix');
         $this->url = config('site.url');
         $this->imgUrl = config('site.img_site');
         $this->book_ctrl = BOOKCTRL;
+    }
+
+    public function checkAuth(Request $request)
+    {
+        $utoken = $request->param('utoken');
+        $uid = $request->param('uid');
+        $redis = new_redis();
+        $utoken_in_redis = $redis->get('utoken:' . $uid);
+        if ($utoken_in_redis == $utoken) {
+            $this->isLogin = true;
+        } else {
+            $this->isLogin = false;
+        }
     }
 }

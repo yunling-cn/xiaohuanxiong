@@ -333,11 +333,14 @@ class Finance extends BaseUcenter
                         'id' => $code->id,
                         'update_time' => time()
                     ]);
+
                     $vip_expire_time = (int)$user->vip_expire_time;
-                    if ($vip_expire_time <= 0) {
-                        $vip_expire_time = time();
+                    if ($vip_expire_time < time() ) { //说明vip已经过期
+                        $new_expire_time = strtotime('+' . (int)$code->add_day . ' days', time());
+                    } else { //vip没过期，则在现有vip时间上增加
+                        $new_expire_time = strtotime('+' . (int)$code->add_day . ' days', $vip_expire_time);
                     }
-                    $new_expire_time = strtotime('+' . (int)$code->add_day . ' day', $vip_expire_time);
+
                     Db::table($this->prefix . 'user')->update([
                         'vip_expire_time' => $new_expire_time,
                         'id' => $this->uid

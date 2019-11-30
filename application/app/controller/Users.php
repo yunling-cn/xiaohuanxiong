@@ -17,7 +17,7 @@ use think\facade\App;
 use think\facade\Env;
 use think\facade\Validate;
 
-class Users extends BaseAuth
+class Users extends Auth
 {
     protected $userService;
     protected $financeService;

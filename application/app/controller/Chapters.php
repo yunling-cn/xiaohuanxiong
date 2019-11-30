@@ -5,6 +5,7 @@ namespace app\app\controller;
 
 
 use app\model\Chapter;
+use app\model\Photo;
 use app\model\UserBuy;
 use think\Db;
 
@@ -13,7 +14,22 @@ class Chapters extends Base
     public function getList()
     {
         $book_id = input('book_id');
-        $chapters = Chapter::where('book_id', '=', $book_id)->select();
+
+        $chapters = cache('chapters:'.$book_id);
+        if (!$chapters) {
+            $chapters = Chapter::where('book_id', '=', $book_id)->select();
+            cache('chapters:'.$book_id, $chapters, null, 'redis');
+        }
+
+//        foreach ($chapters as &$chapter) {
+//            $imgs = Photo::where('chapter_id','=',$chapter->id)->select();
+//            if (empty($imgs[0]->img_url)) {
+//                $chapter['cover'] = $this->imgUrl.'/static/upload/book/'.$book_id.'/'.$chapter->id.'/'.$imgs[0]->id.'.jpg';
+//            } else {
+//                $chapter['cover'] = $imgs[0]->img_url;
+//            }
+//        }
+
         $result = [
             'success' => 1,
             'chapters' => $chapters

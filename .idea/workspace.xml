@@ -3,11 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/chargecodes/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/BaseAuth.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Tags.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/payment.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -571,6 +576,14 @@
       <workItem from="1574399092395" duration="1972000" />
       <workItem from="1574478964832" duration="432000" />
       <workItem from="1574509201093" duration="5397000" />
+      <workItem from="1574659795035" duration="3153000" />
+      <workItem from="1574738189575" duration="3621000" />
+      <workItem from="1574825084965" duration="3317000" />
+      <workItem from="1574852743607" duration="1062000" />
+      <workItem from="1574858733303" duration="4519000" />
+      <workItem from="1575036471924" duration="769000" />
+      <workItem from="1575039050286" duration="1192000" />
+      <workItem from="1575082552926" duration="5822000" />
     </task>
     <servers />
   </component>
