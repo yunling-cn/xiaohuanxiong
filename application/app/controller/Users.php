@@ -17,7 +17,7 @@ use think\facade\App;
 use think\facade\Env;
 use think\facade\Validate;
 
-class Users extends Auth
+class Users extends Base
 {
     protected $userService;
     protected $financeService;
@@ -220,29 +220,34 @@ class Users extends Auth
         return json(['msg' => '修改成功', 'success' => 1]);
     }
 
-    public function commentadd()
+    public function subComment()
     {
+        $utoken = input('utoken');
+        $uid = input('uid');
+        $redis = new_redis();
+        $redis_utoken = $redis->get('utoken:'.$uid);
+        if (is_null($redis_utoken) || empty($redis_utoken) || $redis_utoken!= $utoken) {
+            return json(['isLogin' => 0, 'success' => 0, 'msg' => '用户未登录']);
+        }
+
         $content = strip_tags(input('comment'));
         $book_id = input('book_id');
-        $redis = new_redis();
-        if ($redis->exists('comment_lock:' . $this->uid)) {
-            return json(['msg' => '每10秒只能评论一次', 'success' => 0]);
+
+
+        if ($redis->exists('comment_lock:' . $uid)) {
+            return json(['msg' => '每10秒只能评论一次', 'success' => 0, 'isLogin' => 1]);
         } else {
             $comment = new Comments();
-            $comment->user_id = $this->uid;
+            $comment->user_id = $uid;
             $comment->book_id = $book_id;
+            $comment->content = $content;
             $result = $comment->save();
             if ($result) {
-                $redis->set('comment_lock:' . $this->uid, 1, 10);
-                $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
-                if (!file_exists($dir)) {
-                    mkdir($dir, 0777, true);
-                }
-                file_put_contents($dir . '/' . $comment->id . '.txt', $content);
-                cache('comments:' . $book_id, null);
-                return json(['msg' => '评论成功', 'success' => 1]);
+                $redis->set('comment_lock:' . $uid, 1, 10);
+                cache('comments:' . $book_id, null); //清除评论缓存
+                return json(['msg' => '评论成功', 'success' => 1, 'isLogin' => 1]);
             } else {
-                return json(['msg' => '评论失败', 'success' => 0]);
+                return json(['msg' => '评论失败', 'success' => 0, 'isLogin' => 1]);
             }
         }
     }

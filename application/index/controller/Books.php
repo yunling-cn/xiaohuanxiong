@@ -37,7 +37,10 @@ class Books extends Base
             cache('tags:book:' . $id, $tags, null, 'redis');
         }
 
-        $this->savehot($book);
+        $redis = new_redis();
+        $day = date("Y-m-d", time());
+        //以当前日期为键，增加点击数
+        $redis->zIncrBy('click:' . $day, 1, $book->id);
 
         $hot_books = cache('hotBooks'); //总点击
         if (!$hot_books) {
@@ -267,15 +270,6 @@ class Books extends Base
             'header_title' => '更新',
         ]);
         return view($this->tpl);
-    }
-
-    private function savehot($book)
-    {
-        $redis = new_redis();
-        $day = date("Y-m-d", time());
-        //以当前日期为键，增加点击数
-        $redis->zIncrBy('click:' . $day, 1, $book->id);
-
     }
 
     private function getComments($book_id)

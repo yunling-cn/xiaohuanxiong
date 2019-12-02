@@ -140,9 +140,13 @@ class Books extends Base
                     $book->cover_url = $this->imgUrl . '/static/upload/book/' . $id . '/cover.jpg';
                 }
             }
-
             cache('book:' . $id, $book, null, 'redis');
         }
+
+        $redis = new_redis();
+        $day = date("Y-m-d", time());
+        //以当前日期为键，增加点击数
+        $redis->zIncrBy('click:' . $day, 1, $book->id);
 
         $start = cache('book_start:' . $id);
         if ($start == false) {
