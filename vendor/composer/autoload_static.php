@@ -42,6 +42,10 @@ class ComposerStaticInit663d55478ab4e9a8b8e65f4b48d2d666
             'GuzzleHttp\\' => 11,
             'GatewayWorker\\' => 14,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -88,6 +92,10 @@ class ComposerStaticInit663d55478ab4e9a8b8e65f4b48d2d666
         'GatewayWorker\\' => 
         array (
             0 => __DIR__ . '/..' . '/workerman/gateway-worker/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
     );
 

@@ -7,6 +7,7 @@ namespace app\app\controller;
 use app\service\PromotionService;
 use think\Request;
 use app\model\User;
+use Firebase\JWT\JWT;
 
 class Account extends Base
 {
@@ -59,9 +60,14 @@ class Account extends Base
             if ($user->delete_time > 0) {
                 return json(['success' => 0, 'msg' => '用户被锁定']);
             } else {
-                $utoken = md5($user->username . config('api_key'));
-                $redis = new_redis();
-                $redis->set('utoken:' . $user->id, $utoken, 3600 * 24);
+                $key = config('site.api_key');
+                $token = [
+                    "iat" => time(), //签发时间
+                    "nbf" => time() + 100, //在什么时候jwt开始生效  （这里表示生成100秒后才生效）
+                    "exp" => time() + 60 * 60 * 24, //token 过期时间
+                    "uid" => $user->id //记录的userid的信息，这里是自已添加上去的，如果有其它信息，可以再添加数组的键值对
+                ];
+                $utoken = JWT::encode($token, $key);
                 $userInfo = [];
                 $userInfo['uid'] = $user->id;
                 $userInfo['username'] = $user->username;

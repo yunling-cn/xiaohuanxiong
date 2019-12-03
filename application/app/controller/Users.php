@@ -17,7 +17,7 @@ use think\facade\App;
 use think\facade\Env;
 use think\facade\Validate;
 
-class Users extends Base
+class Users extends BaseAuth
 {
     protected $userService;
     protected $financeService;
@@ -222,28 +222,20 @@ class Users extends Base
 
     public function subComment()
     {
-        $utoken = input('utoken');
-        $uid = input('uid');
-        $redis = new_redis();
-        $redis_utoken = $redis->get('utoken:'.$uid);
-        if (is_null($redis_utoken) || empty($redis_utoken) || $redis_utoken!= $utoken) {
-            return json(['isLogin' => 0, 'success' => 0, 'msg' => '用户未登录']);
-        }
-
         $content = strip_tags(input('comment'));
         $book_id = input('book_id');
 
-
-        if ($redis->exists('comment_lock:' . $uid)) {
+        $redis = new_redis();
+        if ($redis->exists('comment_lock:' . $this->uid)) {
             return json(['msg' => '每10秒只能评论一次', 'success' => 0, 'isLogin' => 1]);
         } else {
             $comment = new Comments();
-            $comment->user_id = $uid;
+            $comment->user_id = $this->uid;
             $comment->book_id = $book_id;
             $comment->content = $content;
             $result = $comment->save();
             if ($result) {
-                $redis->set('comment_lock:' . $uid, 1, 10);
+                $redis->set('comment_lock:' . $this->uid, 1, 10);
                 cache('comments:' . $book_id, null); //清除评论缓存
                 return json(['msg' => '评论成功', 'success' => 1, 'isLogin' => 1]);
             } else {

@@ -13,7 +13,7 @@ use app\service\FinanceService;
 use think\facade\Cache;
 use think\Request;
 
-class Finance extends Auth
+class Finance extends BaseAuth
 {
     protected $financeService;
     protected function initialize()

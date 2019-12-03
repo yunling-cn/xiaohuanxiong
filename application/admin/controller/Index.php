@@ -260,4 +260,16 @@ INFO;
            echo '<p style="padding-left:15px;font-weight: 400;color:#999;">已经是最新版本！当前版本是' . $localVersion.'</p>';
         }
     }
+
+    public function routeconfig(){
+        $path = Env::get('root_path') . '/public/routeconf.php';
+        if ($this->request->isPost()) {
+            $conf = input('json');
+            file_put_contents($path, $conf);
+            $this->success('保存成功');
+        }
+        $conf = file_get_contents($path);
+        $this->assign('json', $conf);
+        return view();
+    }
 }
