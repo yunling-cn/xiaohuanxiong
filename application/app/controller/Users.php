@@ -74,27 +74,22 @@ class Users extends BaseAuth
         return json(['success' => 1, 'msg' => '删除收藏']);
     }
 
-    public function addfavor()
+    public function switchfavor()
     {
-        if (is_null($this->uid)) {
-            return json(['success' => 0, 'msg' => '用户未登录']);
-        }
         $redis = new_redis();
         if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
             return json(['success' => 0, 'msg' => '操作太频繁']);
         } else {
             $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
 
-            $val = input('val');
+            $isfavor = input('isfavor');
             $book_id = input('book_id');
-
-            if ($val == 0) { //未收藏
-                $user = User::get($this->uid);
+            $user = User::get($this->uid);
+            if ($isfavor == 0) { //未收藏
                 $book = Book::get($book_id);
                 $user->books()->save($book);
                 return json(['success' => 1, 'isfavor' => 1]); //isfavor表示已收藏
             } else {
-                $user = User::get($this->uid);
                 $user->books()->detach(['book_id' => $book_id]);
                 return json(['success' => 1, 'isfavor' => 0]); //isfavor为0表示未收藏
             }
@@ -303,6 +298,23 @@ class Users extends BaseAuth
             'startItem' => $startItem,
             'pageSize' => $pageSize
         ]);
+    }
+
+    public function isfavor()
+    {
+        $book_id = input('book_id');
+        $isfavor = 0;
+        $where[] = ['user_id', '=', $this->uid];
+        $where[] = ['book_id', '=', $book_id];
+        $userfavor = UserBook::where($where)->find();
+        if (!is_null($userfavor) || !empty($userfavor)) { //收藏本漫画
+            $isfavor = 1;
+        }
+        $result = [
+            'success' => 1,
+            'isfavor' => $isfavor
+        ];
+        return json($result);
     }
 
 }

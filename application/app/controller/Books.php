@@ -155,39 +155,10 @@ class Books extends Base
             cache('book_start:' . $id, $start, null, 'redis');
         }
 
-        $isfavor = 0;
-        if ($this->isLogin) { //如果app端用户已登录
-            $where[] = ['user_id', '=', $uid];
-            $where[] = ['book_id', '=', $id];
-            $userfavor = UserBook::where($where)->find();
-            if (!is_null($userfavor)) { //收藏本漫画
-                $isfavor = 1;
-            }
-        }
-
         $book['start'] = $start;
-        $book['isfavor'] = $isfavor;
         $result = [
             'success' => 1,
             'book' => $book
-        ];
-        return json($result);
-    }
-
-    public function isfavor()
-    {
-        $id = input('id');
-        $uid = input('uid');
-        $isfavor = 0;
-        $where[] = ['user_id', '=', $uid];
-        $where[] = ['book_id', '=', $id];
-        $userfavor = UserBook::where($where)->find();
-        if (!is_null($userfavor)) { //未收藏本漫画
-            $isfavor = 1;
-        }
-        $result = [
-            'success' => 1,
-            'isfavor' => $isfavor
         ];
         return json($result);
     }

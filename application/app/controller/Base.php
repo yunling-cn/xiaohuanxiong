@@ -14,10 +14,15 @@ class Base extends Controller
     public $url;
     public $imgUrl;
     public $book_ctrl;
+    public $uid;
 
     protected function initialize()
     {
         parent::initialize();
+        header("Access-Control-Allow-Origin:*");
+        header("Access-Control-Allow-Methods:GET, POST, OPTIONS, DELETE");
+        header("Access-Control-Allow-Headers:DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept-Language, Origin, Accept-Encoding");
+
         $token = $this->request->param('token');
         $time = $this->request->param('time');
         if (time() - $time > 180) {
@@ -33,5 +38,16 @@ class Base extends Controller
         $this->url = config('site.url');
         $this->imgUrl = config('site.img_site');
         $this->book_ctrl = BOOKCTRL;
+    }
+
+    public function getAuth($utoken){
+        $key = config('site.api_key');
+        try{
+            $info = JWT::decode($utoken, $key, array('HS256', 'HS384', 'HS512', 'RS256' ));
+            $arr = (array)$info;
+            return json(['success' => 1, 'uid' => $arr['uid']]);
+        } catch (\Exception $e) {
+            return json(['success' => -1, 'msg' => $e->getMessage()]);
+        }
     }
 }

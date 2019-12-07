@@ -5,23 +5,22 @@ namespace app\app\controller;
 
 
 use Firebase\JWT\JWT;
-use think\Exception;
 
 class BaseAuth extends Base
 {
-    public $uid;
 
     protected function initialize()
     {
         parent::initialize();
         $key = config('site.api_key');
-        $header = $this->request->header();
-        if (isset($header['utoken'])) {
-            $utoken = $header['utoken'];
+        $param = $this->request->param();
+        if (isset($param['utoken'])) {
+            $utoken = $param['utoken'];
             try{
-                $info = JWT::decode($utoken, $key);
-                $this->uid = $info['uid'];
-            } catch (Exception $e) {
+                $info = JWT::decode($utoken, $key, array('HS256', 'HS384', 'HS512', 'RS256' ));
+                $arr = (array)$info;
+                $this->uid = $arr['uid'];
+            } catch (\Exception $e) {
                 return json(['success' => 0, 'msg' => $e->getMessage()])->send();
             }
         } else {
