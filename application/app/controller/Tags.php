@@ -6,6 +6,7 @@ namespace app\app\controller;
 
 use app\model\Banner;
 use app\model\Book;
+use app\model\Chapter;
 use app\model\Tags as Tag;
 use think\Request;
 
@@ -41,42 +42,40 @@ class Tags extends Base
         $startItem = input('startItem');
         $pageSize = input('pageSize');
 
-
-        $cate_selector = '全部';
-        $area_selector = '全部';
-        $end_selector = '全部';
-
         $map = array();
         $area = $request->param('area');
         if (is_null($area) || $area == '-1') {
 
         } else {
-            $area_selector = $area;
             $map[] = ['area_id', '=', $area];
         }
+
         $tag = $request->param('tag');
         if (is_null($tag) || $tag == '全部') {
 
         } else {
-            $cate_selector = $tag;
             $map[] = ['tags', 'like', '%' . $tag . '%'];
         }
+
         $end = $request->param('end');
         if (is_null($end) || $end == -1) {
 
         } else {
-            $end_selector = $end;
             $map[] = ['end', '=', $end];
         }
-        $books = Book::where($map)->order('id', 'desc')->limit($startItem, $pageSize)->select();
+
+        $books = Book::where($map)->order('update_time', 'desc')->limit($startItem, $pageSize)->select();
+        foreach ($books as &$book) {
+            $book['chapter_count'] = Chapter::where('book_id','=', $book['id'])->count();
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
+            }
+        }
+
         return json([
             'success' => 1,
             'books' => $books,
-            'cate_selector' => $cate_selector,
-            'area_selector' => $area_selector,
-            'end_selector' => $end_selector,
-            'startItem' => $startItem,
-            'pageSize' => $pageSize
+            'count' => count($books)
         ]);
     }
 
@@ -107,7 +106,7 @@ class Tags extends Base
                 foreach ($books as &$book) {
                     if (empty($book['cover_url'])) {
                         $book['cover_url'] = $this->imgUrl.'/static/upload/book/'.$book['id'].'/cover.jpg';
-                        $book['chapter_count'] = count($book->chapters);
+                        $book['chapter_count'] = Chapter::where('book_id','=',$book['id'])->count();
                     }
                 }
                 cache('booksFilterByTag:'.$tag, $books, null, 'redis');

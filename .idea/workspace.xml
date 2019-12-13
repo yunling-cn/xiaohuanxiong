@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/hanman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hanman.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/index_scripts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/controller/BaseAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/BaseAuth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Books.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Tags.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/app/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,6 +80,11 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -108,15 +113,15 @@
       <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -596,6 +601,19 @@
       <workItem from="1575609499658" duration="3510000" />
       <workItem from="1575624157529" duration="4254000" />
       <workItem from="1575710818528" duration="356000" />
+      <workItem from="1575713513681" duration="625000" />
+      <workItem from="1575775744082" duration="1341000" />
+      <workItem from="1575777824149" duration="3197000" />
+      <workItem from="1575944292424" duration="116000" />
+      <workItem from="1575944798217" duration="4863000" />
+      <workItem from="1575955783689" duration="650000" />
+      <workItem from="1575981453591" duration="1837000" />
+      <workItem from="1575987580536" duration="892000" />
+      <workItem from="1575990299020" duration="671000" />
+      <workItem from="1576058288364" duration="4429000" />
+      <workItem from="1576123170515" duration="3043000" />
+      <workItem from="1576157092382" duration="302000" />
+      <workItem from="1576216610307" duration="3177000" />
     </task>
     <servers />
   </component>
@@ -620,5 +638,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="640" y="246" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575946662845">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="246" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575946662845" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1575956353341">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575956353341" />
+    <state x="567" y="225" width="786" height="590" key="find.popup" timestamp="1576217068684">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="567" y="225" width="786" height="590" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576217068684" />
   </component>
 </project>

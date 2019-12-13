@@ -15,10 +15,10 @@ class Chapters extends Base
     {
         $book_id = input('book_id');
 
-        $chapters = cache('chapters:'.$book_id);
+        $chapters = cache('chapters:' . $book_id);
         if (!$chapters) {
             $chapters = Chapter::where('book_id', '=', $book_id)->select();
-            cache('chapters:'.$book_id, $chapters, null, 'redis');
+            cache('chapters:' . $book_id, $chapters, null, 'redis');
         }
 
 //        foreach ($chapters as &$chapter) {
@@ -43,14 +43,20 @@ class Chapters extends Base
         $utoken = input('utoken');
         $key = config('site.api_key');
         if (isset($utoken)) {
-            $data = $this->checkAuth();
+            $data = $this->getAuth();
             if ($data['success'] == 1) {
-                $this->uid = $data['uid'];
+                $this->uid = $data['userInfo']['uid'];
             }
         }
         $chapter = Chapter::with(['photos' => function ($query) {
             $query->order('pic_order');
         }], 'book')->cache('chapter:' . $id, 600, 'redis')->find($id);
+        if (is_null($chapter) || empty($chapter)) {
+            return json(['success' => 0, 'msg' => '章节id错误']);
+        }
+        if (empty($chapter['book']['cover_url'])) {
+            $chapter['book']['cover_url'] = $this->imgUrl . '/static/upload/book/' . $chapter['book_id'] . '/cover.jpg';
+        }
         $flag = true;
         if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章是本漫画设定的付费章节
             $flag = false;
@@ -88,9 +94,17 @@ class Chapters extends Base
             $chapter['prev'] = count($prev) > 0 ? $prev[0]['id'] : null;
             $chapter['next'] = count($next) > 0 ? $next[0]['id'] : null;
 
+            $chapters = cache('chapters:' . $book_id);
+            if (!$chapters) {
+                $chapters = Chapter::where('book_id', '=', $book_id)->select();
+                cache('chapters:' . $book_id, $chapters, null, 'redis');
+            }
+
+
             $result = [
                 'success' => 1,
-                'chapter' => $chapter
+                'chapter' => $chapter,
+                'chapters' => $chapters
             ];
 
         } else {

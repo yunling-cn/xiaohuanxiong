@@ -4,6 +4,7 @@
 namespace app\app\controller;
 
 
+use app\service\FinanceService;
 use app\service\PromotionService;
 use think\Request;
 use app\model\User;
@@ -60,6 +61,8 @@ class Account extends Base
             if ($user->delete_time > 0) {
                 return json(['success' => 0, 'msg' => '用户被锁定']);
             } else {
+                $financeService = new FinanceService();
+                $balance = $financeService->getBalance($user->id); //获取用户余额
                 $key = config('site.api_key');
                 $token = [
                     "iat" => time(), //签发时间
@@ -76,6 +79,7 @@ class Account extends Base
                 $userInfo['mobile'] = $user->mobile;
                 $userInfo['vip_expire_time'] = $user->vip_expire_time;
                 $userInfo['utoken'] = $utoken;
+                $userInfo['balance'] = $balance;
 
                 return json(['success' => 1, 'userInfo' => $userInfo]);
             }

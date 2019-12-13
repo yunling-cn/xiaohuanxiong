@@ -31,38 +31,21 @@ class Users extends BaseAuth
         $this->promotionService = new PromotionService();
     }
 
-    public function userinfo()
-    {
-        $uid = $this->uid;
-        $userName = session('xwx_user');
-        $nickName = session('xwx_nick_name');
-        $mobile = session('xwx_user_mobile');
-        return json([
-            'success' => 1,
-            'user' => [
-                'uid' => $uid,
-                'userName' => $userName,
-                'nickName' => $nickName,
-                'mobile' => $mobile
-            ]
-        ]);
-    }
-
     public function bookshelf()
     {
-        $startItem = input('startItem');
-        $pageSize = input('pageSize');
-        $favors = UserBook::where('user_id', '=', $this->uid)->limit($startItem, $pageSize)->select();
+
+        $favors = UserBook::where('user_id', '=', $this->uid)->select();
 
         foreach ($favors as &$favor) {
             $book = Book::get($favor->book_id);
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $favor->book_id . '/cover.jpg';
+            }
             $favor['book'] = $book;
         }
         $result = [
             'success' => 1,
-            'favors' => $favors,
-            'startItem' => $startItem,
-            'pageSize' => $pageSize
+            'favors' => $favors
         ];
         return json($result);
     }
@@ -86,6 +69,10 @@ class Users extends BaseAuth
             $book_id = input('book_id');
             $user = User::get($this->uid);
             if ($isfavor == 0) { //未收藏
+                $books = $user->books;
+                if (count($books) >= 20) {
+                    return json(['success' => 0, 'msg' => '您已经收藏太多了']); //isfavor为0表示未收藏
+                }
                 $book = Book::get($book_id);
                 $user->books()->save($book);
                 return json(['success' => 1, 'isfavor' => 1]); //isfavor表示已收藏

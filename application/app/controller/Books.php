@@ -7,10 +7,9 @@ namespace app\app\controller;
 use app\model\Area;
 use app\model\Author;
 use app\model\Book;
+use app\model\Chapter;
 use app\model\Comments;
-use app\model\UserBook;
 use think\Db;
-use think\facade\App;
 
 class Books extends Base
 {
@@ -27,8 +26,9 @@ class Books extends Base
     {
         $newest = cache('newest_homepage');
         if (!$newest) {
-            $newest = $this->bookService->getBooks('last_time', '1=1', 14);
+            $newest = Book::limit(10)->order('last_time', 'desc')->select();
             foreach ($newest as &$book) {
+                $book['chapter_count'] = Chapter::where('book_id','=', $book['id'])->count();
                 if (empty($book['cover_url'])) {
                     $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
@@ -46,7 +46,7 @@ class Books extends Base
     {
         $hot_books = cache('hot_books');
         if (!$hot_books) {
-            $hot_books = $this->bookService->getHotBooks();
+            $hot_books =$this->bookService->getHotBooks();
             foreach ($hot_books as &$book) {
                 if (empty($book['cover_url'])) {
                     $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
@@ -65,8 +65,9 @@ class Books extends Base
     {
         $ends = cache('ends_homepage');
         if (!$ends) {
-            $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 14);
+            $ends = Book::limit(10)->order('last_time', 'desc')->select();
             foreach ($ends as &$book) {
+                $book['chapter_count'] = Chapter::where('book_id','=', $book['id'])->count();
                 if (empty($book['cover_url'])) {
                     $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
@@ -80,22 +81,22 @@ class Books extends Base
         return json($result);
     }
 
-    public function getMostCharged()
-    {
-        $most_charged = cache('most_charged');
-        if (!$most_charged) {
-            $arr = $this->bookService->getMostChargedBook();
-            foreach ($arr as $item) {
-                $most_charged[] = $item['book'];
-            }
-            cache('most_charged', $most_charged, null, 'redis');
-        }
-        $result = [
-            'success' => 1,
-            'most_charged' => $most_charged
-        ];
-        return json($result);
-    }
+//    public function getMostCharged()
+//    {
+//        $most_charged = cache('most_charged');
+//        if (!$most_charged) {
+//            $arr = $this->bookService->getMostChargedBook();
+//            foreach ($arr as $item) {
+//                $most_charged[] = $item['book'];
+//            }
+//            cache('most_charged', $most_charged, null, 'redis');
+//        }
+//        $result = [
+//            'success' => 1,
+//            'most_charged' => $most_charged
+//        ];
+//        return json($result);
+//    }
 
     public function search()
     {
@@ -107,23 +108,24 @@ class Books extends Base
         foreach ($hot_search_json as $k => $v) {
             $hot_search[] = $k;
         }
-        $books = cache('searchresult:' . $keyword);
+        $books = cache('appsearchresult:' . $keyword);
         if (!$books) {
-            $books = $this->bookService->search($keyword);
-            cache('searchresult:' . $keyword, $books, null, 'redis');
+            $books = $this->bookService->search($keyword, 20);
+            cache('appsearchresult:' . $keyword, $books, null, 'redis');
         }
         foreach ($books as &$book) {
             $author = Author::get($book['author_id']);
             $book['author'] = $author;
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->imgUrl . '/static/upload/book/' . $book['id'] . '/cover.jpg';
+            }
         }
 
         $result = [
             'success' => 1,
-            'data' => [
-                'books' => $books,
-                'count' => count($books),
-                'hot_search' => $hot_search
-            ]
+            'books' => $books,
+            'count' => count($books),
+            'hot_search' => $hot_search
         ];
         return json($result);
     }

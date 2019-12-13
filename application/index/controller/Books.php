@@ -231,6 +231,10 @@ class Books extends Base
 
                 if ($val == 0) { //未收藏
                     $user = User::get($this->uid);
+                    $books = $user->books;
+                    if (count($books) >= 20) {
+                        return json(['err' => 1, 'msg' => '您已经收藏太多了']); //isfavor为0表示未收藏
+                    }
                     $book = Book::get($book_id);
                     $user->books()->save($book);
                     return ['err' => 0, 'isfavor' => 1]; //isfavor表示已收藏

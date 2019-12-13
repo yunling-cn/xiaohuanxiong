@@ -45,7 +45,7 @@ class Base extends Controller
         try{
             $info = JWT::decode($utoken, $key, array('HS256', 'HS384', 'HS512', 'RS256' ));
             $arr = (array)$info;
-            return json(['success' => 1, 'uid' => $arr['uid']]);
+            return json(['success' => 1, 'userInfo' => $arr]);
         } catch (\Exception $e) {
             return json(['success' => -1, 'msg' => $e->getMessage()]);
         }
