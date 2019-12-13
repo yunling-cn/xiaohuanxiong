@@ -233,7 +233,7 @@ class Books extends Base
                     $user = User::get($this->uid);
                     $books = $user->books;
                     if (count($books) >= 20) {
-                        return json(['err' => 1, 'msg' => '您已经收藏太多了']); //isfavor为0表示未收藏
+                        return json(['err' => 1, 'msg' => '您已经收藏太多了']); //收藏上限为20本
                     }
                     $book = Book::get($book_id);
                     $user->books()->save($book);
