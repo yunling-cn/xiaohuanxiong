@@ -14,38 +14,30 @@ class Account extends Base
 {
     public function register(Request $request)
     {
-        $ip = $request->ip();
-        $redis = new_redis();
-        if ($redis->exists('user_reg:' . $ip)) {
-            return json(['success' => 0, 'msg' => '操作太频繁']);
-        } else {
-            $redis->set('user_reg:' . $ip, 1, 60); //写入锁
-            $data = $request->param();
-            $validate = new \app\ucenter\validate\User();
-            if ($validate->check($data)) {
-                $user = \app\model\User::where('username', '=', trim($request->param('username')))->find();
-                if (!is_null($user)) {
-                    return json(['success' => 0, 'msg' => '用户名已经存在']);
-                }
-                $user = new Account();
-                $user->username = trim($request->param('username'));
-                $user->password = trim($request->param('password'));
-                $pid = $request->param('pid');
-                if (!$pid || $pid == null) {
-                    $pid = 0;
-                }
-                $user->pid = $pid; //设置用户上线id
-                $result = $user->save();
-                if ($result) {
-                    $promotionService = new PromotionService();
-                    $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
-                    return json(['success' => 1, 'msg' => '注册成功，请登录']);
-                } else {
-                    return json(['success' => 0, 'msg' => '注册失败，请尝试重新注册']);
-                }
-            } else {
-                return json(['success' => 0, 'msg' => $validate->getError()]);
+        $data = $request->param();
+        $validate = new \app\ucenter\validate\User();
+        if ($validate->check($data)) {
+            $user = User::where('username', '=', trim($request->param('username')))->find();
+            if (!is_null($user)) {
+                return json(['success' => 0, 'msg' => '用户名已经存在']);
             }
+            $user = new User();
+            $user->username = trim($request->param('username'));
+            $user->password = trim($request->param('password'));
+//                if (!$pid || $pid == null) {
+//                    $pid = 0;
+//                }
+//                $user->pid = $pid; //设置用户上线id
+            $result = $user->save();
+            if ($result) {
+                $promotionService = new PromotionService();
+                $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
+                return json(['success' => 1, 'msg' => '注册成功，请登录']);
+            } else {
+                return json(['success' => 0, 'msg' => '注册失败，请尝试重新注册']);
+            }
+        } else {
+            return json(['success' => 0, 'msg' => $validate->getError()]);
         }
     }
 
