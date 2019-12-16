@@ -61,7 +61,10 @@ class Account extends Base
                     "nbf" => time(), //在什么时候jwt开始生效  （这里表示生成100秒后才生效）
                     "exp" => time() + 60 * 60 * 24, //token 过期时间
                     "uid" => $user->id, //记录的userid的信息，这里是自已添加上去的，如果有其它信息，可以再添加数组的键值对
-                    "vip_expire_time" => $user->vip_expire_time
+                    "vip_expire_time" => $user->vip_expire_time,
+                    "nick_name" => $user->nick_name,
+                    "mobile" => $user->mobile,
+                    "balance" => $balance
                 ];
                 $utoken = JWT::encode($token, $key, "HS256");
                 $userInfo = [];
