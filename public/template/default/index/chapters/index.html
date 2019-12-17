@@ -80,6 +80,9 @@
         <a class="view-bottom-bar-item" href="/{$chapter_ctrl}/{$chapter.id}?page={$page.current_page+1}">下一页</a>
     </li>
         {/if}
+    {else/}
+    <li style="width: 25%; visibility: hidden;"><a class="view-bottom-bar-item">占位用</a></li>
+    <li style="width: 25%; visibility: hidden;"><a class="view-bottom-bar-item">占位用</a></li>
     {/if}
 
     {if $next == "null"}
