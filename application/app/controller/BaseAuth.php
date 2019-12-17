@@ -4,6 +4,7 @@
 namespace app\app\controller;
 
 
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 
 class BaseAuth extends Base
@@ -20,6 +21,8 @@ class BaseAuth extends Base
                 $info = JWT::decode($utoken, $key, array('HS256', 'HS384', 'HS512', 'RS256' ));
                 $arr = (array)$info;
                 $this->uid = $arr['uid'];
+            } catch (ExpiredException $e) {
+                return json(['success' => 0, 'msg' => '请先登录'])->send();
             } catch (\Exception $e) {
                 return json(['success' => 0, 'msg' => $e->getMessage()])->send();
             }
