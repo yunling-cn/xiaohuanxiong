@@ -57,6 +57,12 @@ class Chapters extends Base
         if (empty($chapter['book']['cover_url'])) {
             $chapter['book']['cover_url'] = $this->imgUrl . '/static/upload/book/' . $chapter['book_id'] . '/cover.jpg';
         }
+        foreach ($chapter['photos'] as &$photo) {
+            if (empty($photo['img_url'])) {
+                $photo['img_url'] = $this->imgUrl . '/static/upload/book/'
+                    . $chapter['book_id'] . '/' . $chapter->id . '/' . $photo['id'] . '.jpg';
+            }
+        }
         $flag = true;
         if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章是本漫画设定的付费章节
             $flag = false;
