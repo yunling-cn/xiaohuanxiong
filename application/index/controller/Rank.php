@@ -23,18 +23,18 @@ class Rank extends Base
     {
         $hot_books = cache('hot_books');
         if (!$hot_books) {
-            $hot_books = $this->bookService->getHotBooks(60);
+            $hot_books = $this->bookService->getHotBooks(10);
             cache('hot_books', $hot_books, null, 'redis');
         }
 
         $newest = cache('newest_homepage');
         if (!$newest) {
-            $newest = $this->bookService->getBooks('last_time', '1=1', 60);
+            $newest = $this->bookService->getBooks('last_time', '1=1', 10);
             cache('newest_homepage', $newest, null, 'redis');
         }
         $ends = cache('ends_homepage');
         if (!$ends) {
-            $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 60);
+            $ends = $this->bookService->getBooks('create_time', [['end', '=', '1']], 10);
             cache('ends_homepage', $ends, null, 'redis');
         }
 
