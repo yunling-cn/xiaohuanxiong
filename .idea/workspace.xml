@@ -3,7 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/app/controller/BaseAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/BaseAuth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/js/loadNewHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/loadNewHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/js/user-booklist.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/user-booklist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -613,6 +623,7 @@
       <workItem from="1576554178217" duration="688000" />
       <workItem from="1576571149295" duration="365000" />
       <workItem from="1576593816620" duration="506000" />
+      <workItem from="1576647177630" duration="15991000" />
     </task>
     <servers />
   </component>
@@ -647,9 +658,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575956353341" />
-    <state x="567" y="225" width="786" height="590" key="find.popup" timestamp="1576217068684">
+    <state x="567" y="225" width="786" height="590" key="find.popup" timestamp="1576669550214">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="567" y="225" width="786" height="590" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576217068684" />
+    <state x="567" y="225" width="786" height="590" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576669550214" />
   </component>
 </project>

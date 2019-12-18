@@ -98,12 +98,12 @@ class Users extends BaseAuth
         return json($result);
     }
 
-    public function delhistory()
-    {
-        $keys = explode(',', input('ids'));
-        $this->userService->delHistory($this->uid, $keys);
-        return ['success' => 1, 'msg' => '删除阅读历史'];
-    }
+//    public function delhistory()
+//    {
+//        $keys = explode(',', input('ids'));
+//        $this->userService->delHistory($this->uid, $keys);
+//        return ['success' => 1, 'msg' => '删除阅读历史'];
+//    }
 
     public function getVipExpireTime()
     {

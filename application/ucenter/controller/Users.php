@@ -53,16 +53,16 @@ class Users extends BaseUcenter
         }
     }
 
-    public function delhistory()
-    {
-        if ($this->request->isPost()) {
-            $keys = explode(',', input('ids'));
-            $this->userService->delHistory($this->uid, $keys);
-            return ['err' => 0, 'msg' => '删除阅读历史'];
-        } else {
-            return ['err' => 1, 'msg' => '非法请求'];
-        }
-    }
+//    public function delhistory()
+//    {
+//        if ($this->request->isPost()) {
+//            $keys = explode(',', input('ids'));
+//            $this->userService->delHistory($this->uid, $keys);
+//            return ['err' => 0, 'msg' => '删除阅读历史'];
+//        } else {
+//            return ['err' => 1, 'msg' => '非法请求'];
+//        }
+//    }
 
     public function history()
     {

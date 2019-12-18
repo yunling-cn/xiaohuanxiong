@@ -17,22 +17,22 @@
                     <a href="#" class="more js_edit_booklist_btn">
                         <i class="icon icon-box mr5"></i>整理阅读历史</a>
                     <div href="#" class="box-booklist-edit-head" style="display: none">
-                        <form>
-                            <span>
+                        <span>
                                 <button id="book_del" type="button" class="del-btn">删除</button>
                             </span>
-                            <input id="url_param" type="hidden" value="delhistory">
-                            <span>
-                                <button type="button" class="finish-btn js_esc_booklist_btn">完成</button>
-                            </span>
-                        </form>
+                        <input id="url_param" type="hidden" value="delhistory">
+                        <span>
+                           <button type="button" class="finish-btn js_esc_booklist_btn">完成</button>
+                        </span>
                     </div>
                 </div>
             </header>
             <div class="box-body">
                 <div class="bg-gray box-sub-head clearfix">
-                    <dl class="box-head-sort pull-left"> <dt>排序:</dt>
-                        <dd style="cursor: pointer;color: #fd113a;" data-sort="1">未读更新<i class="icon icon-d-caret"></i></dd>
+                    <dl class="box-head-sort pull-left">
+                        <dt>排序:</dt>
+                        <dd style="cursor: pointer;color: #fd113a;" data-sort="1">未读更新<i class="icon icon-d-caret"></i>
+                        </dd>
                         <dd style="cursor: pointer;" data-sort="3">更新时间<i class="icon icon-d-caret"></i></dd>
                         <dd style="cursor: pointer;" data-sort="6">阅读时间<i class="icon icon-d-caret"></i></dd>
                     </dl>
@@ -45,36 +45,29 @@
                         </span>
                     </div>
                 </div>
-                <div class="mt20">
-                    <ul class="mh-list col7">
-                        {volist name="books" id="vo"}
+                <div class="mt20" id="app">
+                    <ul class="mh-list col7" v-for="(item, index) in books" :key="index">
                         <li>
                             <div class="mh-item">
-                                {if empty($vo.cover_url)}
-                                <a class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.book_id}/cover.jpg)"
-                                   href="/{$book_ctrl}/{$vo.book_id}">
-                                    {else /}
-                                    <a class="mh-cover" style="background-image: url({$vo.cover_url})"
-                                       href="/{$book_ctrl}/{$vo.book_id}">
-                                        {/if}
-                                        <span class="tag  mh-tag">{$vo.end?"完结":"连载"}</span>
-                                        <span class="read-section">{$vo.last_time|date='Y-m-d'}更新</span>
-                                        <span mid="{$vo.book_id}" class="edit-state">
+                                <a class="mh-cover" v-bind:style="{'background-image': 'url(' + item.cover_url + ')'}"
+                                   v-bind:href="'/{$book_ctrl}/' + item.book_id">
+                                    <span class="tag  mh-tag">{{item.end}}</span>
+                                    <span class="read-section">{{item.last_time}}更新</span>
+                                    <span v-bind:mid="item.book_id" class="edit-state">
                                         <i class="icon icon-ok"></i>
                                     </span>
-                                    </a>
-                                    <div class="mh-item-detali">
-                                        <h2 class="title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                            <a href="/{$book_ctrl}/{$vo.book_id}">{$vo.book_name}</a>
-                                        </h2>
-                                        <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                                            <span>最近阅读</span>
-                                            <a href="/{$chapter_ctrl}/{$vo.chapter_id}" target="_blank">{$vo.chapter_name}</a>                                           
-                                        </p>
-                                    </div>
+                                </a>
+                                <div class="mh-item-detali">
+                                    <h2 class="title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                        <a  v-bind:href="'/{$book_ctrl}/' + item.book_id">{{item.book_name}}</a>
+                                    </h2>
+                                    <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                        <span>最近阅读</span>
+                                        <a v-bind:href="'/{$chapter_ctrl}/' + item.chapter_id" target="_blank">{{item.chapter_name}}</a>
+                                    </p>
+                                </div>
                             </div>
                         </li>
-                        {/volist}
                     </ul>
                 </div>
             </div>
@@ -89,4 +82,30 @@
     </article>
     <input id="hidCount" type="hidden" value="0">
 </main>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                books: [],
+            }
+        },
+        created: function () {
+            let value = localStorage.getItem('xwx_historys');
+            if (value != undefined && value != null) {
+                let history = JSON.parse(value);
+                console.log(history)
+                for (let i = 0; i < history.length; i++) {
+                    let item = localStorage.getItem(history[i]);
+                    if (item != undefined && item != null ) {
+                        let bookInfo = JSON.parse(item); //拿到缓存对象
+                        this.books.push(bookInfo);
+                    }
+                }
+            }
+            console.log(this.books);
+        }
+    })
+</script>
 {/block}

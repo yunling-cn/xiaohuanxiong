@@ -20,6 +20,8 @@ class Base extends Controller
     protected $prefix;
     protected $redis_prefix;
     protected $uid;
+    protected $site_name;
+    protected $img_site;
 
     protected function initialize()
     {
@@ -51,6 +53,8 @@ class Base extends Controller
             $links = FriendshipLink::all();
             cache('friendshipLink',$links,null,'redis');
         }
+        $this->site_name = config('site.site_name');
+        $this->img_site = config('site.img_site');
         View::share([
             'url' => config('site.url'),
             'site_name' => config('site.site_name'),

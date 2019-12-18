@@ -124,13 +124,38 @@
 <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
 <script>
     $("img.lazy")
-    .lazyload({
-        threshold: 180,
-        event: "lazyload",
-        effect: "fadeIn",
-        effectspeed: 2000
-    })
+        .lazyload({
+            threshold: 180,
+            event: "lazyload",
+            effect: "fadeIn",
+            effectspeed: 2000
+        })
         .trigger("lazyload");
+
+    //--本地缓存代码开始--
+    let bookInfo = {
+        chapter_id: '{$chapter.id}',
+        end: '{$chapter.book.end == 1 ? '完结' : '连载'}',
+        chapter_name: '{$chapter.chapter_name}',
+        cover_url:'{$chapter.book.cover_url}',
+        book_id: '{$chapter.book_id}',
+        last_time: "{$chapter.book.last_time|date='Y-m-d'}",
+        book_name:'{$chapter.book.book_name}'
+    };
+    console.log(bookInfo);
+    localStorage.setItem('manhua_{$chapter.book_id}', JSON.stringify(bookInfo));//id为键，设置缓存
+    let history = [];
+    let value = localStorage.getItem('xwx_historys'); //读取参照数组
+    if (value != undefined && value != null) {
+        history = JSON.parse(value);
+    }
+    if (history.indexOf('manhua_{$chapter.book_id}') === -1) {
+        history.push('manhua_{$chapter.book_id}'); //把id为值存入参照数组
+    }
+
+    console.log(history)
+    localStorage.setItem('xwx_historys', JSON.stringify(history));
+    //--本地缓存代码结束--
 
     document.body.oncopy = function () {
         return false;

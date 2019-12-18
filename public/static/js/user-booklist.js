@@ -29,23 +29,41 @@ $(document).ready(function () {
     $("#book_del").click(function () {
         var arr = $('span.edit-state.active');
         if (arr.length > 0) {
-            var str = $(arr).map(function () {
-                return $(this).attr('mid');
-            }).get().join(',');
             var url = $('#url_param').val();
-            $.ajax({
-                url: '/' + url,
-                data: {ids: str},
-                type: 'POST',
-                dataType:'json',
-                success:function(res){
-                    if (res.err === "0") {
-                        ShowDialog(res.msg);
-                    } else {
-                        ShowDialog(res.msg);
+            if (url == 'delfavors') {
+                var str = $(arr).map(function () {
+                    return $(this).attr('mid');
+                }).get().join(',');
+
+                $.ajax({
+                    url: '/' + url,
+                    data: {ids: str},
+                    type: 'POST',
+                    dataType:'json',
+                    success:function(res){
+                        if (res.err === "0") {
+                            ShowDialog(res.msg);
+                        } else {
+                            ShowDialog(res.msg);
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                $(arr).map(function () {
+                    localStorage.removeItem('manhua_' + $(this).attr('mid'));
+                    let value = localStorage.getItem('xwx_historys');
+                    if (value != undefined && value != null) {
+                        let history = JSON.parse(value);
+                        for (let i = 0; i < history.length; i++) {
+                            if (history[i] == 'manhua_' + $(this).attr('mid')){
+                                history.slice(i, 1);
+                            }
+                        }
+                        localStorage.setItem('xwx_historys', JSON.stringify(history));
+                    }
+                });
+            }
+
         } else {
             ShowDialog("请选择要删除的收藏或历史记录");
         }
