@@ -32,14 +32,7 @@
         </div>
     </div>
 </div>
-<div style="background-color: black;color: white;padding: 15px;">
-    <p style="text-align: center;line-height: 40px;">前往微信或app阅读无删减版漫画</p>
-    <div style="text-align: center;">
-        <button style="background-color: #4CAF50;font-size: 16px;color: white;border: none;border-radius: 12px;width: 60%;" onclick="javascript:location.href='/static/html/wx.html';">点击打开微信</button>
-        <button style="background-color: orangered;font-size: 16px;color: white;border: none;border-radius: 12px;width: 60%;margin-top: 5px;" onclick="javascript:location.href='https://download.jjxs518.cn?cid=0050&pid=jjmanhua2';">点击下载app</button>
 
-    </div>
-</div>
 <div class="view-main-1 readForm" id="cp_img">
     {volist name="photos" id="vo"}
     {if empty($vo.img_url)}
@@ -50,9 +43,7 @@
     {/if}
     {/volist}
 </div>
-<a href="https://download.jjxs518.cn?cid=0050&pid=jjmanhua2">
-	<img style="width: 100%;height: auto;" src="https://ae01.alicdn.com/kf/HTB1OJ3IcNiH3KVjSZPfq6xBiVXa3.jpg" alt="歪歪漫画">
-</a>
+
 <ul class="view-bottom-bar">
     {if $prev == "null"}
     <li style="width:25%;opacity: 0.6;"><a class="view-bottom-bar-item">上一章</a></li>
