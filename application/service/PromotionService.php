@@ -46,7 +46,7 @@ class PromotionService extends Controller
         } else {
             $map = array();
             $map[] = ['user_id', '=', $uid];
-            $map[] = ['usage', '=', 4]; //4为奖励记录
+            $map[] = ['usage', 'in', [4,5]]; //4为奖励记录
             $type = 'util\Page';
             if ($this->request->isMobile()) {
                 $type = 'util\MPage';
@@ -69,7 +69,7 @@ class PromotionService extends Controller
         } else {
             $map = array();
             $map[] = ['user_id', '=', $uid];
-            $map[] = ['usage', '=', 4];
+            $map[] = ['usage', 'in', [4,5]];
             $sum = UserFinance::where($map)->sum('money');
             return $sum;
         }

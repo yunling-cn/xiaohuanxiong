@@ -14,6 +14,7 @@ use app\service\PromotionService;
 use think\App;
 use think\Controller;
 use think\facade\Env;
+use think\facade\View;
 use think\Request;
 
 class Account extends Controller
@@ -31,6 +32,10 @@ class Account extends Controller
         } else {
             $this->tpl = $tpl_root . $controller . '/' . 'pc_' . $action . '.html';
         }
+        $mobile_bind_rewards = config('payment.mobile_bind_rewards');
+        \think\facade\View::share([
+            'mobile_bind_rewards' => '登录后请立刻绑定手机号，确保账户密码遗忘，还会赠送'.$mobile_bind_rewards.'元书币'
+        ]);
     }
 
     public function register(Request $request)
@@ -61,6 +66,7 @@ class Account extends Controller
                         $pid = 0;
                     }
                     $user->pid = $pid; //设置用户上线id
+                    $user->reg_ip = $request->ip();
                     $result = $user->save();
                     if ($result) {
                         $redis->set('user_reg:'.$ip,1,60); //写入锁
@@ -173,7 +179,15 @@ class Account extends Controller
             'phone' => $phone,
             'header_title' => '找回密码',
             'site_name' => config('site.site_name'),
-            'url' => config('site.url')
+            'url' => config('site.url'),
+            'book_ctrl' => BOOKCTRL,
+            'chapter_ctrl' => CHAPTERCTRL,
+            'tag_ctrl' => TAGCTRL,
+            'booklist_act' => BOOKLISTACT,
+            'search_ctrl' => SEARCHCTRL,
+            'rank_ctrl' => RANKCTRL,
+            'update_act' => UPDATEACT,
+            'author_ctrl' => AUTHORCTRL
         ]);
         return view($this->tpl);
     }

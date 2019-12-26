@@ -113,6 +113,9 @@
     {/if}
 </div>
 <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+<script src="https://cdn.bootcss.com/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
 <script>
     $("img.lazy")
         .lazyload({
@@ -144,9 +147,18 @@
         history.push('manhua_{$chapter.book_id}'); //把id为值存入参照数组
     }
 
-    console.log(history)
     localStorage.setItem('xwx_historys', JSON.stringify(history));
     //--本地缓存代码结束--
+
+    // let cookie = Cookies.get('hahamanhua_info');
+    // if (cookie == undefined) {
+    //     layer.msg('现在绑定手机赠送100元书币，请到个人中心绑定您的手机！', {
+    //         time: 20000, //20s后自动关闭
+    //         btn: ['朕知道了']
+    //     });
+    //     layer.alert('现在绑定手机赠送100元书币，请到个人中心绑定您的手机！');
+    //     Cookies.set('hahamanhua_info', 1);
+    // }
 
     document.body.oncopy = function () {
         return false;
@@ -164,8 +176,7 @@
             };
         }
     }
-</script>
-<script>
+
     function showToolBar() {
         $top = $('.view-fix-top-bar');
         $bottom = $('.view-fix-bottom-bar');
@@ -187,6 +198,7 @@
         }
     }
 </script>
+
 {include file="./template/default/pub/others.html"}
 </body>
 </html>

@@ -62,7 +62,20 @@ class Users extends BaseAdmin
         } else {
             return view('disabled');
         }
+    }
 
+    public function subusers() {
+        $parent = input('parent');
+        if (empty($parent)) {
+            $parent = -1;
+        }
+        $where[] = ['pid', '=', $parent];
+        $data = $this->userService->getAdminPagedUsers(1, $where, 'id', 'desc');
+        $this->assign([
+            'users' => $data['users'],
+            'count' => $data['count']
+        ]);
+        return view();
     }
 
     public function disabled()

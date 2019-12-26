@@ -11,11 +11,11 @@ namespace app\ucenter\controller;
 use app\model\Comments;
 use app\model\Message;
 use app\model\User;
+use app\model\UserFinance;
 use app\service\FinanceService;
 use app\service\PromotionService;
 use app\service\UserService;
-use think\facade\App;
-use think\facade\Env;
+use think\facade\Cache;
 use think\facade\Validate;
 
 class Users extends BaseUcenter
@@ -142,13 +142,30 @@ class Users extends BaseUcenter
             }
             $user->mobile = $phone;
             $user->isUpdate(true)->save();
+            $finance = UserFinance::where([
+                ['user_id','=',$user->id],
+                ['usage','=',5]
+            ])->find(); //查询是否之前有过绑定手机的奖励
+            if (empty($finance) || is_null($finance)) {
+                $finance = new UserFinance();
+                $finance->user_id = $user->id;
+                $finance->money = (int)config('payment.mobile_bind_rewards');
+                $finance->usage = 5;
+                $finance->summary = '绑定手机奖励';
+                $finance->save();
+                cache('rewards:' . $user->id, null); //删除奖励缓存
+                cache('rewards:sum:' . $user->id, null); //删除奖励总和缓存
+                Cache::clear('pay'); //清除支付缓存
+            }
             session('xwx_user_mobile', $phone);
             return ['err' => 0, 'msg' => '绑定成功'];
         }
 
         //如果用户手机已经存在，并且没有进行修改手机验证，也就是没有解锁缓存
-        if (!$redis->exists($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid) && !empty($user->mobile)) {
-            $this->redirect('/userphone'); //则重定向至手机信息页
+        if (!empty($user->mobile)) {
+            if (!$redis->exists($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid)) {
+                $this->redirect('/userphone'); //则重定向至手机信息页
+            }
         }
 
         $this->assign([
