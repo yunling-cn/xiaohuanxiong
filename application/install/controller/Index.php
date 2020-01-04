@@ -23,8 +23,9 @@ class Index extends Controller
         }
     }
 
-    public function index($step = 0)
+    public function index()
     {
+        $step = input('step');
         switch ($step) {
             case 2:
                 session('install_error', false);
@@ -189,7 +190,7 @@ class Index extends Controller
                     try {
                         Db::execute($v);
                     } catch (\Exception $e) {
-                        return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e]);
+                        return json(['code' => 0, 'msg' => '导入SQL失败，请检查install.sql的语句是否正确。' . $e.'，具体报错语句：'.$v]);
                     }
                 }
             }
