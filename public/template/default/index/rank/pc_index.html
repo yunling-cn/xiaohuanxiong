@@ -18,18 +18,12 @@
                 {if $i == 1}
                 <div class="clearfix">
                     <div class="mh-item horizontal">
-                        {if empty($keyword.cover_url)}
-                        <p class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$keyword.id}/cover.jpg)">
-                            <span class="num num-{$i}">{$i}</span>
-                        </p>
-                        {else /}
                         <p class="mh-cover" style="background-image: url({$keyword.cover_url})">
                             <span class="num num-{$i}">{$i}</span>
                         </p>
-                        {/if}
                         <div class="mh-item-detali">
                             <h2 class="title">
-                                <a href="/{$book_ctrl}/{$keyword.id}" title="{$keyword.book_name}">{$keyword.book_name}</a>
+                                <a href="/{$book_ctrl}/{$keyword.param}" title="{$keyword.book_name}">{$keyword.book_name}</a>
                             </h2>
                             <p class="zl">
                                 <span>作者：</span>
@@ -51,7 +45,7 @@
                                 </p>
 
                                 <p>
-                                    <a class="btn" href="book/{$keyword.id}" title="{$keyword.book_name}">查看详情</a>
+                                    <a class="btn" href="book/{$keyword.param}" title="{$keyword.book_name}">查看详情</a>
                                 </p>
                             </div>
                         </div>
@@ -59,24 +53,19 @@
                 </div>
                 {else /}
                 <div class="mh-itme-top">
-                    <a href="/{$book_ctrl}/{$keyword.id}" onmouseover="pop(this)" onmouseout="hide(this)"
+                    <a href="/{$book_ctrl}/{$keyword.param}" onmouseover="pop(this)" onmouseout="hide(this)"
                        title="{$keyword.book_name}" style="width:100%; display: block;">
                         <span class="num num-{$i}">{$i}</span>{$keyword.book_name}
                     </a>
                     <div class="mh-tip-wrap" style="z-index: 10; display: none; opacity: 1; margin-left: 0px;">
                         <div class="mh-item-tip">
-                            <a href="/{$book_ctrl}/{$keyword.id}" title="{$keyword.book_name}"
+                            <a href="/{$book_ctrl}/{$keyword.param}" title="{$keyword.book_name}"
                                style="height:auto;padding-left: 0;">
-                                {if empty($keyword.cover_url)}
-                                <p class="mh-cover tip"
-                                   style="background-image: url({$img_site}/static/upload/book/{$keyword.id}/cover.jpg)"></p>
-                                {else /}
                                 <p class="mh-cover tip" style="background-image: url({$keyword.cover_url})"></p>
-                                {/if}
                             </a>
                             <div class="mh-item-tip-detali">
                                 <h2 class="title">
-                                    <a href="/{$book_ctrl}/{$keyword.id}" title="{$keyword.book_name}">{$keyword.book_name}</a>
+                                    <a href="/{$book_ctrl}/{$keyword.param}" title="{$keyword.book_name}">{$keyword.book_name}</a>
                                     <span class="mh-star star-4">
 
                                     </span>
@@ -89,11 +78,11 @@
                                 </p>
                                 <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                                     <span>总计</span>
-                                    <a href="/{$book_ctrl}/{$keyword.id}" target="_blank">{$keyword.chapter_count}话 </a>
+                                    <a href="/{$book_ctrl}/{$keyword.param}" target="_blank">{$keyword.chapter_count}话 </a>
                                 </p>
                                 <div class="desc"> {$keyword.summary|subtext=20}...</div>
                                 <p>
-                                    <a class="btn" href="/{$book_ctrl}/{$keyword.id}" target="_blank">查看详情</a>
+                                    <a class="btn" href="/{$book_ctrl}/{$keyword.param}" target="_blank">查看详情</a>
                                 </p>
                             </div>
                         </div>

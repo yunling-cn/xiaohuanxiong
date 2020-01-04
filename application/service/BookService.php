@@ -26,6 +26,14 @@ class BookService extends Base
             ->paginate($num, false);
         foreach ($data as &$book) {
             $book['chapter_count'] = count($book->chapters);
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         $books = $data->toArray();
         return [
@@ -69,6 +77,14 @@ class BookService extends Base
         foreach ($books as &$book) {
             $book['chapter_count'] = count($book->chapters);
             $book['taglist'] = explode('|', $book->tags);
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         return $books;
     }
@@ -84,6 +100,14 @@ class BookService extends Base
                 $book['chapter_count'] = count($chapters);
                 $book['taglist'] = explode('|', $item['book']['tags']);
                 $item['book'] = $book;
+                if (empty($book['cover_url'])) {
+                    $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                }
+                if ($this->end_point == 'id') {
+                    $book['param'] = $book['id'];
+                } else {
+                    $book['param'] = $book['unique_id'];
+                }
             }
             $arr = $data->toArray();
             array_multisort(array_column($arr, 'sum'), SORT_DESC, $arr);
@@ -116,6 +140,14 @@ class BookService extends Base
         $books = Book::where($map)->limit(10)->select();
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         return $books;
     }
@@ -130,6 +162,14 @@ class BookService extends Base
         $books = Book::where('tags', 'like', '%' . $tag . '%')->select();
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         return $books;
     }
@@ -143,6 +183,14 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
  INNER JOIN author as b on a.author_id = b.id');
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         return $books;
     }
@@ -170,6 +218,14 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
                 $book['chapter_count'] = count($book->chapters);
                 $book['taglist'] = explode('|', $book->tags);
                 $book['clicks'] = $val['clicks'];
+                if (empty($book['cover_url'])) {
+                    $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                }
+                if ($this->end_point == 'id') {
+                    $book['param'] = $book['id'];
+                } else {
+                    $book['param'] = $book['unique_id'];
+                }
                 array_push($books, $book);
             }
         }

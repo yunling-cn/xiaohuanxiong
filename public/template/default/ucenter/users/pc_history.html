@@ -50,7 +50,7 @@
                         <li>
                             <div class="mh-item">
                                 <a class="mh-cover" v-bind:style="{'background-image': 'url(' + item.cover_url + ')'}"
-                                   v-bind:href="'/{$book_ctrl}/' + item.book_id">
+                                   v-bind:href="'/{$book_ctrl}/' + item.param">
                                     <span class="tag  mh-tag">{{item.end}}</span>
                                     <span class="read-section">{{item.last_time}}更新</span>
                                     <span v-bind:mid="item.book_id" class="edit-state">
@@ -59,7 +59,7 @@
                                 </a>
                                 <div class="mh-item-detali">
                                     <h2 class="title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                        <a  v-bind:href="'/{$book_ctrl}/' + item.book_id">{{item.book_name}}</a>
+                                        <a  v-bind:href="'/{$book_ctrl}/' + item.param">{{item.book_name}}</a>
                                     </h2>
                                     <p class="chapter" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                                         <span>最近阅读</span>
@@ -95,7 +95,6 @@
             let value = localStorage.getItem('xwx_historys');
             if (value != undefined && value != null) {
                 let history = JSON.parse(value);
-                console.log(history)
                 for (let i = 0; i < history.length; i++) {
                     let item = localStorage.getItem(history[i]);
                     if (item != undefined && item != null ) {
@@ -104,7 +103,6 @@
                     }
                 }
             }
-            console.log(this.books);
         }
     })
 </script>

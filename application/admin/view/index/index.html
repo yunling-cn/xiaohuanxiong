@@ -59,6 +59,7 @@
                                 <div class="row clearfix">
                                     <label class="form-label col-xs-4 col-sm-3">模板目录名：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
+                                         <span class="select-box" style="width:150px;">
                                         <select name="front_tpl" class="select">
                                             {volist name="tpl_dirs" id="vo"}
                                             <option value="{$vo}"
@@ -68,6 +69,7 @@
                                             >{$vo}</option>
                                             {/volist}
                                         </select>
+                                         </span>
                                     </div>
                                 </div>
 

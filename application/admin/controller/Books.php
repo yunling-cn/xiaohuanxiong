@@ -9,6 +9,8 @@ use app\model\Photo;
 use think\Db;
 use think\facade\App;
 use think\Request;
+use Overtrue\Pinyin\Pinyin;
+use function GuzzleHttp\Psr7\str;
 
 class Books extends BaseAdmin
 {
@@ -84,6 +86,13 @@ class Books extends BaseAdmin
             $book->author_id = $author->id;
             $book->author_name = $author->author_name;
             $book->last_time = time();
+            $str = $this->convert($book->book_name); //生成标识
+            if (Book::where('unique_id','=',$str)->select()->count() > 0) { //如果已经存在相同标识
+                $book->unique_id = md5(time() . mt_rand(1,1000000));
+                sleep(0.1);
+            } else {
+                $book->unique_id = $str;
+            }
             $result = $book->save($data);
             if ($result) {
                 $dir = App::getRootPath() . '/public/static/upload/book/' . $book->id;
@@ -238,7 +247,7 @@ class Books extends BaseAdmin
                 $money = $data['money'];
                 $area_id = $data['area_id'];
                 $start_id = $data['start_id'];
-                $sql = 'UPDATE xwx_book SET start_pay=' . $start_pay . ',money=' . $money . ' WHERE 1=1';
+                $sql = 'UPDATE '.$this->prefix.'_book SET start_pay=' . $start_pay . ',money=' . $money . ' WHERE 1=1';
                 if ($area_id != -1) {
                     $sql = $sql . ' AND area_id=' . $area_id;
                 }
@@ -255,5 +264,22 @@ class Books extends BaseAdmin
         $areas = Area::all();
         $this->assign('areas', $areas);
         return view();
+    }
+
+    protected function convert($str){
+        $pinyin = new Pinyin();
+        $name_format = config('seo.name_format');
+        switch ($name_format) {
+            case 'pure':
+                $arr = $pinyin->convert($str);
+                $str = implode($arr,'');
+                halt($str);
+                break;
+            case 'abbr':
+                $str = $pinyin->abbr($str);break;
+            default:
+                $str = $pinyin->convert($str);break;
+        }
+        return $str;
     }
 }

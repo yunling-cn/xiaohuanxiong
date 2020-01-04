@@ -2,25 +2,76 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/admin/view/users/subusers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/admin/view/index/seo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/seo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/surnames" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/data/words_5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/DictLoaderInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/FileDictLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/GeneratorFileDictLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/MemoryFileDictLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/Pinyin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/overtrue/pinyin/src/const.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hanman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hanman.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/payment/finance.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/payment/finance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/books/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/admin/view/pub/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/pub/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/users/disabled.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/users/disabled.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/users/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/users/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Write.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Write.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/install/sql/install.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/install/sql/install.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/BookService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/BookService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/service/FinanceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/FinanceService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/service/PromotionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/PromotionService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/html/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/html/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_booklist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/pc_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/pc_update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/books/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/books/update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/account/pc_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/pc_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/account/pc_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/pc_register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/account/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/account/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/chapters/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/pc_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/pc_search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/index/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/index/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/rank/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/rank/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/index/rank/pc_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buychapter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/buyhistory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buyhistory.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/finance/pc_buyhistory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/bookshelf.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/bookshelf.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_bookshelf.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_bookshelf.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/default/ucenter/users/pc_history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +135,7 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-worker" />
       <path value="$PROJECT_DIR$/vendor/workerman/gateway-worker" />
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/overtrue/pinyin" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PSHmZXLoIPa6g5uLAd4rErTEBC" />
@@ -641,6 +693,10 @@
       <workItem from="1577256430027" duration="10819000" />
       <workItem from="1577330308423" duration="1058000" />
       <workItem from="1577335278836" duration="4730000" />
+      <workItem from="1577939510763" duration="124000" />
+      <workItem from="1578021740326" duration="21175000" />
+      <workItem from="1578128798062" duration="364000" />
+      <workItem from="1578129176355" duration="7689000" />
     </task>
     <servers />
   </component>
@@ -671,10 +727,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="246" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575946662845" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577267713614">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578044265052">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577267713614" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578044265052" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1577253975602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -683,6 +739,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="774" y="333" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577335539637" />
+    <state x="776" y="443" key="NewPhpFileDialog" timestamp="1578022113810">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="776" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578022113810" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1578039721483">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1578039721483" />
     <state x="567" y="225" width="786" height="600" key="find.popup" timestamp="1577262562545">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

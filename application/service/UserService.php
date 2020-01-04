@@ -8,10 +8,10 @@
 
 namespace app\service;
 
+use app\index\controller\Base;
 use app\model\User;
-use think\Controller;
 
-class UserService extends Controller
+class UserService extends Base
 {
     public function getFavors($uid)
     {
@@ -26,6 +26,13 @@ class UserService extends Controller
                 'type' => $type,
                 'var_page' => 'page',
             ]);
+        foreach ($books as &$book) {
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
+        }
         return $books;
     }
 

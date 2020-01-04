@@ -93,7 +93,7 @@ return [
     // URL普通方式参数 用于自动生成
     'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
-    'url_param_type'         => 0,
+    'url_param_type'         => 1,
     // 是否开启路由延迟解析
     'url_lazy_route'         => false,
     // 是否强制使用路由

@@ -4,7 +4,6 @@ namespace app\index\controller;
 
 use app\model\Author;
 use app\model\Banner;
-use think\Db;
 
 class Index extends Base
 {
@@ -24,10 +23,9 @@ class Index extends Base
         }
         $banners = cache('bannersHomepage');
         if (!$banners) {
-            $banners = Banner::where('banner_order','>', 0)->order('banner_order','desc')->select();
+            $banners = Banner::with('book')->where('banner_order','>', 0)->order('banner_order','desc')->select();
             cache('bannersHomepage',$banners, null, 'redis');
         }
-
         $hot_books = cache('hotBooks');
         if (!$hot_books) {
             $hot_books = $this->bookService->getHotBooks();
@@ -73,7 +71,6 @@ class Index extends Base
                 $books = $this->bookService->getByTag($tag->tag_name);
                 cache('booksFilterByTag:'.$tag, $books, null, 'redis');
             }
-
             $cateItem['books'] = $books->toArray();
             $cateItem['tag'] = ['id' => $tag->id, 'tag_name' => $tag->tag_name];
             $catelist[] = $cateItem;

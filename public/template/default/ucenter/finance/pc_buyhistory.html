@@ -15,16 +15,11 @@
                     {volist name="buys" id="vo"}
                     <li>
                         <div class="mh-item horizontal booklist">
-                            {if empty($vo.cover_url)}
-                            <a href="/{$book_ctrl}/{$vo.book_id}" title="{$vo.chapter.book.book_name}" class="mh-cover"
-                               style="background-image: url({$img_site}/static/upload/book/{$vo.book_id}/cover.jpg)"> </a>
-                            {else /}
-                            <a href="/{$book_ctrl}/{$vo.book_id}" title="{$vo.chapter.book.book_name}" class="mh-cover"
+                            <a href="/{$book_ctrl}/{$vo.book.param}" title="{$vo.chapter.book.book_name}" class="mh-cover"
                                style="background-image: url({$vo.cover_url})"> </a>
-                            {/if}
                             <div class="mh-item-detali autoHeight">
                                 <h2 class="title">
-                                    <a href="/{$book_ctrl}/{$vo.book_id}">{$vo.chapter.book.book_name}</a>
+                                    <a href="/{$book_ctrl}/{$vo.book.param}">{$vo.chapter.book.book_name}</a>
                                 </h2>
                                 <p class="info">
                                     <span class="new">

@@ -42,7 +42,7 @@ class Index extends BaseAdmin
         $redis_prefix = config('cache.prefix');
 
         $dirs = array();
-        $dir = new DirectoryIterator(App::getRootPath().  'public/template/');
+        $dir = new DirectoryIterator(Env::get('root_path').  'public/template/');
         foreach ($dir as $fileinfo) {
             if ($fileinfo->isDir() && !$fileinfo->isDot()) {
                 array_push($dirs,$fileinfo->getFilename());
@@ -96,7 +96,7 @@ class Index extends BaseAdmin
             'payment' => '{$payment}'         
         ];
 INFO;
-            file_put_contents(App::getRootPath() . 'config/site.php', $site_code);
+            file_put_contents(Env::get('root_path') . 'config/site.php', $site_code);
             $this->success('修改成功', 'index', '', 1);
         }
     }
@@ -271,5 +271,31 @@ INFO;
         $conf = file_get_contents($path);
         $this->assign('json', $conf);
         return view();
+    }
+
+    public function seo(){
+        if ($this->request->post()) {
+            $book_end_point = input('book_end_point');
+            $name_format = input('name_format');
+            $code = <<<INFO
+        <?php
+        return [
+            'book_end_point' => '{$book_end_point}',  //分别为id和name两种形式
+            'name_format' => '{$name_format}', //pure是纯拼音,permalink是拼音带连接字符串，abbr是拼音首字母，abbr_permalink是首字母加连接字符串
+        ];
+INFO;
+            file_put_contents(Env::get('root_path') . 'config/seo.php', $code);
+            $this->success('修改成功', 'seo', '', 1);
+        } else {
+            $book_end_point = config('seo.book_end_point');
+            $name_format = config('seo.name_format');
+            $conn_str = config('seo.conn_str');
+            $this->assign([
+                'book_end_point' => $book_end_point,
+                'name_format' => $name_format,
+                'conn_str' => $conn_str
+            ]);
+            return view();
+        }
     }
 }

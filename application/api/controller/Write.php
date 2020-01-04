@@ -11,6 +11,7 @@ namespace app\api\controller;
 use app\model\Author;
 use app\model\Book;
 use app\model\Photo;
+use Overtrue\Pinyin\Pinyin;
 use think\Controller;
 use think\Db;
 use think\Request;
@@ -73,7 +74,14 @@ class Write extends Controller
                 $book->cover_url = trim($data['cover_url']);
                 $book->summary = trim($data['summary']);
                 $book->last_time = time();
-                halt($book->save());
+                $str = $this->convert($book->book_name); //生成标识
+                if (Book::where('unique_id','=',$str)->select()->count() > 0) { //如果已经存在相同标识
+                    $book->unique_id = md5(time() . mt_rand(1,1000000));
+                    sleep(0.1);
+                } else {
+                    $book->unique_id = $str;
+                }
+                $book->save();
                 $book_id = $book->id;
 
                 Db::connect($this->conn)->name('booklogs')->insert([
@@ -128,5 +136,22 @@ class Write extends Controller
                 $lastOrder++;
             }
         }
+    }
+
+    protected function convert($str){
+        $pinyin = new Pinyin();
+        $name_format = config('seo.name_format');
+        switch ($name_format) {
+            case 'pure':
+                $arr = $pinyin->convert($str);
+                $str = implode($arr,'');
+                halt($str);
+                break;
+            case 'abbr':
+                $str = $pinyin->abbr($str);break;
+            default:
+                $str = $pinyin->convert($str);break;
+        }
+        return $str;
     }
 }

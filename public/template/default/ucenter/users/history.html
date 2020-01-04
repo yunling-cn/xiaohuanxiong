@@ -17,13 +17,13 @@
 <div style="margin-top: 105px;" id="app">
     <div class="buy-manga" v-for="(item, index) in books" :key="index">
         <div class="buy-manga-cover">
-            <a v-bind:href="'/{$book_ctrl}/' + item.book_id">
+            <a v-bind:href="'/{$book_ctrl}/' + item.param">
                 <img v-bind:src="item.cover_url">
             </a>
             <a class="buy-manga-cover-hover" href="javascript:void(0);" v-bind:mid="item.book_id" style="display:none;"></a>
         </div>
         <div class="buy-manga-info">
-            <a v-bind:href="'/{$book_ctrl}/' + item.book_id" class="readlink" v-bind:mid="item.book_id">
+            <a v-bind:href="'/{$book_ctrl}/' + item.param" class="readlink" v-bind:mid="item.book_id">
                 <p class="buy-manga-title">{{item.book_name}}</p>
             </a>
             <p class="buy-manga-author">{{item.last_time}}更新</p>

@@ -11,7 +11,6 @@ namespace app\ucenter\controller;
 
 use think\App;
 use think\Controller;
-use think\facade\Session;
 use think\facade\View;
 
 class BaseUcenter extends Controller
@@ -20,6 +19,7 @@ class BaseUcenter extends Controller
     protected $uid;
     protected $prefix;
     protected $redis_prefix;
+    protected $end_point;
 
     protected function initialize()
     {
@@ -42,6 +42,7 @@ class BaseUcenter extends Controller
         parent::__construct($app);
         $this->redis_prefix = config('cache.prefix');
         $this->prefix = config('database.prefix');
+        $this->end_point = config('seo.book_end_point');
         $tpl_root = './template/default/ucenter/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());

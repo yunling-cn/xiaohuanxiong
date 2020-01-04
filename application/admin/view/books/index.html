@@ -47,17 +47,18 @@
                     <table class="table table-border table-bordered table-bg table-hover table-sort">
                         <thead>
                         <tr class="text-c">
-                            <th width="40"><input id="cbx" type="checkbox" value=""></th>
-                            <th width="80">ID</th>
-                            <th width="120">漫画名</th>
-                            <th width="100">封面</th>
-                            <th width="80">章节数</th>
-                            <th width="120">分类</th>
-                            <th width="100">地区</th>
-                            <th width="80">起始付费章节</th>
-                            <th width="80">章节价格</th>
-                            <th width="80">是否完结</th>
-                            <th width="140">操作</th>
+                            <th><input id="cbx" type="checkbox" value=""></th>
+                            <th>ID</th>
+                            <th>漫画名</th>
+                            <th>标识</th>
+                            <th>封面</th>
+                            <th>章节数</th>
+                            <th>分类</th>
+                            <th>地区</th>
+                            <th>起始付费章节</th>
+                            <th>章节价格</th>
+                            <th>是否完结</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,6 +67,7 @@
                             <td><input data-val="{$vo.id}" class="cbx" type="checkbox" value=""></td>
                             <td>{$vo.id}</td>
                             <td>{$vo.book_name}</td>
+                            <td>{$vo.unique_id}</td>
                             <td>
                                 {if empty($vo.cover_url)}
                                 <img width="45px;" height="auto" class="picture-thumb"

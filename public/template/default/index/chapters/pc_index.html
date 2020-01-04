@@ -109,7 +109,7 @@
     <div class="row">
         <div class="crumbs">
             <a href="/" title="{$site_name}">{$site_name}</a> &gt;
-            <a class="comic-name" href="/{$book_ctrl}/{$chapter.book_id}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
+            <a class="comic-name" href="/{$book_ctrl}/{$chapter.book.param}" title="{$chapter.book.book_name}">{$chapter.book.book_name}</a>
         </div>
         <h1 class="title">{$chapter.book.book_name} {$chapter.chapter_name}</h1>
         <div class="shareBtn">
@@ -174,12 +174,13 @@
         //--本地缓存代码开始--
         let bookInfo = {
             chapter_id: '{$chapter.id}',
-            end: '{$chapter.book.end == 1 ? '完结' : '连载'}',
+            end: "{$chapter.book.end == 1 ? '完结' : '连载'}",
             chapter_name: '{$chapter.chapter_name}',
             cover_url:'{$chapter.book.cover_url}',
             book_id: '{$chapter.book_id}',
             last_time: "{$chapter.book.last_time|date='Y-m-d'}",
-            book_name:'{$chapter.book.book_name}'
+            book_name:'{$chapter.book.book_name}',
+            param: '{$chapter.book.param}'
         };
         console.log(bookInfo);
         localStorage.setItem('manhua_{$chapter.book_id}', JSON.stringify(bookInfo));//id为键，设置缓存

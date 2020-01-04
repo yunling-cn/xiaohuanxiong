@@ -24,6 +24,7 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-worker" />
       <path value="$PROJECT_DIR$/vendor/workerman/gateway-worker" />
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/overtrue/pinyin" />
     </include_path>
   </component>
 </project>

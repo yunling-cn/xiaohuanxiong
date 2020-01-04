@@ -10,19 +10,11 @@
 <div class="">
     <section class="banner_detail">
         <div class="banner_border_bg">
-            {if empty($book.cover_url)}
-            <img class="banner_detail_bg" src="{$img_site}/static/upload/book/{$book.id}/cover.jpg" alt="{$book.book_name}" style="width: 100%;height:auto;filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=60, MakeShadow=false);">
-            {else /}
             <img class="banner_detail_bg" src="{$book.cover_url}" alt="{$book.book_name}" style="width: 100%;height:auto;filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=60, MakeShadow=false);">
-            {/if}
         </div>
         <div class="banner_detail_form">
             <div class="cover">
-                {if empty($book.cover_url)}
-                <img src="{$img_site}/static/upload/book/{$book.id}/cover.jpg" alt="{$book.book_name}">
-                {else /}
                 <img src="{$book.cover_url}" alt="{$book.book_name}">
-                {/if}
                 <div class="sr-qrcode">
                     <img src="/static/images/wxqrcode.jpg" alt="{$book.book_name}">
                     <div class="sr-qrcode__text">~扫码关注公众号~</div>
@@ -103,7 +95,7 @@
                     {volist name="hot" id="vo"}
                     <li>
                         <div class="cover">
-                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
                                 <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}">
                                 {else /}
@@ -113,7 +105,7 @@
                         </div>
                         <div class="info">
                             <p class="title">
-                                <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
                             </p>
                             <p class="subtitle-new">{$vo.summary|subtext="15"}</p>
                             <p class="tip"><span>评分:</span><span class="mh-star-line star-5"></span></p>
@@ -128,7 +120,7 @@
                     {volist name="updates" id="vo"}
                     <li>
                         <div class="cover">
-                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
                                 <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" alt="{$vo.book_name}">
                                 {else /}
@@ -138,7 +130,7 @@
                         </div>
                         <div class="info">
                             <p class="title">
-                                <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
                             </p>
                             <p class="subtitle-new">{$vo.summary|subtext="15"}</p>
                             <p class="tip"><span>评分:</span><span class="mh-star-line star-5"></span></p>
@@ -194,16 +186,16 @@
                     {volist name="recommand" id="vo"}
                     <li>
                         <div class="mh-item">
-                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                                 {if empty($vo.cover_url)}
-                                <p class="mh-cover" style="background-image: url({$img_site}/static/upload/{$book_ctrl}/{$vo.id}/cover.jpg)"></p>
+                                <p class="mh-cover" style="background-image: url({$img_site}/static/upload/{$book_ctrl}/{$vo.param}/cover.jpg)"></p>
                                 {else /}
                                 <p class="mh-cover" style="background-image: url({$vo.cover_url})"></p>
                                 {/if}
                             </a>
                             <div class="mh-item-detali">
                                 <h2 class="title">
-                                    <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">{$vo.book_name}</a>
+                                    <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
                                 </h2>
                                 <p class="zl">{$vo.summary|subtext=13}...</p>
                                 <p class="chapter">

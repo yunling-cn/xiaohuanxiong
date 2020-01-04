@@ -10,13 +10,8 @@
 
 {include file="./template/default/pub/top2.html" /}
 <div class="detail-main">
-    {if empty($book.cover_url)}
-    <img class="detail-main-bg" data-original="{$img_site}/static/upload/book/{$book.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-    <div class="detail-main-cover"><img class="lazy" data-original="{$img_site}/static/upload/book/{$book.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg"></div>
-    {else /}
     <img class="detail-main-bg" data-original="{$book.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
     <div class="detail-main-cover"><img class="lazy" data-original="{$book.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg"></div>
-    {/if}
     <div class="detail-main-info">
         <p class="detail-main-info-title">{$book.book_name}</p>
         <p class="detail-main-info-author">别名：
@@ -175,7 +170,7 @@
         {volist name="recommand" id="vo"}
         <div class="buy-manga">
             <div class="buy-manga-cover">
-                <a href="/{$book_ctrl}/{$vo.id}">
+                <a href="/{$book_ctrl}/{$vo.param}">
                     {if empty($vo.cover_url)}
                     <img src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg">
                     {else /}
@@ -185,14 +180,14 @@
                 <a class="buy-manga-cover-hover" href="javascript:void(0);" mid="2941" style="display:none;"></a>
             </div>
             <div class="buy-manga-info">
-                <a href="/{$book_ctrl}/{$vo.id}" class="readlink" mid="2941">
+                <a href="/{$book_ctrl}/{$vo.param}" class="readlink" mid="2941">
                     <p class="buy-manga-title">{$vo.book_name}</p>
                 </a>
                 <p class="buy-manga-author">{$vo.last_time|date='Y-m-d'}更新</p>
-                <a href="/{$book_ctrl}/{$vo.id}" class="readlink" mid="40683">
+                <a href="/{$book_ctrl}/{$vo.param}" class="readlink" mid="40683">
                     <p class="buy-manga-new">{$vo.summary|subtext=12}...</p>
                 </a>
-                <a class="buy-manga-right-a readlink" href="/{$book_ctrl}/{$vo.id}">
+                <a class="buy-manga-right-a readlink" href="/{$book_ctrl}/{$vo.param} ">
                     <img class="buy-manga-right-img" src="/static/images/buy-manga-right.png">
                     <p class="buy-manga-right-title">阅读</p>
                 </a>

@@ -17,20 +17,16 @@
         {volist name="favors" id="vo"}
         <li>
             <div class="manga-list-2-cover">
-                <a href="/{$book_ctrl}/{$vo.id}">
-                    {if empty($vo.cover_url)}
-                    <img class="manga-list-2-cover-img" src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg">
-                    {else /}
+                <a href="/{$book_ctrl}/{$vo.param}">
                     <img class="manga-list-2-cover-img" src="{$vo.cover_url}">
-                    {/if}
                 </a>
                 <span class="manga-list-2-cover-hover" style="display:none;" mid="{$vo.id}"></span>
             </div>
             <p class="manga-list-2-title">
-                <a href="/{$book_ctrl}/{$vo.id}">{$vo.book_name}</a>
+                <a href="/{$book_ctrl}/{$vo.param}">{$vo.book_name}</a>
             </p>
             <p class="manga-list-2-tip">
-                <a href="/{$book_ctrl}/{$vo.id}" style="display: unset;">{$vo.last_time|date='Y-m-d'}更新</a>
+                <a href="/{$book_ctrl}/{$vo.param}" style="display: unset;">{$vo.last_time|date='Y-m-d'}更新</a>
             </p>
         </li>
         {/volist}

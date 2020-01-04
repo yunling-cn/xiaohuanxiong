@@ -29,6 +29,11 @@ class Chapters extends Base
         if (empty($chapter->book->cover_url)) {
             $chapter->book->cover_url = $this->img_site.'/static/upload/book/'.$chapter->book_id.'/cover.jpg';
         }
+        if ($this->end_point == 'id') {
+            $chapter->book['param'] = $chapter->book['id'];
+        } else {
+            $chapter->book['param'] = $chapter->book['unique_id'];
+        }
         $flag = true;
         if ($chapter->book->start_pay >= 0) {
             if ($chapter->chapter_order >= $chapter->book->start_pay) { //如果本章序大于起始付费章节，则是付费章节

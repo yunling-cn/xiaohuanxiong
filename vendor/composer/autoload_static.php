@@ -11,6 +11,7 @@ class ComposerStaticInit663d55478ab4e9a8b8e65f4b48d2d666
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         'ffc1d7141d4fcbaeb47a6929f0811ed1' => __DIR__ . '/..' . '/topthink/think-worker/src/command.php',
     );
@@ -34,6 +35,10 @@ class ComposerStaticInit663d55478ab4e9a8b8e65f4b48d2d666
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+        ),
+        'O' => 
+        array (
+            'Overtrue\\Pinyin\\' => 16,
         ),
         'G' => 
         array (
@@ -76,6 +81,10 @@ class ComposerStaticInit663d55478ab4e9a8b8e65f4b48d2d666
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Overtrue\\Pinyin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/pinyin/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

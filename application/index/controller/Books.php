@@ -7,7 +7,6 @@ use app\model\Comments;
 use app\model\User;
 use app\model\UserBook;
 use think\Db;
-use think\facade\App;
 use think\Request;
 
 class Books extends Base
@@ -26,9 +25,17 @@ class Books extends Base
         $book = cache('book:' . $id);
         $tags = cache('tags:book:' . $id);
         if ($book == false) {
-            $book = Book::with(['chapters' => function ($query) {
-                $query->order('chapter_order');
-            }])->find($id);
+            $book_end_point = config('book_end_point');
+            if ($book_end_point == 'id') {
+                $book = Book::with(['chapters' => function ($query) {
+                    $query->order('chapter_order');
+                }])->find($id);
+            } else {
+                $book = Book::with(['chapters' => function ($query) {
+                    $query->order('chapter_order');
+                }])->where('unique_id','=', $id)->find();
+            }
+
             $tags = [];
             if (!empty($book->tags) || is_null($book->tags)) {
                 $tags = explode('|', $book->tags);
@@ -36,7 +43,6 @@ class Books extends Base
             cache('book:' . $id, $book, null, 'redis');
             cache('tags:book:' . $id, $tags, null, 'redis');
         }
-
         $redis = new_redis();
         $day = date("Y-m-d", time());
         //以当前日期为键，增加点击数
@@ -76,7 +82,7 @@ class Books extends Base
 
         $start = cache('bookStart:' . $id);
         if ($start == false) {
-            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $id . ' ORDER BY id LIMIT 1');
+            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $book->id . ' ORDER BY id LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
             cache('bookStart:' . $id, $start, null, 'redis');
         }
@@ -86,21 +92,21 @@ class Books extends Base
         $isfavor = 0;
         if (!is_null($this->uid)) {
             $where[] = ['user_id', '=', $this->uid];
-            $where[] = ['book_id', '=', $id];
+            $where[] = ['book_id', '=', $book->id];
             $userfavor = UserBook::where($where)->find();
             if (!is_null($userfavor)) { //未收藏本漫画
                 $isfavor = 1;
             }
         }
 
-        $start_pay = cache('maxChapterOrder:' . $id);
+        $start_pay = cache('maxChapterOrder:' . $book->id);
         if (!$start_pay) {
             if ($book->start_pay >= 0) {
                 $start_pay = $book->start_pay; //如果是正序，则开始付费章节就是设置的
             } else { //如果是倒序付费设置
                 $abs = abs($book->start_pay) - 1; //取得倒序的绝对值，比如-2，则是倒数第2章开始付费
                 $max_chapter_order = Db::query("SELECT MAX(chapter_order) as max FROM " . $this->prefix . "chapter WHERE book_id=:id",
-                    ['id' => $id])[0]['max'];
+                    ['id' => $book->id])[0]['max'];
                 cache('maxChapterOrder:' . $id, $max_chapter_order);
                 $start_pay = (float)$max_chapter_order - $abs; //计算出起始付费章节
             }

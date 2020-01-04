@@ -6,7 +6,6 @@ namespace app\ucenter\controller;
 
 use app\model\Chapter;
 use app\model\ChargeCode;
-use app\model\FriendshipLink;
 use app\model\User;
 use app\model\UserBuy;
 use app\model\UserFinance;

@@ -3,14 +3,14 @@
 
 namespace app\service;
 
+use app\index\controller\Base;
 use app\model\Book;
 use app\model\Chapter;
 use app\model\UserBuy;
 use app\model\UserFinance;
 use app\model\UserOrder;
-use think\Controller;
 
-class FinanceService extends Controller
+class FinanceService extends Base
 {
     public function getUserChargeHistory($uid)
     {
@@ -90,8 +90,15 @@ class FinanceService extends Controller
                     'var_page' => 'page',
                 ]);
         foreach ($buys as &$buy) {
-            $chapter = Chapter::with('book')->find($buy['chapter_id']);
+            $chapter = Chapter::find($buy['chapter_id']);
+            $book = Book::find($buy['book_id']);
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
             $buy['chapter'] = $chapter;
+            $buy['book'] = $book;
         }
         return $buys;
     }

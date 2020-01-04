@@ -14,19 +14,15 @@
         {volist name="books" id="vo"}
         <li>
             <div class="manga-list-2-cover">
-                <a href="/{$book_ctrl}/{$vo.id}">
-                    {if empty($vo.cover_url)}
-                    <img class="manga-list-2-cover-img lazy" data-original="{$img_site}/static/upload/book/{$vo.id}/cover.jpg" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-                    {else /}
+                <a href="//{$book_ctrl}/{$vo.param}">
                     <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-                    {/if}
                 </a>
             </div>
             <p class="manga-list-2-title">
-                <a href="/{$book_ctrl}/{$vo.id}">{$vo.book_name}</a>
+                <a href="//{$book_ctrl}/{$vo.param}">{$vo.book_name}</a>
             </p>
             <p class="manga-list-2-tip">
-                <a href="/{$book_ctrl}/{$vo.id}">已更新 {$vo.chapter_count}话</a>
+                <a href="//{$book_ctrl}/{$vo.param}">已更新 {$vo.chapter_count}话</a>
             </p>
         </li>
         {/volist}

@@ -47,16 +47,12 @@
             {volist name="books" id="vo"}
             <li>
                 <div class="mh-item">
-                    <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}">
-                        {if empty($vo.cover_url)}
-                        <p class="mh-cover" style="background-image: url({$img_site}/static/upload/book/{$vo.id}/cover.jpg)"></p>
-                        {else /}
+                    <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                         <p class="mh-cover" style="background-image: url({$vo.cover_url})"></p>
-                        {/if}
                     </a>
                     <div class="mh-item-detali">
                         <h2 class="title">
-                            <a href="/{$book_ctrl}/{$vo.id}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 {$vo.book_name}
                             </a>
                     </h2>
@@ -66,7 +62,7 @@
                         </p>
                         <p class="chapter" style="width: 181px;">
                             <span>已更新</span>
-                            <a href="/{$book_ctrl}/{$vo.id}">{$vo.chapter_count}话</a>
+                            <a href="/{$book_ctrl}/{$vo.param}">{$vo.chapter_count}话</a>
                         </p>
                     </div>
                 </div>

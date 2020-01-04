@@ -64,4 +64,5 @@ class Book extends Model
     public function setSrcAttr($value){
         return trim($value);
     }
+
 }

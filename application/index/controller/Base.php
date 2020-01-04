@@ -22,6 +22,7 @@ class Base extends Controller
     protected $uid;
     protected $site_name;
     protected $img_site;
+    protected $end_point;
 
     protected function initialize()
     {
@@ -40,6 +41,7 @@ class Base extends Controller
         $this->uid = session('xwx_user_id');
         $this->prefix = config('database.prefix');
         $this->redis_prefix = config('cache.prefix');
+        $this->end_point = config('seo.book_end_point');
         $tpl_root = './template/'.config('site.tpl').'/index/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
@@ -67,7 +69,8 @@ class Base extends Controller
             'search_ctrl' => SEARCHCTRL,
             'rank_ctrl' => RANKCTRL,
             'update_act' => UPDATEACT,
-            'author_ctrl' => AUTHORCTRL
+            'author_ctrl' => AUTHORCTRL,
+            'end_point' => config('seo.book_end_point')
         ]);
     }
 }
