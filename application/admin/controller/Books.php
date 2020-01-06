@@ -71,6 +71,7 @@ class Books extends BaseAdmin
         $book = new Book();
         $data = $request->param();
         $validate = new \app\admin\validate\Book();
+
         if ($validate->check($data)) {
             if ($this->bookService->getByName($data['book_name'])) {
                 $this->error('漫画名已经存在');
@@ -83,16 +84,19 @@ class Books extends BaseAdmin
                 $author->author_name = $data['author'];
                 $author->save();
             }
+
             $book->author_id = $author->id;
             $book->author_name = $author->author_name;
             $book->last_time = time();
-            $str = $this->convert($book->book_name); //生成标识
+            $str = $this->convert($data['book_name']); //生成标识
+
             if (Book::where('unique_id','=',$str)->select()->count() > 0) { //如果已经存在相同标识
                 $book->unique_id = md5(time() . mt_rand(1,1000000));
                 sleep(0.1);
             } else {
                 $book->unique_id = $str;
             }
+
             $result = $book->save($data);
             if ($result) {
                 $dir = App::getRootPath() . '/public/static/upload/book/' . $book->id;
