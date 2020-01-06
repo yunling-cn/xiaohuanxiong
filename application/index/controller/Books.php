@@ -20,12 +20,13 @@ class Books extends Base
         $this->bookService = new \app\service\BookService();
     }
 
-    public function index($id)
+    public function index()
     {
+        $id = input('id');
         $book = cache('book:' . $id);
         $tags = cache('tags:book:' . $id);
         if ($book == false) {
-            $book_end_point = config('book_end_point');
+            $book_end_point = config('seo.book_end_point');
             if ($book_end_point == 'id') {
                 $book = Book::with(['chapters' => function ($query) {
                     $query->order('chapter_order');
