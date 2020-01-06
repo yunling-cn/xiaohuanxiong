@@ -19,8 +19,9 @@ class Chapters extends BaseAdmin
         $this->validate = new \app\admin\validate\Chapter;
     }
 
-    public function index($book_id)
+    public function index()
     {
+        $book_id = input('book_id');
         $book = Book::get(input('book_id'));
         $data = $this->chapterService->getChapters([
             ['book_id','=',$book_id]
