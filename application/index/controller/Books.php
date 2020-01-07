@@ -36,7 +36,9 @@ class Books extends Base
                     $query->order('chapter_order');
                 }])->where('unique_id','=', $id)->find();
             }
-
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
             $tags = [];
             if (!empty($book->tags) || is_null($book->tags)) {
                 $tags = explode('|', $book->tags);
