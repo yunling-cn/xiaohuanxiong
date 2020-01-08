@@ -69,7 +69,7 @@ class Chapters extends BaseAdmin
 
     }
 
-    public function edit($id)
+    public function edit()
     {
         $id = input('id');
         $chapter = Chapter::get($id);
@@ -98,8 +98,9 @@ class Chapters extends BaseAdmin
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $chapter = Chapter::get($id);
         $photos = $chapter->photos;
         if (count($photos) > 0){
@@ -109,7 +110,8 @@ class Chapters extends BaseAdmin
         return ['err'=>0,'msg'=>'删除成功'];
     }
 
-    public function deleteAll($ids){
+    public function deleteAll(){
+        $ids = input('ids');
         Chapter::destroy($ids);
     }
 }

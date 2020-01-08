@@ -66,8 +66,9 @@ class Areas extends BaseAdmin
         $this->success('编辑成功');
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $area = Area::get($id);
         if (empty($area)) {
             return ['err' => '1', 'msg' => '删除失败'];

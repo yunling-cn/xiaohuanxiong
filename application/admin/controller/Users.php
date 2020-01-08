@@ -147,8 +147,9 @@ class Users extends BaseAdmin
         return view();
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $user = User::get($id);
         if (empty($user)) {
             return ['err' => '1', 'msg' => '删除失败'];
@@ -161,8 +162,9 @@ class Users extends BaseAdmin
         }
     }
 
-    public function deleteAll($ids)
+    public function deleteAll()
     {
+        $ids = input('ids');
         User::destroy($ids);
     }
 }

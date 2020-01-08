@@ -65,7 +65,8 @@ class Mc extends BaseAdmin
         return view();
     }
 
-    public function delete($id){
+    public function delete(){
+        $id = input('id');
         $message=Message::get($id);
         if (empty($message)){
             return ['err' => '1','msg' => '删除失败'];

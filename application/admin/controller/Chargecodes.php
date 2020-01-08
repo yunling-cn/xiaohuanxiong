@@ -118,8 +118,9 @@ class Chargecodes extends BaseAdmin
         return json(['err=>0', 'msg' => '成功导出，<a href="' . $site_url.'/downloads/chargecode.txt">点击下载</a>']);
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $code = ChargeCode::get($id);
         if (empty($code)) {
             return json(['err' => '1', 'msg' => '找不到该项']);

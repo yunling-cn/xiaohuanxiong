@@ -141,22 +141,29 @@ class Users extends BaseUcenter
                 return ['err' => 1, 'msg' => '该手机号码已经存在'];
             }
             $user->mobile = $phone;
-            $user->isUpdate(true)->save();
-            $finance = UserFinance::where([
-                ['user_id','=',$user->id],
-                ['usage','=',5]
-            ])->find(); //查询是否之前有过绑定手机的奖励
-            if (empty($finance) || is_null($finance)) {
-                $finance = new UserFinance();
-                $finance->user_id = $user->id;
-                $finance->money = (int)config('payment.mobile_bind_rewards');
-                $finance->usage = 5;
-                $finance->summary = '绑定手机奖励';
-                $finance->save();
-                cache('rewards:' . $user->id, null); //删除奖励缓存
-                cache('rewards:sum:' . $user->id, null); //删除奖励总和缓存
-                Cache::clear('pay'); //清除支付缓存
+            if ($user->vip_expire_time < time()) { //说明vip已经过期
+                $user->vip_expire_time = time() + 1 * 30 * 24 * 60 * 60;
+            } else { //vip没过期，则在现有vip时间上增加
+                $user->vip_expire_time = $user->vip_expire_time + 1 * 30 * 24 * 60 * 60;
             }
+            session('xwx_vip_expire_time', $user->vip_expire_time); //在session里更新用户vip过期时间
+            $user->isUpdate(true)->save();
+
+//            $finance = UserFinance::where([
+//                ['user_id','=',$user->id],
+//                ['usage','=',5]
+//            ])->find(); //查询是否之前有过绑定手机的奖励
+//            if (empty($finance) || is_null($finance)) {
+//                $finance = new UserFinance();
+//                $finance->user_id = $user->id;
+//                $finance->money = (int)config('payment.mobile_bind_rewards');
+//                $finance->usage = 5;
+//                $finance->summary = '绑定手机奖励';
+//                $finance->save();
+//                cache('rewards:' . $user->id, null); //删除奖励缓存
+//                cache('rewards:sum:' . $user->id, null); //删除奖励总和缓存
+//                Cache::clear('pay'); //清除支付缓存
+//            }
             session('xwx_user_mobile', $phone);
             return ['err' => 0, 'msg' => '绑定成功'];
         }

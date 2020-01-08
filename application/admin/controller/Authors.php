@@ -81,8 +81,9 @@ class Authors extends BaseAdmin
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $author = Author::get($id);
         if (empty($author)){
             return ['err' => '1','msg' => '删除失败'];

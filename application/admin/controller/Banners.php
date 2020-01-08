@@ -99,8 +99,9 @@ class Banners extends BaseAdmin
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $id = input('id');
         $result = BannerModel::destroy($id);
         if ($result) {
             return ['err' => 0, 'msg' => '删除成功'];

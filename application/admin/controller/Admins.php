@@ -65,7 +65,8 @@ class Admins extends BaseAdmin
         $this->success('编辑成功');
     }
 
-    public function delete($id){
+    public function delete(){
+        $id = input('$id');
         $count = count(Admin::all());
         if ($count <= 1){
             return ['err' => '1','msg' => '至少保留一个管理员账号'];

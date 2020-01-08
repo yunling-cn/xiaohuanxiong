@@ -70,8 +70,19 @@ class Account extends Controller
                     $result = $user->save();
                     if ($result) {
                         $redis->set('user_reg:'.$ip,1,60); //写入锁
-                        $promotionService = new PromotionService();
-                        $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
+                        if ($pid > 0) {
+                            $puser = User::find($pid);
+                            if ($puser) {
+                                if ($puser->vip_expire_time < time()) { //说明vip已经过期
+                                    $puser->vip_expire_time = time() + 24 * 60 * 60;
+                                } else { //vip没过期，则在现有vip时间上增加
+                                    $puser->vip_expire_time = $user->vip_expire_time + 24 * 60 * 60;
+                                }
+                            }
+                        }
+
+//                        $promotionService = new PromotionService();
+//                        $promotionService->rewards($user->id, (float)config('payment.reg_rewards'), 2); //调用推广处理函数
                         return ['err' => 0, 'msg' => '注册成功，请登录'];
                     } else {
                         return ['err' => 1, 'msg' => '注册失败，请尝试重新注册'];

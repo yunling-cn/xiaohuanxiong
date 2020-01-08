@@ -38,7 +38,8 @@ class Comment extends BaseAdmin
         return view();
     }
 
-    public function delete($id){
+    public function delete(){
+        $id = input('id');
         $comment = Comments::get($id);
         if (empty($comment)){
             return ['err' => '1','msg' => '删除失败'];
