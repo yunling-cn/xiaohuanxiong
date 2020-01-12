@@ -112,6 +112,14 @@ class Index extends Base
         foreach ($books as &$book) {
             $author = Author::get($book['author_id']);
             $book['author'] = $author;
+            if (empty($book['cover_url'])) {
+                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+            }
+            if ($this->end_point == 'id') {
+                $book['param'] = $book['id'];
+            } else {
+                $book['param'] = $book['unique_id'];
+            }
         }
         $this->assign([
             'books' => $books,
