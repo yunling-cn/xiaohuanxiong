@@ -9,6 +9,43 @@
 {block name="content"}
 
 {include file="./template/default/pub/top1.html"}
+<div class="ad-top-info">
+    <a href="javascript:$('.ad-top-info').remove();">
+        <img class="ad-top-info-cross" src="http://css99tel.cdndm5.com/v201910292122/blue/images/mobile/search-downlist-item-cross.png">
+    </a>
+    <div class="ad-top-info-main" onclick="window.location.href='http://normal.jjxs518.cn/?uid=0&cid=0050&sign=5081f00db2de0e3d&pid=jjmanhua2&noShare=true'">
+        <div class="ad-top-info-main-cover logo">
+            <img src="http://css99tel.cdndm5.com/v201910292122/blue/images/mobile/win-logo.png">
+        </div>
+        <div class="ad-top-info-main-right logo">
+            <p class="ad-top-info-main-right-title">漫画人</p>
+            <div class="swiper-container3 swiper-container-vertical swiper-container-ios swiper-container-wp8-vertical"
+                 style="height: 30px;">
+                <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -90px, 0px);">
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active"
+                         data-swiper-slide-index="2" style="height: 30px;">
+                        <p class="ad-top-info-main-right-subtitle">每日签到抽好礼,免费看精彩漫画</p>
+                    </div>
+                    <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="0"
+                         style="height: 30px;">
+                        <p class="ad-top-info-main-right-subtitle">好漫画,为看漫画的人而生</p>
+                    </div>
+                    <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="1" style="height: 30px;">
+                        <p class="ad-top-info-main-right-subtitle">秒速追更,随时随地口袋阅读</p>
+                    </div>
+                    <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="2" style="height: 30px;">
+                        <p class="ad-top-info-main-right-subtitle">每日签到抽好礼,免费看精彩漫画</p>
+                    </div>
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0"
+                         style="height: 30px;">
+                        <p class="ad-top-info-main-right-subtitle">好漫画,为看漫画的人而生</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="ad-top-info-right" href="">打开</a>
+</div>
 <div class="index-banner">
     <div class="swiper-container swiper-container-horizontal swiper-container-ios swiper-container-wp8-horizontal">
         <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1875px, 0px, 0px);">
@@ -19,7 +56,7 @@
                   {else /}
                   /{$book_ctrl}/{$vo.book.unique_id}
                   {/if}" title="{$vo.title}">
-                        <img src="{$img_site}/static/upload/banner/{$vo.pic_name}" alt="{$vo.title}">
+                    <img src="{$img_site}/static/upload/banner/{$vo.pic_name}" alt="{$vo.title}">
                 </a>
             </div>
             {/volist}
@@ -70,11 +107,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -86,11 +124,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -102,11 +141,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -128,11 +168,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">{$vo.clicks}次点击</a>
                         </p>
@@ -144,11 +185,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">{$vo.clicks}次点击</a>
                         </p>
@@ -160,11 +202,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">{$vo.clicks}次点击</a>
                         </p>
@@ -178,69 +221,72 @@
     {volist name="catelist" id="cateItem"}
     {in name="$cateItem.tag.id" value="1,2"} <!-- value里的数字是后台分类ID，填哪几个数字就展示哪几个分类 -->
     <div class="manga-list-title index">{$cateItem.tag.tag_name}
-            <a href="/{$booklist_act}?tag={$cateItem.tag.tag_name}" class="manga-list-title-more">更多</a>
-        </div>
-        <ul class="manga-list-2">
-            <div class="swiper-container2 swiper-container-horizontal swiper-container-free-mode swiper-container-ios swiper-container-wp8-horizontal">
-                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+        <a href="/{$booklist_act}?tag={$cateItem.tag.tag_name}" class="manga-list-title-more">更多</a>
+    </div>
+    <ul class="manga-list-2">
+        <div class="swiper-container2 swiper-container-horizontal swiper-container-free-mode swiper-container-ios swiper-container-wp8-horizontal">
+            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 
-                    <div class="swiper-slide swiper-slide-active">
-                            {volist name="cateItem.books" id="vo" offset="0" length="3"}
-                        <li>
-                            <div class="manga-list-2-cover">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                    <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-                                </a>
-                            </div>
-                            <p class="manga-list-2-title">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
-                            <p class="manga-list-2-tip">
-                                <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
-                            </p>
-                        </li>
-                        {/volist}
-                    </div>
-
-                    <div class="swiper-slide swiper-slide-next">
-                            {volist name="cateItem.books" id="vo" offset="3" length="3"}
-                        <li>
-                            <div class="manga-list-2-cover">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                    <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-                                </a>
-                            </div>
-                            <p class="manga-list-2-title">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
-                            <p class="manga-list-2-tip">
-                                <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
-                            </p>
-                        </li>
-                        {/volist}
-                    </div>
-
-                    <div class="swiper-slide">
-                            {volist name="cateItem.books" id="vo" offset="6" length="3"}
-                        <li>
-                            <div class="manga-list-2-cover">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                    <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
-                                </a>
-                            </div>
-                            <p class="manga-list-2-title">
-                                <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
-                            <p class="manga-list-2-tip">
-                                <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
-                            </p>
-                        </li>
-                        {/volist}
-                    </div>
-                   
-                   
+                <div class="swiper-slide swiper-slide-active">
+                    {volist name="cateItem.books" id="vo" offset="0" length="3"}
+                    <li>
+                        <div class="manga-list-2-cover">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                            </a>
+                        </div>
+                        <p class="manga-list-2-title">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
+                        <p class="manga-list-2-tip">
+                            <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
+                        </p>
+                    </li>
+                    {/volist}
                 </div>
+
+                <div class="swiper-slide swiper-slide-next">
+                    {volist name="cateItem.books" id="vo" offset="3" length="3"}
+                    <li>
+                        <div class="manga-list-2-cover">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                            </a>
+                        </div>
+                        <p class="manga-list-2-title">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
+                        <p class="manga-list-2-tip">
+                            <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
+                        </p>
+                    </li>
+                    {/volist}
+                </div>
+
+                <div class="swiper-slide">
+                    {volist name="cateItem.books" id="vo" offset="6" length="3"}
+                    <li>
+                        <div class="manga-list-2-cover">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                            </a>
+                        </div>
+                        <p class="manga-list-2-title">
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
+                        <p class="manga-list-2-tip">
+                            <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
+                        </p>
+                    </li>
+                    {/volist}
+                </div>
+
+
             </div>
-        </ul>
-        {/in}
-        {/volist}
+        </div>
+    </ul>
+    {/in}
+    {/volist}
 
     <div class="manga-list-title index">完结优选
         <a href="/{$rank_ctrl}?end=0" class="manga-list-title-more">更多</a>
@@ -253,11 +299,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -269,11 +316,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -285,11 +333,12 @@
                     <li>
                         <div class="manga-list-2-cover">
                             <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
-                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
+                                <img class="manga-list-2-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg">
                             </a>
                         </div>
                         <p class="manga-list-2-title">
-                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a> </p>
+                            <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a></p>
                         <p class="manga-list-2-tip">
                             <a href="/{$book_ctrl}/{$vo.param}">总计 {$vo.chapter_count}话</a>
                         </p>
@@ -304,7 +353,8 @@
 <div class="manga-list">
     <div class="manga-list-title index"> 排行榜
         <div class="manga-list-title-right">
-            <a class="manga-list-title-right-item active" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(0);">人气</a>
+            <a class="manga-list-title-right-item active" href="javascript:void(0);"
+               onclick="mySwiper_rank.slideTo(0);">人气</a>
             <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(1);">新番</a>
             <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(2);">完结</a>
             <a class="manga-list-title-right-item" href="javascript:void(0);" onclick="mySwiper_rank.slideTo(3);">充值</a>
@@ -318,7 +368,8 @@
                     <li>
                         <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                             <div class="rank-list-cover">
-                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
                             </div>
                             <div class="rank-list-info">
                                 <div class="rank-list-info-right">
@@ -331,11 +382,12 @@
                     {/volist}
                 </div>
                 <div class="swiper-slide swiper-slide-duplicate" id="rank_2" data-swiper-slide-index="1">
-                    {volist name="newest" id="vo"  offset="0" length="5"}
+                    {volist name="newest" id="vo" offset="0" length="5"}
                     <li>
                         <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                             <div class="rank-list-cover">
-                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
                             </div>
                             <div class="rank-list-info">
                                 <div class="rank-list-info-right">
@@ -348,11 +400,12 @@
                     {/volist}
                 </div>
                 <div class="swiper-slide swiper-slide-duplicate" id="rank_3" data-swiper-slide-index="2">
-                    {volist name="ends" id="vo"  offset="0" length="5"}
+                    {volist name="ends" id="vo" offset="0" length="5"}
                     <li>
                         <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                             <div class="rank-list-cover">
-                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
                             </div>
                             <div class="rank-list-info">
                                 <div class="rank-list-info-right">
@@ -365,11 +418,12 @@
                     {/volist}
                 </div>
                 <div class="swiper-slide swiper-slide-duplicate" id="rank_4" data-swiper-slide-index="3">
-                    {volist name="most_charged" id="vo"  offset="0" length="5"}
+                    {volist name="most_charged" id="vo" offset="0" length="5"}
                     <li>
                         <a href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
                             <div class="rank-list-cover">
-                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}" src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
+                                <img class="rank-list-cover-img lazy" data-original="{$vo.cover_url}"
+                                     src="https://s1.ax1x.com/2018/12/13/FN8WLQ.jpg" alt="{$vo.book_name}">
                             </div>
                             <div class="rank-list-info">
                                 <div class="rank-list-info-right">
@@ -390,10 +444,10 @@
 <script type="text/javascript">
     var mySwiper = new Swiper('.swiper-container', {
         loop: true,
-        autoplay: { disableOnInteraction: false, },
-        pagination: { el: '.swiper-pagination', },
+        autoplay: {disableOnInteraction: false,},
+        pagination: {el: '.swiper-pagination',},
     });
-    var mySwiper2 = new Swiper('.swiper-container2', { freeMode: true, slidesPerView: 'auto', });
+    var mySwiper2 = new Swiper('.swiper-container2', {freeMode: true, slidesPerView: 'auto',});
     var mySwiper_rank = new Swiper('#rank_list', {
         freeMode: true,
         slidesPerView: 'auto',
