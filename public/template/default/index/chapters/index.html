@@ -43,9 +43,21 @@
     {/if}
     {/volist}
 </div>
-<a href="http://normal.jjxs518.cn/?uid=0&cid=0050&sign=5081f00db2de0e3d&pid=jjmanhua2&noShare=true">
-    <img src="https://ae01.alicdn.com/kf/H5cc6ffefe4014b6a97941d0be4488b8cO.gif" alt="">
+<!--广告开始-->
+<a href="http://normal.jjxs518.cn/?uid=0&cid=0050&sign=5081f00db2de0e3d&pid=jjmanhua2&noShare=true" id="ad">
+    <img style="width: 100%;" src="" alt="">
 </a>
+<script>
+    var imgs = [
+        'https://ae01.alicdn.com/kf/H974d5c32f03a4a4f9ad6d4efed028fb0y.gif',
+        'https://ae01.alicdn.com/kf/H5cc6ffefe4014b6a97941d0be4488b8cO.gif',
+        'https://ae01.alicdn.com/kf/Ha717f683e92f4804beb197ed9d3d8221B.gif',
+        'https://ae01.alicdn.com/kf/H77ece034e4104217b0678b38e281de8cs.gif'
+    ]
+    var r = Math.floor(Math.random() * imgs.length);
+    $('#ad img').attr('src',imgs[r]);
+</script>
+<!--广告结束-->
 <ul class="view-bottom-bar">
     {if $prev == "null"}
     <li style="width:25%;opacity: 0.6;"><a class="view-bottom-bar-item">上一章</a></li>
