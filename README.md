@@ -4,7 +4,7 @@
 # 程序功能
 - 带会员系统，支付系统，APP接口，火车头API
 
-- 官方论坛：http://raccooncms.com
+- 官方论坛：http://xhxcms.com
 - 文档地址：https://www.kancloud.cn/hiliqi/xwx_comic_cms
 - 官方QQ群：780362399
 
