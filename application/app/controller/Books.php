@@ -24,7 +24,7 @@ class Books extends Base
 
     public function getNewest()
     {
-        $newest = cache('newest_homepage');
+        $newest = cache('app:newest_homepage');
         if (!$newest) {
             $newest = Book::limit(10)->order('last_time', 'desc')->select();
             foreach ($newest as &$book) {
@@ -44,7 +44,7 @@ class Books extends Base
 
     public function getHot()
     {
-        $hot_books = cache('hot_books');
+        $hot_books = cache('app:hot_books');
         if (!$hot_books) {
             $hot_books =$this->bookService->getHotBooks();
             foreach ($hot_books as &$book) {
@@ -63,7 +63,7 @@ class Books extends Base
 
     public function getEnds()
     {
-        $ends = cache('ends_homepage');
+        $ends = cache('app:ends_homepage');
         if (!$ends) {
             $ends = Book::limit(10)->order('last_time', 'desc')->select();
             foreach ($ends as &$book) {
@@ -133,8 +133,7 @@ class Books extends Base
     public function detail()
     {
         $id = input('id');
-        $uid = input('uid');
-        $book = cache('book:' . $id);
+        $book = cache('app:book:' . $id);
         if ($book == false) {
             $book = Book::with('area')->find($id);
             if (!empty($book)) {

@@ -15,6 +15,7 @@ class Base extends Controller
     public $imgUrl;
     public $book_ctrl;
     public $uid;
+    protected $end_point;
 
     protected function initialize()
     {
