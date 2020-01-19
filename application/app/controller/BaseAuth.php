@@ -13,7 +13,7 @@ class BaseAuth extends Base
     protected function initialize()
     {
         parent::initialize();
-        $key = config('site.api_key');
+        $key = config('site.app_key');
         $param = $this->request->param();
         if (isset($param['utoken'])) {
             $utoken = $param['utoken'];

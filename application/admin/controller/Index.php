@@ -24,6 +24,7 @@ class Index extends BaseAdmin
         $img_site = config('site.img_site');
         $salt = config('site.salt');
         $api_key = config('site.api_key');
+        $app_key = config('site.app_key');
         $front_tpl = config('site.tpl');
         $payment = config('site.payment');
 
@@ -55,6 +56,7 @@ class Index extends BaseAdmin
             'img_site' => $img_site,
             'salt' => $salt,
             'api_key' => $api_key,
+            'app_key' => $app_key,
             'front_tpl' => $front_tpl,
             'payment' => $payment,
             'back_end_page' => $back_end_page,
@@ -82,6 +84,7 @@ class Index extends BaseAdmin
             $img_site = input('img_site');
             $salt = input('salt');
             $api_key = input('api_key');
+            $app_key = input('app_key');
             $front_tpl = input('front_tpl');
             $payment = input('payment');
             $site_code = <<<INFO
@@ -92,6 +95,7 @@ class Index extends BaseAdmin
             'site_name' => '{$site_name}',
             'salt' => '{$salt}',
             'api_key' => '{$api_key}', 
+            'app_key' => '{$app_key}',
             'tpl' => '{$front_tpl}',
             'payment' => '{$payment}'         
         ];
