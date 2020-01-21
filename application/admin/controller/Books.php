@@ -253,7 +253,7 @@ class Books extends BaseAdmin
                 $money = $data['money'];
                 $area_id = $data['area_id'];
                 $start_id = $data['start_id'];
-                $sql = 'UPDATE '.$this->prefix.'_book SET start_pay=' . $start_pay . ',money=' . $money . ' WHERE 1=1';
+                $sql = 'UPDATE '.$this->prefix.'book SET start_pay=' . $start_pay . ',money=' . $money . ' WHERE 1=1';
                 if ($area_id != -1) {
                     $sql = $sql . ' AND area_id=' . $area_id;
                 }
