@@ -24,7 +24,7 @@ class Admins extends BaseAdmin
             'admins' => $data['admins'],
             'count' => $data['count']
         ]);
-        return view();
+        return view(); 
     }
 
     public function create(){
