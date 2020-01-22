@@ -17,6 +17,7 @@ use app\service\PromotionService;
 use app\service\UserService;
 use think\facade\Cache;
 use think\facade\Validate;
+use Util\Common;
 
 class Users extends BaseUcenter
 {
@@ -204,7 +205,7 @@ class Users extends BaseUcenter
         if (!$validate->check($data)) {
             return ['msg' => '手机格式不正确'];
         }
-        $sms = new \util\Sms();
+        $sms = new \util\Common();
         $result = $sms->sendcode($this->uid, $phone, $code);
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
@@ -348,12 +349,17 @@ class Users extends BaseUcenter
             $sum = $this->promotionService->getRewardsSum();
         }
 
+        $url = config('site.url');
+        $util = new Common();
+        $shortUrl = $url.'?pid='.session('xwx_user_id');
+        //$shortUrl =  $util->shorturl($url.'?pid='.session('xwx_user_id'));
         $this->assign([
             'rewards' => $rewards,
             'promotion_rate' => (float)config('payment.promotional_rewards_rate') * 100,
             'reg_reward' => config('payment.reg_rewards'),
             'promotion_sum' => $sum,
-            'header_title' => '推广赚币'
+            'header_title' => '推广赚币',
+            'shortUrl' => $shortUrl
         ]);
         return view($this->tpl);
     }

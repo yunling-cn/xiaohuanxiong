@@ -273,7 +273,7 @@ class Books extends BaseAdmin
     }
 
     protected function convert($str){
-        $pinyin = new Pinyin();
+        $pinyin = new Pinyin(); 
         $name_format = config('seo.name_format');
         switch ($name_format) {
             case 'pure':

@@ -14,7 +14,7 @@
         </div>
     </div>
     <a class="wallet-main-coin-btn copy-btns" id="copy-btns">获取推广链接</a>
-    <input type="text" value="{$url}?pid={$Think.session.xwx_user_id}" id="copy-text" style="visibility: hidden;">
+    <input type="text" value="{$shortUrl}" id="copy-text" style="visibility: hidden;">
     <ol>
         <li style="list-style-type: disc;width: 90%;margin-left:5%;" class="wallet-main-coin-title">
             通过您的推广链接注册的会员自动成为您的下线, 同时您会获得<span style="color: red">{$reg_reward}</span>元的奖励
@@ -39,7 +39,7 @@
 <script src="https://cdn.bootcss.com/clipboard-polyfill/3.0.0-beta3/clipboard-polyfill.js"></script>
 <script type="text/javascript">
     $('#copy-btns').click(function () {
-        var text=$('#copy-text').val();
+        var text = $('#copy-text').val();
         clipboard.writeText(text).then(function(){
             ShowDialog('复制成功');
         }, function(err){

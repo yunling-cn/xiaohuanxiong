@@ -28,7 +28,7 @@ class AuthorService
     {
         return Author::where('author_name', '=', $name)->find();
     }
-
+ 
     public function getAuthors($where = '1=1')
     {
         $page = config('page.back_end_page');

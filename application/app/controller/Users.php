@@ -173,7 +173,7 @@ class Users extends BaseAuth
         if (!$validate->check($data)) {
             return json(['success' => 0, 'msg' => '手机格式不正确']);
         }
-        $sms = new \Util\Sms();
+        $sms = new \Util\Common();
         $result = $sms->sendcode($this->uid, $phone, $code);
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
