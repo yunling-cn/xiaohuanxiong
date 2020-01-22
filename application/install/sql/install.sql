@@ -102,7 +102,7 @@ CREATE TABLE `xwx_author` (
    `create_time` int(11) DEFAULT '0',
   `update_time` int(11) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
-  key `author_name` ('author_name') USING BTREE
+  key `author_name` (`author_name`) USING BTREE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
