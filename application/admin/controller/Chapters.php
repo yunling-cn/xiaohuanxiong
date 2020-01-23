@@ -22,7 +22,7 @@ class Chapters extends BaseAdmin
     public function index()
     {
         $book_id = input('book_id');
-        $book = Book::get(input('book_id'));
+        $book = Book::get(input('book_id')); 
         $data = $this->chapterService->getChapters([
             ['book_id','=',$book_id]
         ]);

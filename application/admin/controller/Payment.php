@@ -82,7 +82,7 @@ class Payment extends BaseAdmin
     public function buy()
     {
         $data = $this->financeService->getPagedBuyHistory();
-        $this->assign([
+        $this->assign([ 
             'buys' => $data['buys'],
             'count' => $data['count']
         ]);

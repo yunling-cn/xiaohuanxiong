@@ -17,7 +17,7 @@ use app\service\PromotionService;
 use app\service\UserService;
 use think\facade\Cache;
 use think\facade\Validate;
-use Util\Common;
+use util\Common;
 
 class Users extends BaseUcenter
 {
