@@ -89,7 +89,7 @@ class Index extends Base
 
         return view($this->tpl);
     }
-
+ 
     public function search()
     {
         $keyword = input('keyword');
