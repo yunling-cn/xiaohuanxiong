@@ -160,15 +160,6 @@ function xwxcms_parse_sql($sql='',$limit=0, $prefix=[])
     }
 }
 
-function new_redis(){
-    $redis = new \Redis();
-    $redis->connect(config('cache.host'), config('cache.port'));
-    if (!empty(config('cache.password'))){
-        $redis->auth(config('cache.password'));
-    }
-    return $redis;
-}
-
 function generateRandomString($length = 4) {
     $characters = '0123456789';
     $randomString = '';

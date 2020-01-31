@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 use app\model\Admin;
 use app\model\ChargeCode;
+use app\model\RedisHelper;
 use app\model\VipCode;
 use think\facade\App;
 use think\facade\Cache;
@@ -46,7 +47,7 @@ class Common extends Controller
         if (empty($day)) {
             $day = date("Y-m-d", strtotime("-1 day"));
         }
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $hots = $redis->zRevRange('click:' . $day, 0, 10, true);
         foreach ($hots as $k => $v) {
             $clicks = new Clicks();

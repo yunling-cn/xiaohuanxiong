@@ -10,6 +10,7 @@ namespace app\ucenter\controller;
 
 use app\model\Comments;
 use app\model\Message;
+use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserFinance;
 use app\service\FinanceService;
@@ -56,7 +57,7 @@ class Users extends BaseUcenter
     
     public function history()
     {
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $vals = $redis->hVals($this->redis_prefix . ':history:' . $this->uid);
         $books = array();
         foreach ($vals as $val) {
@@ -120,7 +121,7 @@ class Users extends BaseUcenter
     public function bindphone()
     {
         $user = User::get($this->uid);
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if ($this->request->isPost()) {
             $code = trim(input('txt_phonecode'));
             $phone = trim(input('txt_phone'));
@@ -199,7 +200,7 @@ class Users extends BaseUcenter
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
             session('xwx_cms_phone', $phone);
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             $redis->set($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid, 1, 300); //设置解锁缓存，让用户可以更改手机
         }
         return ['msg' => $result['msg']];
@@ -242,7 +243,7 @@ class Users extends BaseUcenter
     public function commentadd()
     {
         $book_id = input('book_id');
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if ($redis->exists('comment_lock:' . $this->uid)) {
             return json(['msg' => '每10秒只能评论一次', 'err' => 1]);
         } else {

@@ -9,6 +9,7 @@
 namespace app\ucenter\controller;
 
 
+use app\model\RedisHelper;
 use app\model\User;
 use app\service\PromotionService;
 use think\App;
@@ -47,7 +48,7 @@ class Account extends Controller
                 return ['err' => 1, 'msg' => '验证码错误'];
             }
             $ip = $request->ip();
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             if ($redis->exists('user_reg:' . $ip)) {
                 return ['err' => 1, 'msg' => '操作太频繁'];
             } else {

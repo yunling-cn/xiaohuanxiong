@@ -6,6 +6,7 @@ namespace app\ucenter\controller;
 
 use app\model\Chapter;
 use app\model\ChargeCode;
+use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserBuy;
 use app\model\UserFinance;
@@ -220,7 +221,7 @@ class Finance extends BaseUcenter
         }], 'book')->cache('chapter:' . $id, 600, 'redis')->find($id);
         $price = $chapter->book->money; //获得单章价格
         if ($this->request->isPost()) {
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             if (!$redis->exists($this->redis_prefix . ':user_buy_lock:' . $this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $this->balance = $this->financeService->getBalance($this->uid); //这里不查询缓存，直接查数据库更准确
                 if ($price > $this->balance) { //如果价格高于用户余额，则不能购买
@@ -261,7 +262,7 @@ class Finance extends BaseUcenter
     {
         $user = User::get($this->uid);
         if ($request->isPost()) {
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             if (!$redis->exists($this->redis_prefix . ':user_buy_lock:' . $this->uid)) { //如果没上锁，则该用户可以进行购买操作
                 $arr = config('payment.vip'); //拿到vip配置数组
                 $month = (int)$request->param('month'); //拿到用户选择的vip

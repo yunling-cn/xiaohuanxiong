@@ -19,6 +19,7 @@ Route::rule('/'.SEARCHCTRL.'/[:keyword]', 'index/search');
 Route::rule('/'.RANKCTRL, 'index/rank/index');
 Route::rule('/'.UPDATEACT, 'index/books/update');
 Route::rule('/'.AUTHORCTRL.'/:id', 'index/authors/index');
+Route::rule('/addfavor', 'index/books/addfavor');
 
 Route::rule('/ucenter', 'ucenter/users/ucenter');
 Route::rule('/bookshelf', 'ucenter/users/bookshelf');
@@ -56,4 +57,4 @@ Route::rule('/Sevenpaynotify','api/Sevenpaynotify/index');
 Route::rule('/login', 'ucenter/account/login');
 Route::rule('/register', 'ucenter/account/register');
 Route::rule('/logout', 'ucenter/account/logout');
-Route::rule('/addfavor', 'index/books/addfavor');
+

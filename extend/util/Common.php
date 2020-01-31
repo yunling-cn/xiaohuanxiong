@@ -4,13 +4,15 @@
 namespace Util;
 
 
+use app\model\RedisHelper;
+
 class Common
 {
     function sendcode($uid, $_phone,$code){
         if (empty($uid) || is_null($uid)){
             return '非法调用';
         }
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if ($redis->exists('sms_lock:'.$uid)){ //如果存在锁
             return ['status' => '-3','msg' => '操作太频繁'];
         }else {

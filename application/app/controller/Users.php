@@ -7,6 +7,7 @@ namespace app\app\controller;
 use app\model\Book;
 use app\model\Comments;
 use app\model\Message;
+use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserBook;
 use app\model\UserFinance;
@@ -59,7 +60,7 @@ class Users extends BaseAuth
 
     public function switchfavor()
     {
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
             return json(['success' => 0, 'msg' => '操作太频繁']);
         } else {
@@ -85,7 +86,7 @@ class Users extends BaseAuth
 
     public function history()
     {
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $vals = $redis->hVals($this->redis_prefix . ':history:' . $this->uid);
         $books = array();
         foreach ($vals as $val) {
@@ -178,7 +179,7 @@ class Users extends BaseAuth
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
             session('xwx_cms_phone', $phone);
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             $redis->set($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid, 1, 300); //设置解锁缓存，让用户可以更改手机
         }
         return json(['success' => 0, 'msg' => $result['msg']]);
@@ -207,7 +208,7 @@ class Users extends BaseAuth
         $content = strip_tags(input('comment'));
         $book_id = input('book_id');
 
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if ($redis->exists('comment_lock:' . $this->uid)) {
             return json(['msg' => '每10秒只能评论一次', 'success' => 0, 'isLogin' => 1]);
         } else {

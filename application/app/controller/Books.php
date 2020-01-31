@@ -9,6 +9,7 @@ use app\model\Author;
 use app\model\Book;
 use app\model\Chapter;
 use app\model\Comments;
+use app\model\RedisHelper;
 use think\Db;
 
 class Books extends Base
@@ -101,7 +102,7 @@ class Books extends Base
     public function search()
     {
         $keyword = input('keyword');
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $redis->zIncrBy($this->redis_prefix . 'hot_search:', 1, $keyword);
         $hot_search_json = $redis->zRevRange($this->redis_prefix . 'hot_search', 1, 4, true);
         $hot_search = array();
@@ -144,7 +145,7 @@ class Books extends Base
             cache('book:' . $id, $book, null, 'redis');
         }
 
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $day = date("Y-m-d", time());
         //以当前日期为键，增加点击数
         $redis->zIncrBy('click:' . $day, 1, $book->id);

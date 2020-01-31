@@ -87,10 +87,12 @@ function login(){
                     location.href = '/ucenter';
                 }, 1000);
             } else {
+                $('#captcha').attr('src','/account/captcha?rnd=' + r)
                 ShowDialog(result.msg);
             }
         },
         error: function (data) {
+            $('#captcha').attr('src','/account/captcha?rnd=' + r)
             ShowDialog(data.msg);
         },
     });
@@ -159,10 +161,12 @@ function register() {
                     location.href = '/login';
                 }, 1000);
             } else {
+                $('#captcha').attr('src','/account/captcha?rnd=' + r)
                 ShowDialog(result.msg);
             }
         },
         error: function (data) {
+            $('#captcha').attr('src','/account/captcha?rnd=' + r)
             ShowDialog(data.msg);
         },
     });

@@ -4,6 +4,7 @@
 namespace app\app\controller;
 
 
+use app\model\RedisHelper;
 use app\service\FinanceService;
 use app\service\PromotionService;
 use think\Request;
@@ -95,7 +96,7 @@ class Account extends Base
     public function logout()
     {
         $uid = input('uid');
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $redis->del('utoken:' . $uid);
         return ['success' => 1, 'msg' => '登出成功'];
     }

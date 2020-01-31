@@ -5,6 +5,7 @@ namespace app\app\controller;
 
 
 use app\model\Chapter;
+use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserBuy;
 use app\model\UserFinance;
@@ -71,7 +72,7 @@ class Finance extends BaseAuth
             $query->order('pic_order');
         }], 'book')->cache('chapter:' . $id, 600, 'redis')->find($id);
         $price = $chapter->book->money; //获得单章价格
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
             $balance = $this->financeService->getBalance(); //这里不查询缓存，直接查数据库更准确
             if ($price > $balance) { //如果价格高于用户余额，则不能购买
@@ -102,7 +103,7 @@ class Finance extends BaseAuth
 
     public function vip(Request $request){
         $user = User::get($this->uid);
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         if (!$redis->exists($this->redis_prefix . ':user_buy_lock:'.$this->uid)) { //如果没上锁，则该用户可以进行购买操作
             $balance = $this->financeService->getBalance(); //这里不查询缓存，直接查数据库更准确
             $arr = config('payment.vip'); //拿到vip配置数组

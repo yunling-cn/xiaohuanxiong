@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\model\Author;
 use app\model\Banner;
+use app\model\RedisHelper;
 
 class Index extends Base
 {
@@ -93,7 +94,7 @@ class Index extends Base
     public function search()
     {
         $keyword = input('keyword');
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $redis->zIncrBy($this->redis_prefix . 'hot_search', 1, $keyword); //搜索词写入redis热搜
         $hot_search_json = $redis->zRevRange($this->redis_prefix . 'hot_search', 0, 4, true);
         $hot_search = array();

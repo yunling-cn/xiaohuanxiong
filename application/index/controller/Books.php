@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\model\Book;
 use app\model\Comments;
+use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserBook;
 use think\Db;
@@ -46,7 +47,7 @@ class Books extends Base
             cache('book:' . $id, $book, null, 'redis');
             cache('tags:book:' . $id, $tags, null, 'redis');
         }
-        $redis = new_redis();
+        $redis = RedisHelper::GetInstance();
         $day = date("Y-m-d", time());
         //以当前日期为键，增加点击数
         $redis->zIncrBy('click:' . $day, 1, $book->id);
@@ -229,7 +230,7 @@ class Books extends Base
             if (is_null($this->uid)) {
                 return ['err' => 1, 'msg' => '用户未登录'];
             }
-            $redis = new_redis();
+            $redis = RedisHelper::GetInstance();
             if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
                 return ['err' => 1, 'msg' => '操作太频繁'];
             } else {

@@ -42,14 +42,6 @@ class UserService extends Base
         $user->books()->detach($ids);
     }
 
-//    public function delHistory($uid, $keys)
-//    {
-//        $redis_prefix = config('cache.prefix');
-//        $redis = new_redis();
-//        foreach ($keys as $key) {
-//            $redis->hDel($redis_prefix . ':history:' . $uid, $key);
-//        }
-//    }
 
     public function getAdminPagedUsers($status, $where, $orderBy, $order)
     {
