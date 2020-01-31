@@ -29,7 +29,7 @@
                         </p>
                         <p>
                             <input name="captcha" type="text" placeholder="验证码" style="width:150px;">
-                            <img src="{:captcha_src()}" onclick = "this.src='/captcha?rnd=' + Math.random();">
+                            <img id="captcha" src="{:captcha_src()}" onclick = "this.src='/captcha?rnd=' + Math.random();">
                         </p>
                     </form>
                     <p><button class="button" onclick="login()">立即登录</button></p>

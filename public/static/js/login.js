@@ -61,14 +61,17 @@ function verifyform() {
 function login(){
     var $username = $("#txt_username");
     var $pwd = $("#txt_password");
+    var r = Math.random();
     if (!$username || $.trim($username.val()) === "") {
         ShowDialog("必须填写用户名");
         $username.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if (!$pwd || $.trim($pwd.val()) === "") {
         ShowDialog("必须填写密码");
         $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     $.ajax({
@@ -102,22 +105,26 @@ function register() {
     if (!$username || $.trim($username.val()) === "") {
         ShowDialog("必须填写用户名");
         $username.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if (!$pwd || $.trim($pwd.val()) === "") {
         ShowDialog("必须填写密码");
         $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if ($pwd1.length > 0 && $.trim($pwd1.val()) === "") {
         ShowDialog("请再次输入密码");
         $pwd1.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" });
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if ($pwd1.length > 0 && $.trim($pwd.val()) !== $.trim($pwd1.val())) {
         ShowDialog("两次输入的密码不一致");
         $pwd.focus().css({ outlineWidth: 1, outlineColor: "#fd113a" }).val("");
         $pwd1.val("");
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if (!regpwd.test($username.val())) {
@@ -126,6 +133,7 @@ function register() {
         if ($pwd1.length > 0) {
             $pwd1.val("");
         }
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
     if (!regpwd.test($pwd.val())) {
@@ -134,6 +142,7 @@ function register() {
         if ($pwd1.length > 0) {
             $pwd1.val("");
         }
+        $('#captcha').attr('src','/account/captcha?rnd=' + r)
         return;
     }
 

@@ -81,25 +81,7 @@ class Chapters extends Base
                 cache('mulu:' . $book_id, $chapters, null, 'redis');
             }
 
-//            $uid = session('xwx_user_id');
-//            if ($uid) {
-//                $redis = new_redis();
-//                $arr = [
-//                    'book_id' => $chapter->book->id,
-//                    'cover_url' => $chapter->book->cover_url,
-//                    'chapter_id' => $chapter->id,
-//                    'chapter_name' => $chapter->chapter_name,
-//                    'book_name' => $chapter->book->book_name,
-//                    'end' => $chapter->book->end,
-//                    'last_time' => $chapter->book->last_time
-//                ];
-//                $redis->hSet($this->redis_prefix . ':history:' . $uid, $chapter->book->id, json_encode($arr)); //利用hash表，保证用户及book的唯一性
-//                $redis->rPush($this->redis_prefix . ':history:log', $chapter->book->id); //将key记录进队列，用于日后按顺序删除
-//                if ($redis->hLen($this->redis_prefix . ':history:' . $uid) > 10) {
-//                    $key = $redis->lPop($this->redis_prefix . ':history:log'); //拿到队列最早的key
-//                    $redis->hDel($this->redis_prefix . ':history:' . $uid, $key); //按照key从hash表删除
-//                }
-//            }
+
             $prev = cache('chapterPrev:' . $id);
             if (!$prev) {
                 $prev = Db::query(

@@ -11,7 +11,7 @@
     <section class="account-box">
         <h1 class="head">注册</h1>
         <div class="left">
-            <div style="margin: 10px 0 0 150px;">
+            <div>
                 <img style="width: 90%;height: auto;" src="/static/images/forgetpwd.jpg" alt="">
             </div>
         </div>
@@ -34,7 +34,7 @@
                         </p>
                         <p>
                             <input name="captcha" type="text" placeholder="验证码" style="width:150px;">
-                            <img src="{:captcha_src()}" onclick = "this.src='/captcha?rnd=' + Math.random();">
+                            <img id="captcha" src="{:captcha_src()}" onclick = "this.src='/captcha?rnd=' + Math.random();">
                         </p>
                     </form>
                     <p><button class="button" onclick="register()">立即注册</button></p>
