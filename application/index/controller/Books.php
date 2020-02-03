@@ -86,7 +86,7 @@ class Books extends Base
 
         $start = cache('bookStart:' . $id);
         if ($start == false) {
-            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $book->id . ' ORDER BY id LIMIT 1');
+            $db = Db::query('SELECT id FROM ' . $this->prefix . 'chapter WHERE book_id = ' . $book->id . ' ORDER BY chapter_order LIMIT 1');
             $start = $db ? $db[0]['id'] : -1;
             cache('bookStart:' . $id, $start, null, 'redis');
         }
