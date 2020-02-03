@@ -38,18 +38,23 @@ class Tag extends BaseAdmin
 
     public function save(Request $request){
         $tag = new Tags();
-        $dir = App::getRootPath().'/public/static/upload/tags';
+        $dir = App::getRootPath() . '/public/static/upload/tags';
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
         }
         $tag->tag_name = $request->param('tag_name');
         $tag->save();
-        if (count($request->file()) > 0){
-            $cover = $request->file('cover');
-            if ($cover) {
-                $cover->validate(['size' => 1024000, 'ext' => 'jpg,png,gif'])
-                    ->move($dir,$tag->id . '.jpg');
+
+        if (is_array($request->file())) {
+            //不上传文件会报错，PHP7下面count(null)是错的
+            if (count($request->file()) > 0) {
+                $cover = $request->file('cover');
+                if ($cover) {
+                    $cover->validate(['size' => 1024000, 'ext' => 'jpg,png,gif'])
+                        ->move($dir, $tag->id . '.jpg');
+                }
             }
+
         }
 
 
