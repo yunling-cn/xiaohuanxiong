@@ -14,6 +14,7 @@ use app\model\Photo;
 use Overtrue\Pinyin\Pinyin;
 use think\Controller;
 use think\Db;
+use think\Exception;
 use think\Request;
 use app\model\Chapter;
 
@@ -22,38 +23,51 @@ class Write extends Controller
     protected $chapterService;
     protected $photoService;
     protected $conn;
+    protected $db;
 
     public function initialize()
     {
         $this->chapterService = new \app\service\ChapterService();
         $this->photoService = new \app\service\PhotoService();
         $this->conn = [
-            'type'            => 'mysql',
-            'hostname'        => '数据库ip',
-            'database'        => '数据库名',
-            'username'        => '数据库名',
-            'password'        => '数据库密码',
-            'hostport'        => '端口号',
-            'charset'         => 'utf8',
+            'type' => 'mysql',
+            'hostname' => '数据库ip',
+            'database' => '数据库名',
+            'username' => '数据库名',
+            'password' => '数据库密码',
+            'hostport' => '端口号',
+            'charset' => 'utf8',
+            'enable' => false,
         ];
+    }
+
+    protected function db()
+    {
+        if ($this->conn['enable']) {
+            unset($this->conn['enable']);
+            return Db::connect($this->conn);
+        } else {
+            return Db::connect();
+        }
     }
 
     public function save(Request $request)
     {
         if ($request->isPost()) {
             $data = $request->param();
-            $key = $data['api_key'];
-            if (empty($key) || is_null($key)) {
+
+            if (!array_key_exists('api_key', $data)) {//修复PHP7 数组索引不存在
                 return 'api密钥不能为空！';
             }
+            $key = $data['api_key'];
             if ($key != config('site.api_key')) {
                 return 'api密钥错误！';
             }
 
             $book_id = -1;
-            $where[] = ['src_url','=',$data['src_url']];
-            $where[] = ['src','=',$data['src']];
-            $booklog = Db::connect($this->conn)->name('booklogs')->where($where)->find();
+            $where[] = ['src_url', '=', $data['src_url']];
+            $where[] = ['src', '=', $data['src']];
+            $booklog = $this->db()->name('booklogs')->where($where)->find();
             if (empty($booklog)) { //如果漫画不存在
                 $author = Author::where('author_name', '=', trim($data['author']))->find();
                 if (is_null($author)) {//如果作者不存在
@@ -84,25 +98,30 @@ class Write extends Controller
                 $book->save();
                 $book_id = $book->id;
 
-                Db::connect($this->conn)->name('booklogs')->insert([
+                $result = $this->db()->name('booklogs')->insert([
                     'book_id' => $book_id,
                     'src_url' => $data['src_url'],
                     'src' => $data['src']
                 ]);
-            }
-            else {
+            } else {
                 $book_id = $booklog['book_id'];
                 $book = Book::get($book_id);
                 $book->update_time = time();
-                $book->save();
+                $result = $book->save();
             }
-            $this->addChapter($book_id, $data);
+            $result2 = $this->addChapter($book_id, $data);
+            //添加反馈
+            if ($result && $result2) {
+                return 'success';
+            } else {
+                return 'failed';
+            }
         }
     }
 
     public function addChapter($book_id, $data)
     {
-        $chapterlog = Db::connect($this->conn)->name('chapterlogs')->where('c_src_url','=',$data["c_src_url"])->find();
+        $chapterlog = $this->db()->name('chapterlogs')->where('c_src_url', '=', $data["c_src_url"])->find();
         if (empty($chapterlog)) {
             $chapter = new Chapter();
             $chapter->chapter_name = trim($data['chapter_name']);
@@ -112,10 +131,11 @@ class Write extends Controller
             if ($lastChapter) {
                 $lastChapterOrder = $lastChapter->chapter_order;
             }
-            $chapter->chapter_order = $lastChapterOrder + 1;
+            //火车头可控章节顺序
+            $chapter->chapter_order = array_key_exists('chapter_order', $data) ? $data['chapter_order'] : $lastChapterOrder + 1;
             $chapter->save();
 
-            Db::connect($this->conn)->name('chapterlogs')->insert([
+            $this->db()->name('chapterlogs')->insert([
                 'book_id' => $book_id,
                 'chapter_id' => $chapter->id,
                 'c_src_url' => 'c_src_url'
@@ -125,16 +145,19 @@ class Write extends Controller
             $lastOrder = 0;
             $lastPhoto = $this->photoService->getLastPhoto($chapter->id);
             if ($lastPhoto) {
-                $lastOrder = $lastPhoto->pic_order + 1;
+                $lastOrder = array_key_exists('chapter_order', $data) ? $data['chapter_order'] : $lastPhoto->pic_order + 1;
             }
+            //判断是否都插入成功
+            $determine = true;
             foreach ($img_urls[1] as $img_url) {
                 $photo = new Photo();
                 $photo->chapter_id = $chapter->id;
                 $photo->pic_order = $lastOrder;
                 $photo->img_url = $img_url;
-                $photo->save();
+                $determine = $photo->save() && $determine;
                 $lastOrder++;
             }
+            return $determine;
         }
     }
 

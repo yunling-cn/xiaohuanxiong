@@ -28,10 +28,12 @@ class Base extends Controller
         $time = $this->request->param('time');
         if (time() - $time > 180) {
             return json(['success' => 0, 'msg' => '过期请求'])->send();
+            exit();
         }
         $key = config('site.api_key');
         if ($token != md5($key . $time)) {
             return json(['success' => 0, 'msg' => '未授权请求'])->send();
+            exit();
         }
 
         $this->prefix = config('database.prefix');

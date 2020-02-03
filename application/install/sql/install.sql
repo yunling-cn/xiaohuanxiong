@@ -316,3 +316,24 @@ CREATE TABLE `xwx_charge_code`  (
   KEY `code`(`code`) USING BTREE,
   KEY `used`(`used`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Dynamic;
+
+DROP TABLE IF EXISTS `xwx_booklogs`;
+CREATE TABLE `xwx_booklogs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `book_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `src_url` varchar(500) NOT NULL DEFAULT '',
+  `src` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `src_url` (`src_url`) USING BTREE,
+  KEY `src` (`src`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `xwx_chapterlogs`;
+CREATE TABLE `xwx_chapterlogs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `book_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `chapter_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `c_src_url` varchar(500) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `c_src_url` (`c_src_url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

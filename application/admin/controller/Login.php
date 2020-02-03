@@ -17,7 +17,11 @@ use think\captcha\Captcha;
 class Login extends Controller
 {
     public function index(){
-        return view();
+        if (session('?xwx_admin')) {
+            $this->success('您已登录', url('admin/index/index'));
+        } else {
+            return view();
+        }
     }
 
     public function login(Request $request){

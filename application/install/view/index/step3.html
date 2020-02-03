@@ -82,20 +82,56 @@
             </div>
             <div class="layui-form-mid layui-word-aux">保证密码最少6位</div>
         </div>
+        <!--        <div class="layui-form-item">-->
+        <!--            <label class="layui-form-label">密码盐</label>-->
+        <!--            <div class="layui-input-inline w200">-->
+        <!--                <input type="text" class="layui-input" name="salt">-->
+        <!--            </div>-->
+        <!--            <div class="layui-form-mid layui-word-aux">随便输入几个字符</div>-->
+        <!--        </div>-->
+
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>缓存设置</legend>
+        </fieldset>
         <div class="layui-form-item">
-            <label class="layui-form-label">密码盐</label>
-            <div class="layui-input-inline w200">
-                <input type="text" class="layui-input" name="salt">
+            <label class="layui-form-label">缓存类型</label>
+            <div class="layui-input-inline wauto">
+                <input type="radio" lay-filter="File" value="File" name="cache_type" title="File" checked>
+                <input type="radio" lay-filter="Redis" value="Redis" name="cache_type" title="Redis">
+                <input type="radio" lay-filter="Memcached" value="Memcached" name="cache_type" title="Memcached">
             </div>
-            <div class="layui-form-mid layui-word-aux">随便输入几个字符</div>
         </div>
-        <div class="layui-form-item">
+        <div id="cache_ip" class="layui-form-item" style="display: none">
+            <label class="layui-form-label">IP地址</label>
+            <div class="layui-input-inline w200">
+                <input type="text" value="127.0.0.1" class="layui-input" name="cache_ip">
+            </div>
+            <div class="layui-form-mid layui-word-aux">缓存组件的IP地址</div>
+        </div>
+        <div id="cache_port" class="layui-form-item" style="display: none">
+            <label class="layui-form-label">端口</label>
+            <div class="layui-input-inline w200">
+                <input type="number" class="layui-input" name="cache_port">
+            </div>
+            <div class="layui-form-mid layui-word-aux">缓存组件的端口</div>
+        </div>
+        <div id="cache_pwd" class="layui-form-item" style="display: none">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline w200">
+                <input type="password" class="layui-input" name="cache_pwd">
+            </div>
+            <div class="layui-form-mid layui-word-aux">缓存组件的密码</div>
+        </div>
+
+        <div id="redis_prefix" class="layui-form-item" style="display: none">
             <label class="layui-form-label">redis前缀</label>
             <div class="layui-input-inline w200">
                 <input type="text" class="layui-input" name="redis_prefix">
             </div>
             <div class="layui-form-mid layui-word-aux">区分一台机器上多个网站的缓存</div>
         </div>
+
+
         <div class="step-btns">
             <a href="?step=2" class="layui-btn layui-btn-primary layui-btn-big fl">返回上一步</a>
             <button type="submit" class="layui-btn layui-btn-big layui-btn-normal fr" lay-submit=""
@@ -139,6 +175,51 @@
                 return false;
             }
         });
+
+        form.on('radio(Redis)', function (data) {
+            // alert(data.value);
+            if (data.value) {
+                jQuery('#redis_prefix').css('display', 'block');
+                jQuery("#cache_pwd").css('display', 'block');
+                jQuery("#cache_ip").css('display', 'block');
+                jQuery("#cache_port").css('display', 'block');
+                jQuery("input[name=cache_port]").val('6379');
+            }
+        });
+        form.on('radio(File)', function (data) {
+            // alert(data.value);
+            if (data.value) {
+                jQuery('#redis_prefix').css('display', 'none');
+                jQuery('#cache_pwd').css('display', 'none');
+                jQuery('#cache_ip').css('display', 'none');
+                jQuery('#cache_port').css('display', 'none');
+            }
+        });
+        form.on('radio(Memcached)', function (data) {
+            // alert(data.value);
+            if (data.value) {
+                jQuery('#redis_prefix').css('display', 'none');
+                jQuery("#cache_ip").css('display', 'block');
+                jQuery("#cache_port").css('display', 'block');
+                jQuery('#cache_pwd').css('display', 'none');
+                jQuery("input[name=cache_port]").val('11211');
+            }
+        });
     });
+
+    // jQuery(function () {
+    //     jQuery('#redis').on('click',function () {
+    //         jQuery('#redis_prefix').css('display','block');
+    //         console.log('1');
+    //
+    //     });
+    //     let otherCacheType = function ()
+    //     {
+    //         jQuery('#redis_prefix').css('display','none');
+    //     }
+    //     jQuery('#file').on('click',otherCacheType);
+    //     jQuery('#memcached').on('click',otherCacheType);
+    //
+    // });
 </script>
 {include file="public/footer" /}

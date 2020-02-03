@@ -5,10 +5,21 @@ namespace app\index\controller;
 use app\model\Author;
 use app\model\Banner;
 use app\model\RedisHelper;
+use think\App;
 
 class Index extends Base
 {
     protected $bookService;
+
+    public function __construct(App $app = null)
+    {
+        if (!file_exists(__DIR__ . DS . '..' . DS . '..' . DS . 'install' . DS . 'install.lock')) {
+            header("Location: /install");
+            exit;
+        }
+        parent::__construct($app);
+
+    }
 
     protected function initialize()
     {

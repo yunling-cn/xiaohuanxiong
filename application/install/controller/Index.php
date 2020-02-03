@@ -94,7 +94,14 @@ class Index extends Controller
             if (!is_writable(App::getRootPath() . 'config/database.php')) {
                 return json(['code' => 0, 'msg' => '[app/config/database.php]无读写权限！']);
             }
-            $data = $this->request->only(['hostname', 'hostport', 'database', 'username', 'prefix', 'password']);
+            $data = $this->request->only([
+                'hostname',
+                'hostport',
+                'database',
+                'username',
+                'prefix',
+                'password',
+            ]);
             $data['type'] = 'mysql';
 
             $rule = [
@@ -154,29 +161,51 @@ class Index extends Controller
      */
     private function step5()
     {
-        $param = $this->request->only(['username', 'password', 'salt', 'redis_prefix']);
+        $param = $this->request->only([
+            'username',
+            'password',
+//            'salt',
+            'redis_prefix',
+            'cache_ip',
+            'cache_port',
+            'cache_pwd',
+            'cache_type',
+
+        ]);
 
         $config = include App::getRootPath() . 'config/database.php';
         if (empty($config['hostname']) || empty($config['database']) || empty($config['username'])) {
             return json(['code' => 0, '请先点击测试数据库连接！']);
         }
 
+        $param['salt'] = generate_rand_string('6');
         $rule = [
             'username|管理员账号' => 'require|alphaNum',
             'password|管理员密码' => 'require|length:6,20',
             'salt|密码盐' => 'require|alphaNum',
             'id盐' => 'alphaNum',
-            'redis_prefix|缓存前缀' => 'require|alphaNum'
+//            'redis_prefix|缓存前缀' => 'require|alphaNum',
+//            'cache_ip|组件IP' => 'require',
+//            'cache_port|组件端口' => 'require|number',
+//            'cache_pwd|组件密码' => 'require',
+            'cache_type|缓存类型' => 'require',
         ];
 
         $validate = $this->validate($param, $rule);
         if (true !== $validate) {
             return $this->error($validate);
         }
-        $param['redis_prefix'] = $param['redis_prefix'] . ':';
+//        $param['redis_prefix'] = $param['redis_prefix'] . ':';//没搞懂加冒号干嘛
 
         $this->setSiteConfig(trim($param['salt'])); //写入网站配置文件
-        $this->setCacheConfig(trim($param['redis_prefix'])); //写入cache配置文件
+        $this->setCacheConfig([
+            'redis_prefix' => trim($param['redis_prefix']),
+            'cache_ip' => trim($param['cache_ip']),
+            'cache_port' => trim($param['cache_port']),
+            'cache_pwd' => trim($param['cache_pwd']),
+            'cache_type' => trim($param['cache_type']),
+
+        ]); //写入cache配置文件
 
         // 导入系统初始数据库结构
         // 导入SQL
@@ -220,43 +249,64 @@ class Index extends Controller
 
     private function setSiteConfig($salt)
     {
-        $site_name = config('site.site_name');
-        $url = config('site.url');
-        $img_site = config('site.img_site');
-        $api_key = config('site.api_key');
-        $code = <<<INFO
-        <?php
-        return [
-            'url' => '{$url}',
-            'img_site' => '{$img_site}',
-            'site_name' => '{$site_name}',
-            'salt' => '{$salt}',
-            'api_key' => '{$api_key}',   
+        $site_name = config('site.site_name') ? config('site.site_name') : '小浣熊漫画';
+        $url = config('site.url') ? config('site.url') : request()->param('domain');
+        $img_site = config('site.img_site') ? config('site.img_site') : $url;
+        $api_key = config('site.api_key') ? config('site.api_key') : 123456;
+        $storage = [
+            'url' => $url,
+            'img_site' => $img_site,
+            'site_name' => $site_name,
+            'salt' => $salt,
+            'api_key' => $api_key,
             'tpl' => 'default',
-            'payment' => 'Vkzf'            
-            ];
-INFO;
+            'payment' => 'Vkzf',
+        ];
+        $code = "<?php \nreturn \n" . var_export($storage, true) . ';';
+//        $code = <<<INFO
+//        <?php
+//        return [
+//            'url' => '{$url}',
+//            'img_site' => '{$img_site}',
+//            'site_name' => '{$site_name}',
+//            'salt' => '{$salt}',
+//            'api_key' => '{$api_key}',
+//            'tpl' => 'default',
+//            'payment' => 'Vkzf'
+//            ];
+//INFO;
         file_put_contents(App::getRootPath() . 'config/site.php', $code);
     }
 
-    private function setCacheConfig($redis_prefix)
+    private function setCacheConfig($data)
     {
-        $code = <<<INFO
-        <?php
-        return [
-            // 驱动方式
-            'type'   => 'redis',
-            'host' => '127.0.0.1',
-            'port' => 6379,
-            'password'   => '',
-            // 缓存保存目录
-            'path'   => '../runtime/cache/',
-            // 缓存前缀
-            'prefix' => '{$redis_prefix}',
-            // 缓存有效期 0表示永久缓存
+        $storage = [
+            'type' => $data['cache_type'] ? $data['cache_type'] : 'File',
+            'host' => $data['cache_ip'],
+            'port' => $data['cache_port'],
+            'prefix' => $data['cache_type'] == 'redis' ? $data['redis_prefix'] : '',
+            'path' => '../runtime/cache/',
+            'password' => $data['cache_type'] == 'redis' ? $data['cache_pwd'] : '',
             'expire' => 600,
+
         ];
-INFO;
+//        $code = <<<INFO
+//        <?php
+//        return [
+//            // 驱动方式
+//            'type'   => 'redis',
+//            'host' => '127.0.0.1',
+//            'port' => 6379,
+//            'password'   => '',
+//            // 缓存保存目录
+//            'path'   => '../runtime/cache/',
+//            // 缓存前缀
+//            'prefix' => '{$redis_prefix}',
+//            // 缓存有效期 0表示永久缓存
+//            'expire' => 600,
+//        ];
+//INFO;
+        $code = "<?php \nreturn \n" . var_export($storage, true) . ';';
         file_put_contents(App::getRootPath() . 'config/cache.php', $code);
     }
 

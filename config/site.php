@@ -1,11 +1,11 @@
-        <?php
-        return [
-            'url' => 'http://hm.com',
-            'img_site' => 'https://www.hm.com',
-            'site_name' => '土豪漫画',
-            'salt' => 'hanmantai',
-            'api_key' => 'abcde', 
-            'app_key' => 'sssss',
-            'tpl' => 'default',
-            'payment' => 'Default'         
-        ];
+<?php
+return
+    array(
+        'url' => 'http://mh2.cc/',
+        'img_site' => 'http://mh2.cc/',
+        'site_name' => '小浣熊漫画',
+        'salt' => '48Knra',
+        'api_key' => 123456,
+        'tpl' => 'default',
+        'payment' => 'Vkzf',
+    );

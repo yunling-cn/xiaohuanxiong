@@ -59,4 +59,10 @@ body {
     color: #ccc;
 }
 
-.w200{width:200px!important;}
+.w200 {
+    width: 200px !important;
+}
+
+.wauto {
+    width: auto !important;
+}

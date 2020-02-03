@@ -195,38 +195,65 @@
                             </form>
                         </div>
                         <div class="tabCon">
-                            <form action="/admin/index/redis" method="post" class="form form-horizontal">
+                            <form action="/admin/index/cache" method="post" class="form form-horizontal">
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3">redis地址：</label>
+                                    <label class="form-label col-xs-4 col-sm-3">缓存容器类型：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$redis_host}" name="redis_host">
+                                        <div class="skin-minimal">
+                                            <div class="radio-box">
+                                                <input name="cache_type" value="File" type="radio" id="radio-file" {if
+                                                       $cache_type== 'File'}checked{/if}>
+                                                <label for="radio-file">File</label>
+                                            </div>
+                                            <div class="radio-box">
+                                                <input name="cache_type" value="Redis" type="radio" id="radio-redis" {if
+                                                       $cache_type== 'Redis'}checked{/if}>
+                                                <label for="radio-redis">Redis</label>
+                                            </div>
+                                            <div class="radio-box">
+                                                <input name="cache_type" value="Memcached" type="radio"
+                                                       id="radio-memcached" {if $cache_type== 'Memcached'}checked{/if}>
+                                                <label for="radio-memcached">Memcached</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3">redis端口：</label>
-                                    <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$redis_port}" name="redis_port">
-                                    </div>
+                                <div class="row clearfix" id="cache_host" {if $cache_type=='File'}style="display: none
+                                "{/if}>
+                                <label class="form-label col-xs-4 col-sm-3">缓存容器地址：</label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    <input type="text" class="input-text" value="{$cache_host}" name="cache_host">
                                 </div>
+                        </div>
 
-                                <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3">redis密码：</label>
-                                    <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" class="input-text" value="{$redis_auth}" name="redis_auth"
-                                               placeholder="不设置密码请留空">
-                                    </div>
-                                </div>
+                        <div class="row clearfix" id="cache_port" {if $cache_type=='File'}style="display: none
+                        "{/if}>
+                        <label class="form-label col-xs-4 col-sm-3">缓存容器端口：</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <input type="number" class="input-text" value="{$cache_port}" name="cache_port">
+                        </div>
+                    </div>
 
-                                <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3">redis前缀：</label>
-                                    <div class="formControls col-xs-8 col-sm-9">
-                                        <input type="text" readonly="readonly" class="input-text"
-                                               value="{$redis_prefix}"
-                                               name="redis_prefix">
-                                    </div>
-                                </div>
+                    <div class="row clearfix" id="cache_pwd" {if $cache_type!='Redis' }style="display: none" {
+                    /if}>
+                    <label class="form-label col-xs-4 col-sm-3">缓存容器密码：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="{$cache_pwd}" name="cache_pwd"
+                               placeholder="不设置密码请留空">
+                    </div>
+                </div>
+
+                <div class="row clearfix" id="redis_prefix" {if $cache_type!='Redis' }style="display: none" {
+                /if}>
+                <label class="form-label col-xs-4 col-sm-3">redis前缀：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text"
+                           value="{$redis_prefix}"
+                           name="redis_prefix">
+                </div>
+            </div>
 
                                 <div class="row clearfix">
                                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -247,6 +274,46 @@
 <script>
     $(function () {
         $("#tab-system").Huitab();
-    })
+        $('.skin-minimal input').iCheck({
+            // checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+        // alert(jQuery.fn.jquery);
+    });
+
+    var cache_port_default = {$cache_port};
+
+    $('#radio-file').on('ifChecked', function () {
+        $('#cache_host').css('display', 'none');
+        $('#cache_port').css('display', 'none');
+        $('#cache_pwd').css('display', 'none');
+        $('#redis_prefix').css('display', 'none');
+
+    });
+
+    $('#radio-redis').on('ifChecked', function () {
+        $('#cache_host').css('display', 'block');
+        $('#cache_port').css('display', 'block');
+        $('#cache_pwd').css('display', 'block');
+        $('#redis_prefix').css('display', 'block');
+
+        if (cache_port_default === -1) {
+            $('input[name=cache_port]').val('6379');
+        }
+    });
+
+    $('#radio-memcached').on('ifChecked', function () {
+        $('#cache_host').css('display', 'block');
+        $('#cache_port').css('display', 'block');
+        $('#cache_pwd').css('display', 'none');
+        $('#redis_prefix').css('display', 'none');
+
+        if (cache_port_default === -1) {
+            $('input[name=cache_port]').val('11211');
+        }
+
+    });
+
 </script>
 {/block}

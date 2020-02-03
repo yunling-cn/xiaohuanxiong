@@ -37,16 +37,17 @@ class Index extends BaseAdmin
         $search_result_mobile = config('page.search_result_mobile');
         $img_per_page = config('page.img_per_page');
 
-        $redis_host = config('cache.host');
-        $redis_port = config('cache.port');
-        $redis_auth = config('cache.password');
+        $cache_type = config('cache.type');
+        $cache_host = config('cache.host');
+        $cache_port = config('cache.port');
+        $cache_pwd = config('cache.password');
         $redis_prefix = config('cache.prefix');
 
         $dirs = array();
-        $dir = new DirectoryIterator(Env::get('root_path').  'public/template/');
+        $dir = new DirectoryIterator(Env::get('root_path') . 'public/template/');
         foreach ($dir as $fileinfo) {
             if ($fileinfo->isDir() && !$fileinfo->isDot()) {
-                array_push($dirs,$fileinfo->getFilename());
+                array_push($dirs, $fileinfo->getFilename());
             }
         }
 
@@ -64,9 +65,10 @@ class Index extends BaseAdmin
             'booklist_mobile_page' => $booklist_mobile_page,
             'update_pc_page' => $update_pc_page,
             'update_mobile_page' => $update_mobile_page,
-            'redis_host' => $redis_host,
-            'redis_port' => $redis_port,
-            'redis_auth' => $redis_auth,
+            'cache_host' => $cache_host ? $cache_host : '127.0.0.1',
+            'cache_type' => $cache_type,
+            'cache_port' => $cache_port ? $cache_port : -1,
+            'cache_pwd' => $cache_pwd,
             'redis_prefix' => $redis_prefix,
             'search_result_pc' => $search_result_pc,
             'search_result_mobile' => $search_result_mobile,
@@ -105,29 +107,43 @@ INFO;
         }
     }
 
-    public function redis()
+    public function cache()
     {
         if ($this->request->isPost()) {
-            $redis_host = input('redis_host');
-            $redis_port = input('redis_port');
-            $redis_auth = input('redis_auth');
-            $redis_prefix = input('redis_prefix');
-            $cache_code = <<<INFO
-        <?php
-        return [
-            // 驱动方式
-            'type'   => 'redis',
-            'host' => '{$redis_host}',
-            'port' => {$redis_port},
-            'password'   => '{$redis_auth}',
-            // 缓存保存目录
-            'path'   => '../runtime/cache/',
-            // 缓存前缀
-            'prefix' => '{$redis_prefix}',
-            // 缓存有效期 0表示永久缓存
-            'expire' => 600,
-        ];
-INFO;
+//            $cache_host = input('redis_host');
+//            $cache_port = input('redis_port');
+//            $cache_pwd = input('redis_auth');
+//            $redis_prefix = input('redis_prefix');
+
+            $data = input();
+            $storage = [
+                'type' => $data['cache_type'] && $data['cache_host'] && $data['cache_port'] ? $data['cache_type'] : 'File',
+                'host' => $data['cache_type'] != 'File' && $data['cache_port'] ? $data['cache_host'] : '',
+                'port' => $data['cache_type'] != 'File' && $data['cache_host'] ? $data['cache_port'] : '',
+                'prefix' => $data['cache_type'] == 'Redis' ? $data['redis_prefix'] : '',
+                'path' => '../runtime/cache/',
+                'password' => $data['cache_type'] == 'Redis' ? $data['cache_pwd'] : '',
+                'expire' => 600,
+
+            ];
+            $cache_code = "<?php \nreturn \n" . var_export($storage, true) . ';';
+
+//            $cache_code = <<<INFO
+//        <?php
+//        return [
+//            // 驱动方式
+//            'type'   => 'redis',
+//            'host' => '{$cache_host}',
+//            'port' => {$cache_port},
+//            'password'   => '{$cache_pwd}',
+//            // 缓存保存目录
+//            'path'   => '../runtime/cache/',
+//            // 缓存前缀
+//            'prefix' => '{$redis_prefix}',
+//            // 缓存有效期 0表示永久缓存
+//            'expire' => 600,
+//        ];
+//INFO;
             file_put_contents(App::getRootPath() . 'config/cache.php', $cache_code);
             $this->success('修改成功');
         }
