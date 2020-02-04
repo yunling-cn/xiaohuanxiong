@@ -88,13 +88,17 @@ class Write extends Controller
                 $book->cover_url = trim($data['cover_url']);
                 $book->summary = trim($data['summary']);
                 $book->last_time = time();
-                $str = $this->convert($book->book_name); //生成标识
-                if (Book::where('unique_id','=',$str)->select()->count() > 0) { //如果已经存在相同标识
-                    $book->unique_id = md5(time() . mt_rand(1,1000000));
-                    sleep(0.1);
-                } else {
-                    $book->unique_id = $str;
-                }
+//                $str = $this->convert($book->book_name); //生成标识
+
+                $book->unique_id = $this->convert($book->book_name . $data['src_url'] . microtime(true)); //生成标识
+
+//                if (Book::where('unique_id','=',$str)->select()->count() > 0) { //如果已经存在相同标识
+//                    $book->unique_id = md5(microtime(true));
+//                    //这个暂停是干嘛
+////                    sleep(0.1);
+//                } else {
+//                    $book->unique_id = $str;
+//                }
                 $book->save();
                 $book_id = $book->id;
 

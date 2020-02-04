@@ -37,11 +37,15 @@ class Tag extends BaseAdmin
     }
 
     public function save(Request $request){
+        if (!input('?tag_name')) {
+            $this->error('分类名称不能为空');
+        }
         $tag = new Tags();
         $dir = App::getRootPath() . '/public/static/upload/tags';
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
         }
+
         $tag->tag_name = $request->param('tag_name');
         $tag->save();
 
@@ -57,8 +61,8 @@ class Tag extends BaseAdmin
 
         }
 
-
-        $this->success('添加成功');
+        //不能跳转到上一页，如果跳转到上一页会继续添加一个空白的tag，导致报错
+        $this->success('添加成功', 'index');
     }
 
     public function edit(){

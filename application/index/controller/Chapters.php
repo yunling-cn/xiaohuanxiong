@@ -77,7 +77,7 @@ class Chapters extends Base
             $book_id = $chapter->book_id;
             $chapters = cache('mulu:' . $book_id);
             if (!$chapters) {
-                $chapters = Chapter::where('book_id', '=', $book_id)->select();
+                $chapters = Chapter::where('book_id', '=', $book_id)->order('chapter_order')->select();
                 cache('mulu:' . $book_id, $chapters, null, 'redis');
             }
 
