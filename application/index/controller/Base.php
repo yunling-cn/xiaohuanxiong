@@ -13,6 +13,8 @@ use app\model\FriendshipLink;
 use think\App;
 use think\Controller;
 use think\facade\View;
+//use think\Request;
+use think\facade\Request;
 
 class Base extends Controller
 {
@@ -42,13 +44,16 @@ class Base extends Controller
         $this->prefix = config('database.prefix');
         $this->redis_prefix = config('cache.prefix');
         $this->end_point = config('seo.book_end_point');
-        $tpl_root = './template/'.config('site.tpl').'/index/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
+        //移动端和电脑端分类
         if ($this->request->isMobile()){
-            $this->tpl = $tpl_root.$controller.'/'.$action.'.html';
-        }else{
-            $this->tpl = $tpl_root.$controller.'/'.'pc_'.$action.'.html';
+            $tpl_root = './template/' . config('site.touch_front_tpl') . '/index/';
+            $this->tpl = $tpl_root . $controller . '/' . $action . '.html';
+        }else {
+
+            $tpl_root = './template/' . config('site.pc_front_tpl') . '/index/';
+            $this->tpl = $tpl_root . $controller . '/' . 'pc_' . $action . '.html';
         }
         $links = cache('friendshipLink');
         if ($links == false){
@@ -70,6 +75,7 @@ class Base extends Controller
             'rank_ctrl' => RANKCTRL,
             'update_act' => UPDATEACT,
             'author_ctrl' => AUTHORCTRL,
+            'custom_url' => Request::url(true),
             'end_point' => config('seo.book_end_point')
         ]);
     }

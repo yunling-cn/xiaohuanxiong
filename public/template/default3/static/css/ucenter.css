@@ -1,0 +1,119 @@
+
+.center-main {
+    background-color: #ec4646;
+}
+
+.center-main-info {
+    /* padding-top: 16px; */
+    position: relative;
+    overflow: hidden;
+    /* height: 84px; */
+}
+
+.center-main-info-cover {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    background-color: #fff;
+    padding: 3px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+
+.center-main-info-cover img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.center-main-list mip-img {
+    width: auto;
+}
+
+.center-main mip-img {
+    width: auto;
+}
+
+.center-main-info-right {
+    padding-left: 98px;
+}
+
+.center-main-info-title {
+    font-size: 15px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin-top: 22px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center-main-info-right-logo {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    height: 20px;
+}
+
+.center-main-list {
+    margin-top: 10px;
+    margin-bottom: 51px;
+    padding-left: 0;
+}
+
+.center-main-list li, .center-main-list-border li {
+    border-top: 1px solid #f4f4f4;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+}
+
+.center-main-list li a, .center-main-list-border li a {
+    display: block;
+}
+
+.center-main-list-logo {
+    width: 22px !important;
+    height: 22px;
+    display: inline-block !important;
+    vertical-align: top;
+    margin: 14px;
+    margin-left: 12px;
+    margin-right: 9px;
+}
+
+.center-main-list-title {
+    font-size: 16px;
+    color: #252525;
+    letter-spacing: 0;
+}
+
+.center-main-list-right {
+    height: 14px;
+    float: right;
+    margin: 18px 0;
+    margin-right: 14px;
+}
+
+.center-main-bottom-btn {
+    border-top: 1px solid #F4F4F4;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 15px;
+    color: #252525;
+    letter-spacing: 0;
+    display: block;
+    /* position: fixed; */
+    /* left: 0; */
+    /* bottom: 0; */
+    width: 100%;
+}
+
+
+p.center-main-info-tip {
+    margin-top: 0;
+}

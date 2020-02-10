@@ -26,6 +26,11 @@ function generate_rand_string($length = 8)
     return $password;
 }
 
+function datetime()
+{
+    return date('Y-m-d H:i:s', time());
+}
+
 function delete_dir_file($dir_name)
 {
     $result = false;
@@ -49,15 +54,20 @@ function delete_dir_file($dir_name)
     return $result;
 }
 
+function is_login()
+{
+    return !is_null(session('xwx_user_id'));
+}
+
 function subtext($text, $length)
 {
     $text2 = strip_tags($text);
-    if(mb_strlen($text2, 'utf8') > $length)
-        return mb_substr($text2,0,$length,'utf8');
+    if (mb_strlen($text2, 'utf8') > $length)
+        return mb_substr($text2, 0, $length, 'utf8');
     return $text2;
 }
 
-function xwxcms_substring($str, $lenth, $start=0)
+function xwxcms_substring($str, $lenth, $start = 0)
 {
     $len = strlen($str);
     $r = array();

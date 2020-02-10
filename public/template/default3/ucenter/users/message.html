@@ -1,0 +1,92 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>留言提交/查看回复 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="留言提交/查看回复 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/leavemsg.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<mip-vd-tabs current="1">
+    <section>
+        <li>留言提交</li>
+        <li>查看回复</li>
+    </section>
+    <div>
+        <mip-form method="post" url="/leavemsg" fetch-url="/leavemsg" class="text-align-center">
+            <textarea class="comment-input js_max_text_length" validatetarget="content" name="content" required
+                      placeholder="请输入您要反馈的详细内容～"></textarea>
+            <div target="content">内容不能为空</div>
+            <input class="margin-bottom-10 margin-x-auto" type="submit" value="提交">
+
+            <div submitting>
+                <template type="mip-mustache">
+                    <p>正在提交申请，请耐心等待</p>
+                </template>
+            </div>
+            <div submit-success>
+                <template type="mip-mustache">
+                    <p>{{msg}}
+                </template>
+            </div>
+            <div submit-error>
+                <template type="mip-mustache">
+                    Sorry, 请求发生了一点错误
+                </template>
+            </div>
+        </mip-form>
+    </div>
+
+    <div>
+        <mip-vd-tabs
+                type="episode"
+                toggle-more
+                toggle-label="查看回复"
+                allow-scroll
+                total="{$total}"
+                current="{$page}"
+                text-tpl="{{x}}"
+                link-tpl="/message?page={{x}}">
+        </mip-vd-tabs>
+
+        <div class="msgCon">
+            {volist name="msgs" id="vo"}
+            <div class="msgBox">
+                <dl>
+                    <dt>
+                        <mip-img src="/template/default2/static/images/mrtx.gif" width="50" height="50"></mip-img>
+                    </dt>
+                    <dd class="width-auto">我</dd>
+                    <dd class="float-right width-auto">创建时间：{$vo.create_time}</dd>
+                </dl>
+                <div class="msgTxt">{$vo.content}</div>
+                {volist name="vo.replys" id="reply"}
+                <dl>
+                    <dt>
+                        <mip-img src="/template/default2/static/images/admin.png" width="50" height="50"></mip-img>
+                    </dt>
+                    <dd>客服回复</dd>
+                </dl>
+                <div class="msgTxt">{$reply.content}</div>
+                {/volist}
+            </div>
+            {/volist}
+        </div>
+
+    </div>
+</mip-vd-tabs>
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

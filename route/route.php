@@ -57,4 +57,5 @@ Route::rule('/Sevenpaynotify','api/Sevenpaynotify/index');
 Route::rule('/login', 'ucenter/account/login');
 Route::rule('/register', 'ucenter/account/register');
 Route::rule('/logout', 'ucenter/account/logout');
+Route::rule('/getCaptcha', 'ucenter/account/getCaptcha');
 

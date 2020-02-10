@@ -3,22 +3,26 @@
 namespace app\index\controller;
 
 use app\model\Book;
+use app\model\Clicks;
 use app\model\Comments;
 use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserBook;
+use app\service\ReadHistoryService;
 use think\Db;
 use think\Request;
 
 class Books extends Base
 {
     protected $bookService;
+    protected $readHistoryService;
 
     public function initialize()
     {
         parent::initialize();
         cookie('nav_switch', 'booklist'); //设置导航菜单active
         $this->bookService = new \app\service\BookService();
+        $this->readHistoryService = new ReadHistoryService();
     }
 
     public function index()
@@ -38,7 +42,7 @@ class Books extends Base
                 }])->where('unique_id','=', $id)->find();
             }
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             $tags = [];
             if (!empty($book->tags) || is_null($book->tags)) {
@@ -47,10 +51,31 @@ class Books extends Base
             cache('book:' . $id, $book, null, 'redis');
             cache('tags:book:' . $id, $tags, null, 'redis');
         }
+//        var_dump($book);exit();
+        //弃用Redis
+        /*
         $redis = RedisHelper::GetInstance();
         $day = date("Y-m-d", time());
         //以当前日期为键，增加点击数
-        $redis->zIncrBy('click:' . $day, 1, $book->id);
+        $redis->zIncrBy('click:' . $day, 1, $book->id);*/
+
+        $clicks = Clicks::get(['book_id' => $book->id]);
+//        var_dump(!$clicks);
+        if ($clicks) {
+            cache('bookClicks:' . $book->id, intval($clicks->clicks + 1));
+            $clicks->clicks = ['inc', 1];
+            $clicks->save();//exit();
+
+        } else {
+            $clicks = new Clicks();
+            $clicks->save([
+                'clicks' => 1,
+                'book_id' => $book->id,
+                'cdate' => date("Y-m-d", time()),
+            ]);
+            cache('bookClicks:' . $book->id, 1);
+//            var_dump($r);
+        }
 
         $hot_books = cache('hotBooks'); //总点击
         if (!$hot_books) {
@@ -101,6 +126,11 @@ class Books extends Base
             if (!is_null($userfavor)) { //未收藏本漫画
                 $isfavor = 1;
             }
+        }
+
+        //添加历史
+        if ($this->uid) {
+            $this->readHistoryService->addBook($this->uid, $book->id);
         }
 
         $start_pay = cache('maxChapterOrder:' . $book->id);
@@ -205,7 +235,12 @@ class Books extends Base
         unset($data['page']['query']['page']);
         $param = '';
         foreach ($data['page']['query'] as $k => $v) {
+//            if ($this->request -> isMobile() && )
+//            {
+//
+//            }
             $param .= '&' . $k . '=' . $v;
+
         }
         $this->assign([
             'books' => $data['books'],
@@ -228,14 +263,14 @@ class Books extends Base
     {
         if ($this->request->isPost()) {
             if (is_null($this->uid)) {
-                return ['err' => 1, 'msg' => '用户未登录'];
+                return json(['err' => 1, 'msg' => '用户未登录', 'status' => 0]);
             }
-            $redis = RedisHelper::GetInstance();
-            if ($redis->exists('favor_lock:' . $this->uid)) { //如果存在锁
-                return ['err' => 1, 'msg' => '操作太频繁'];
+//            $redis = RedisHelper::GetInstance();
+            if (cache('favor_lock:' . $this->uid)) { //如果存在锁
+                return json(['err' => 1, 'msg' => '操作太频繁', 'status' => 0]);
             } else {
-                $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
-
+//                $redis->set('favor_lock:' . $this->uid, 1, 3); //写入锁
+                cache('favor_lock:' . $this->uid, 1, 3);
                 $val = input('val');
                 $book_id = input('book_id');
 
@@ -255,13 +290,13 @@ class Books extends Base
                 }
             }
         }
-        return ['err' => 1, 'msg' => '不是post请求'];
+        return json(['err' => 1, 'msg' => '不是post请求', 'status' => 0]);
     }
 
     public function update()
     {
         $update_pc_page = config('page.update_pc_page');
-        $update_mobile_page = config('update_mobile_page');
+        $update_mobile_page = config('page.update_mobile_page');
         $date = input('date');
         $day = input('day');
         if (empty($date)) {
@@ -269,20 +304,44 @@ class Books extends Base
         } else {
             $time = strtotime($date);
         }
-        $where[] = ['last_time' , '>=', $time];
-        $data = $this->bookService->getPagedBooks('last_time', $where, $update_pc_page, $update_mobile_page);
+        $where[] = ['last_time', '>=', $time];
+        $data = $this->bookService->getPagedBooks('last_time', $where, $update_pc_page, $update_mobile_page, input('page'));
         unset($data['page']['query']['page']);
         $param = '';
         foreach ($data['page']['query'] as $k => $v) {
             $param .= '&' . $k . '=' . $v;
         }
+//        trace($data['books']);
+//        trace($data['page']);
+//        trace($param);
         $this->assign([
             'books' => $data['books'],
             'page' => $data['page'],
             'param' => $param,
             'day' => $day == null ? -1 : $day,
-            'header_title' => '更新',
+            'header_title' => '漫画更新榜',
         ]);
+
+        //解决MIP版不能用js生成日期
+        if ($this->request->isMobile()) {
+            $weekarray = array("周日", "周一", "周二", "周三", "周四", "周五", "周六");
+            $week = [];
+            if (date('w') != 0) {
+                $week[] = $weekarray[date('w')];
+                $temp = array_slice($weekarray, date('w') + 1, -1);
+                foreach ($temp as $item) {
+                    $week[] = $item;
+                }
+                $temp = array_slice($weekarray, date('w') - 1, 0);
+                foreach ($temp as $item) {
+                    $week[] = $item;
+                }
+            } else {
+                $week = $weekarray;
+            }
+//            trace($week);
+            $this->assign('mobile_date', $week);
+        }
         return view($this->tpl);
     }
 

@@ -26,6 +26,7 @@ class UserService extends Base
                 'type' => $type,
                 'var_page' => 'page',
             ]);
+//        trace($books -> total());
         foreach ($books as &$book) {
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];

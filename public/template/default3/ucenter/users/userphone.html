@@ -1,0 +1,43 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>管理手机 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="管理手机 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/template/default3/static/css/account.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/ucenter.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;微信公众号搜索“<span class="red">奇妙漫画</span>”关注更新</span>
+</div>
+
+<div class="line-container">
+    <p class="input-con-tip2">如需更换手机请进行下一步</p>
+    <p class="input-con-phone">手机号：{$user.mobile}</p>
+    <div class="input-con">
+        <span class="input-con-title">短信验证码</span>
+        <input id="txt_phonecode" name="txt_phonecode" type="text" placeholder="输入短信验证码" value="">
+        <a href="javascript:void(0);" isok="1" class="input-con-code btnphonecodeget">发送验证码</a>
+        <input type="hidden" id="txt_phone" class="txt_phone" name="txt_phone" value="{$user.mobile}">
+        <input type="hidden" id="txt_areacode" class="txt_areacode" name="txt_areacode" value="86"></div>
+</div>
+<a id="sub1" class="line-container-btn">下一步</a>
+<div class="toast" style="display: none;"></div>
+<script src="/template/default3/static/js/phone.js"></script>
+
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

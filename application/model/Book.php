@@ -65,4 +65,5 @@ class Book extends Model
         return trim($value);
     }
 
+
 }

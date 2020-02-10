@@ -1,0 +1,75 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>vip - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="vip - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/template/default3/static/css/account.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;VIP兑换</span>
+</div>
+
+<mip-data id="captcha" scope>
+    <script type="application/json">
+        {
+            "src": "/captcha"
+        }
+    </script>
+</mip-data>
+
+<mip-form method="post" url="/vipexchange" fetch-url="/vipexchange" class="margin-0-10">
+
+    <input class="form-input" type="text" name="code" validatetarget="code" required placeholder="输入兑换码">
+    <div target="code">兑换码不能为空</div>
+
+    <input class="margin-top-5 form-input" type="text" name="captcha" validatetarget="captcha" required
+           placeholder="验证码">
+    <div target="captcha">验证码不能为空</div>
+
+    <mip-img m-bind:src="captcha.src" class="margin-top-5 " src="{:captcha_src()}"></mip-img>
+
+    <input on='
+        tap:MIP.setData({
+            "captcha":{
+                "src":"/captcha?rnd="+Math.random() * 256
+                }
+            })' class="display-inline-block margin-top-5  float-right" type="button" value="看不清换一张">
+
+    <input class="display-inline-block margin-top-5" type="submit" value="立即兑换">
+
+    <div submitting>
+        <template type="mip-mustache">
+            <p>正在提交申请，请耐心等待</p>
+        </template>
+    </div>
+    <div submit-success>
+        <template type="mip-mustache">
+            {{msg}}
+            {{#success}}
+            <a href="/ucenter" data-type="mip">点我跳转</a>
+            {{/success}}
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Sorry, 请求发生了一点错误
+        </template>
+    </div>
+</mip-form>
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+{/block}

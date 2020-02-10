@@ -1,0 +1,244 @@
+{extend name="./template/default3/pub/base.html" /}
+
+{block name="seo"}
+<title>{:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="{:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/home_top.html"}
+<div class="landing-row row--split">
+    <div class="row-item">
+        <a data-type="mip" title="排行" href="/{$rank_ctrl}">
+            <i class="sprite-index-rank icon">&nbsp;</i>
+            <div class="plain-text">排行</div>
+        </a>
+    </div>
+    <div class="row-item">
+        <a data-type="mip" title="分类" href="/{$search_ctrl}">
+            <i class="sprite-index-category icon"></i>
+            <div class="plain-text">分类</div>
+        </a>
+    </div>
+    <div class="row-item">
+        <a data-type="mip" title="更新" href="/{$update_act}">
+            <i class="sprite-index-update icon"></i>
+            <div class="plain-text">更新</div>
+        </a>
+    </div>
+    <div class="row-item">
+        <a data-type="mip" title="历史" href="/bookshelf">
+            <i class="sprite-index-jp icon"></i>
+            <div class="plain-text">历史</div>
+        </a>
+    </div>
+</div>
+
+<!--万人追更-->
+<div class="manList">
+    <div class="titleBar">
+        <mip-img layout="container" class="dc"
+                 src="https://mh1.zhengdongwuye.cn/muban/mip/images/index_title_1.png"></mip-img>
+        <h2 class="title">万人追更</h2>
+        <a data-type="mip" href="/{$booklist_act}?end=0" class="other d-fr" title="万人追更"> <span>更多</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+        {volist name="newest" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                    <span class="tip">{$vo.author_name}</span>
+                </div>
+            </a>
+            <p class="d-nowrap"><a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+
+    </ul>
+</div>
+
+<!--最热漫画-->
+<div class="manList">
+    <div class="titleBar">
+        <mip-img layout="container" class="dc"
+                 src="https://mh1.zhengdongwuye.cn/muban/mip/images/index_title_2.png"></mip-img>
+        <h2 class="title">最热漫画</h2>
+        <a data-type="mip" href="/{$booklist_act}" class="other d-fr" title="最新更新">
+            <span>更多</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+        {volist name="hot" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                    <span class="tip">{$vo.author_name}</span>
+                </div>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+
+    </ul>
+</div>
+
+
+<!--完结优选-->
+<div class="manList">
+    <div class="titleBar">
+        <mip-img layout="container" class="dc"
+                 src="https://mh1.zhengdongwuye.cn/muban/mip/images/index_title_5.png"></mip-img>
+        <h2 class="title">完结优选</h2>
+        <a data-type="mip" href="/{$rank_ctrl}?end=0" class="other d-fr" title="完结优选">
+            <span>更多</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+        {volist name="ends" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/douluodaliu/" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                    <span class="tip">{$vo.author_name}</span>
+                </div>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+
+    </ul>
+</div>
+
+
+<!-- 自定义列表 -->
+{volist name="catelist" id="cateItem"}
+{in name="$cateItem.tag.id" value="1,2"} <!-- value里的数字是后台分类ID，填哪几个数字就展示哪几个分类 -->
+<div class="manList">
+    <div class="titleBar">
+        <mip-img layout="container" class="dc"
+                 src="https://mh1.zhengdongwuye.cn/muban/mip/images/index_title_4.png"></mip-img>
+        <h2 class="title">{$cateItem.tag.tag_name}</h2>
+        <a data-type="mip" href="/{$booklist_act}?tag={$cateItem.tag.tag_name}" class="other d-fr"
+           title="{$cateItem.tag.tag_name}">
+            <span>更多</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+        {volist name="cateItem.books" id="vo" offset="0" length="3"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                </div>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+
+    </ul>
+</div>
+{/in}
+{/volist}
+
+{/*
+<!--最新上架-->
+<div class="manList">
+    <div class="titleBar">
+        <mip-img layout="container" class="dc"
+                 src="https://mh1.zhengdongwuye.cn/muban/mip/images/index_title_6.png"></mip-img>
+        <h2 class="title">最新上架</h2>
+        <a data-type="mip" href="/f-1------updatetime--1.html" class="other d-fr" title="最新上架">
+            <span>更多</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/mingrixieyoulougeji/" title="明日叶友娄合集">
+                <div class="container">
+                    <mip-img layout="fill" src="https://mh1.zhengdongwuye.cn/pic/manhua/images/804616202022.jpg"
+                             alt="明日叶友娄合集"></mip-img>
+                </div>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/mingrixieyoulougeji/" title="明日叶友娄合集">明日叶友娄合集</a>
+            </p>
+        </li>
+
+
+    </ul>
+</div>
+*/}
+
+<!--排行榜-->
+<div class="rankList">
+    <div class="titleBar">
+        <span class="top d-fl">TOP10</span>
+        <a data-type="mip" href="/{$rank_ctrl}" class="other d-fr" title="排行榜">
+            <span>更多排行榜</span>
+            <mip-img layout="container" class="dc"
+                     src="https://mh1.zhengdongwuye.cn/muban/mip/images/arrow_right.png"></mip-img>
+        </a>
+    </div>
+    <ul class="list">
+
+        {volist name="hot" id="vo" offset="0" length="10"}
+        <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+            <li class="d-item">
+                <mip-img layout="responsive" class="cover" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+
+                {if $i == 1}
+                <mip-img layout="container" class="dc topLogo"
+                         src="https://mh1.zhengdongwuye.cn/muban/mip/images/top_logo_1.png"></mip-img>
+                {elseif $i == 2 /}
+                <mip-img layout="container" class="dc topLogo"
+                         src="https://mh1.zhengdongwuye.cn/muban/mip/images/top_logo_2.png"></mip-img>
+                {elseif $i == 3 /}
+                <mip-img layout="container" class="dc topLogo"
+                         src="https://mh1.zhengdongwuye.cn/muban/mip/images/top_logo_3.png"></mip-img>
+                {else /}
+                <mip-img layout="container" class="dc topLogo"
+                         src="https://mh1.zhengdongwuye.cn/muban/mip/images/top_logo_4.png"></mip-img>
+                {/if}
+
+                <span class="topNum">{$i}</span>
+                <div class="info d-item-content"><p class="title d-nowrap">{$vo.book_name}</p>
+                    <p class="subtitle">{$vo.summary}</p>
+                    <p class="bottom">
+                        <span class="d-nowrap">{:str_replace('|',' ',$vo.tags)}</span>
+                    </p>
+                    <span class="score">10.0分</span>
+                </div>
+            </li>
+        </a>
+        {/volist}
+
+    </ul>
+</div>
+
+{/block}
+
+

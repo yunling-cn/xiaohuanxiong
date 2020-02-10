@@ -22,11 +22,19 @@ class User extends Model
         return trim($value);
     }
 
-    public function setPasswordAttr($value){
-        return md5(strtolower(trim($value)).config('site.salt'));
+    public function setPasswordAttr($value)
+    {
+        return md5(strtolower(trim($value)) . config('site.salt'));
     }
 
-    public function books(){
-        return $this->belongsToMany('Book','\\app\\model\\UserBook');
+    public function books()
+    {
+        return $this->belongsToMany('Book', '\\app\\model\\UserBook');
+    }
+
+    //TODO:未开发完
+    public function history()
+    {
+        return $this->belongsToMany('Book', '\\app\\model\\UserHistory');
     }
 }

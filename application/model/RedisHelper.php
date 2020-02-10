@@ -2,7 +2,7 @@
 
 
 namespace app\model;
-
+//use think\cache\driver\Redis;
 
 class RedisHelper
 {

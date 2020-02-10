@@ -1,0 +1,92 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>用户注册 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="用户注册 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/template/default3/static/css/account.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;{$mobile_bind_rewards}</span>
+</div>
+
+<mip-data id="captcha_src" scope>
+    <script type="application/json">
+        {
+            "data_src": "/captcha"
+        }
+    </script>
+</mip-data>
+
+<mip-form method="post" url="/register" fetch-url="/register" class="margin-0-10">
+
+    <input class="form-input" type="text" name="username" validatetarget="username" required placeholder="用户名"
+           autocomplete="off">
+    <div target="username">用户名</div>
+
+    <input class="margin-top-5 form-input" type="password" name="password" validatetarget="password" required
+           placeholder="密码" autocomplete="off">
+    <div target="password">密码不能为空</div>
+
+    <input class="margin-top-5 form-input" type="password" name="password2" validatetarget="password2" required
+           placeholder="确认密码" autocomplete="off">
+    <div target="password2">确认密码不能为空</div>
+
+    <input class="margin-top-5 form-input" type="text" name="captcha" validatetarget="captcha" required
+           placeholder="验证码" autocomplete="off">
+    <div target="captcha">验证码不能为空</div>
+
+    <mip-img on='
+        tap:MIP.setData({
+            "captcha_src":{
+                "data_src":"/captcha?rnd="+Math.random() * 256
+                }
+            })' m-bind:src="captcha_src.data_src" class="margin-top-5 " src="{:captcha_src()}"></mip-img>
+
+    <input on='
+        tap:MIP.setData({
+            "captcha_src":{
+                "data_src":"/captcha?rnd="+Math.random() * 256
+                }
+            })' class="display-inline-block margin-top-5  float-right" type="button" value="看不清换一张">
+
+    <input class="display-inline-block margin-top-5" type="submit" value="登录">
+
+    <div submitting>
+        <template type="mip-mustache">
+            <p>正在提交申请，请耐心等待</p>
+        </template>
+    </div>
+    <div submit-success>
+        <template type="mip-mustache">
+            {{msg}}
+            {{#success}}
+            <a href="/ucenter" data-type="mip">点我跳转</a>
+            {{/success}}
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Sorry, 请求发生了一点错误
+        </template>
+    </div>
+</mip-form>
+<div class="line-tip margin-0-10 width-95 margin-top-5">
+    <a data-type="mip" href="/login">直接登录</a>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+{/block}

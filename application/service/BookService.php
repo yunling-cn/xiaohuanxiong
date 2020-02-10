@@ -16,18 +16,36 @@ use think\Db;
 
 class BookService extends Base
 {
-    public function getPagedBooks($order = 'id', $where = '1=1', $pc_page, $mobile_page)
+    public function getPagedBooks($order = 'id', $where = '1=1', $pc_page = 10, $mobile_page = 6, $current_page = false)
     {
         $num = $pc_page;
         if ($this->request->isMobile()) {
             $num = $mobile_page;
         }
-        $data = Book::where($where)->with('chapters')->order($order, 'desc')
-            ->paginate($num, false);
+        $data = Book::where($where)->with('chapters')->order($order, 'desc');
+//        if (!$current_page)
+//        {
+//            $data = $data->paginate($num, false,[
+//                'page' => $current_page
+//            ]);
+//        }
+//        else
+//        {
+//            $data = $data -> page($num,$current_page) -> select();
+//        }
+        if ($current_page !== false) {
+            $data = $data->paginate($num, false, [
+                'page' => $current_page
+            ]);
+        } else {
+            $data = $data->paginate($num, false);
+        }
+
+
         foreach ($data as &$book) {
             $book['chapter_count'] = count($book->chapters);
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];
@@ -70,15 +88,28 @@ class BookService extends Base
         ];
     }
 
-    public function getBooks($order = 'last_time', $where = '1=1', $num = 6)
+    public function getBooks($order = 'last_time', $where = '1=1', $num = 6, $page = false)
     {
-        $books = Book::where($where)->with('author,chapters')
-            ->limit($num)->order($order, 'desc')->select();
+        $books = Book::where($where)
+            ->with('author,chapters')
+            ->order($order, 'desc');
+        if ($page !== false) {
+            $books = $books->page($page, $num);
+        } else {
+            $books = $books->limit($num);
+        }
+
+//        dump($page);
+//        dump($num);
+//        dump($books -> fetchSql(true) -> select());
+//        exit();
+
+        $books = $books->select();
         foreach ($books as &$book) {
             $book['chapter_count'] = count($book->chapters);
             $book['taglist'] = explode('|', $book->tags);
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];
@@ -101,7 +132,7 @@ class BookService extends Base
                 $book['taglist'] = explode('|', $item['book']['tags']);
                 $item['book'] = $book;
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
                 if ($this->end_point == 'id') {
                     $book['param'] = $book['id'];
@@ -141,7 +172,7 @@ class BookService extends Base
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];
@@ -163,7 +194,7 @@ class BookService extends Base
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];
@@ -184,7 +215,7 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
         foreach ($books as &$book) {
             $book['chapter_count'] = Chapter::where('book_id', '=', $book['id'])->count();
             if (empty($book['cover_url'])) {
-                $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
             }
             if ($this->end_point == 'id') {
                 $book['param'] = $book['id'];
@@ -219,7 +250,7 @@ FROM ' . $this->prefix . 'book AS ad1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(i
                 $book['taglist'] = explode('|', $book->tags);
                 $book['clicks'] = $val['clicks'];
                 if (empty($book['cover_url'])) {
-                    $book['cover_url'] = $this->img_site.'/static/upload/book/'.$book['id'].'/cover.jpg';
+                    $book['cover_url'] = $this->img_site . '/static/upload/book/' . $book['id'] . '/cover.jpg';
                 }
                 if ($this->end_point == 'id') {
                     $book['param'] = $book['id'];

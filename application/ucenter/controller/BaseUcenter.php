@@ -43,13 +43,14 @@ class BaseUcenter extends Controller
         $this->redis_prefix = config('cache.prefix');
         $this->prefix = config('database.prefix');
         $this->end_point = config('seo.book_end_point');
-        $tpl_root = './template/default/ucenter/';
         $controller = strtolower($this->request->controller());
         $action = strtolower($this->request->action());
         if ($this->request->isMobile()){
-            $this->tpl = $tpl_root.$controller.'/'.$action.'.html';
+            $tpl_root = './template/' . config('site.touch_front_tpl') . '/ucenter/';
+            $this->tpl = $tpl_root . $controller . '/' . $action . '.html';
         }else{
-            $this->tpl = $tpl_root.$controller.'/'.'pc_'.$action.'.html';
+            $tpl_root = './template/' . config('site.pc_front_tpl') . '/ucenter/';
+            $this->tpl = $tpl_root . $controller . '/' . 'pc_' . $action . '.html';
         }
 
 

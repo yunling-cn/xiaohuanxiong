@@ -1,0 +1,80 @@
+.buy-manga {
+    /* margin-top: 10px; */
+    border-top: 1px solid #F4F4F4;
+    border-bottom: 1px solid #F4F4F4;
+    height: 136px;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+
+.buy-manga-cover {
+    height: 109px;
+    width: 81px;
+    padding: 3px;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+    position: absolute;
+}
+
+.buy-manga-cover img {
+    height: 100%;
+    width: 100%;
+}
+
+.buy-manga-info {
+    padding-left: 97px;
+}
+
+.buy-manga-author {
+    font-size: 13px;
+    color: #666666;
+    letter-spacing: 0;
+    margin-top: 10px;
+    padding-right: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+}
+
+.buy-manga-title {
+    font-size: 15px;
+    color: #252525;
+    letter-spacing: 0;
+    font-weight: bold;
+    margin-top: 19px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buy-manga-new {
+    font-size: 13px;
+    color: #FD113A;
+    letter-spacing: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.buy-manga-right {
+    font-size: 13px;
+    color: #999999;
+    position: absolute;
+    top: 50px;
+    right: 7px;
+    line-height: 35px;
+    width: 94px;
+    height: 35px;
+    border-radius: 2px;
+    border: 1px solid #F4F4F4;
+    text-align: center;
+}
+
+.buy-manga-right.active {
+    color: #fff;
+    background-color: #FD113A;
+    border: 1px solid #FD113A;
+}

@@ -10,11 +10,13 @@ namespace app\ucenter\controller;
 
 use app\model\Comments;
 use app\model\Message;
+use app\model\ReadHistory;
 use app\model\RedisHelper;
 use app\model\User;
 use app\model\UserFinance;
 use app\service\FinanceService;
 use app\service\PromotionService;
+use app\service\ReadHistoryService;
 use app\service\UserService;
 use think\facade\Cache;
 use think\facade\Validate;
@@ -25,6 +27,7 @@ class Users extends BaseUcenter
     protected $userService;
     protected $financeService;
     protected $promotionService;
+    protected $readHistoryService;
 
     protected function initialize()
     {
@@ -32,14 +35,19 @@ class Users extends BaseUcenter
         $this->userService = new UserService();
         $this->financeService = new FinanceService();
         $this->promotionService = new PromotionService();
+        $this->readHistoryService = new ReadHistoryService();
     }
 
     public function bookshelf()
     {
         $favors = $this->userService->getFavors($this->uid);
+        trace($favors);
+//        trace($favors -> lastPage());
         $this->assign([
             'favors' => $favors,
-            'header_title' => '我的收藏'
+            'favors_arr' => $favors->toArray(),
+//            'total' => $favors -> total(),
+            'header_title' => '我的收藏',
         ]);
         return view($this->tpl);
     }
@@ -57,15 +65,27 @@ class Users extends BaseUcenter
     
     public function history()
     {
-        $redis = RedisHelper::GetInstance();
-        $vals = $redis->hVals($this->redis_prefix . ':history:' . $this->uid);
-        $books = array();
-        foreach ($vals as $val) {
-            $books[] = json_decode($val, true);
-        }
+//        $redis = RedisHelper::GetInstance();
+//        $vals = $redis->hVals($this->redis_prefix . ':history:' . $this->uid);
+//        $books = \cache('history:'.$this->uid);
+//        if (empty($books))
+//        {
+//            $books = $this->readHistoryService -> getBooksByUid($this->uid);
+//        }
+//        else
+//        {
+//            $books = json_decode($books,true);
+//        }
+        $page = input('page') ? input('page') : 1;
+        $books = $this->readHistoryService->getBooksByUid($this->uid, $page, 3);
+        trace($books);
+//        $books = array();
+//        foreach ($vals as $val) {
+//            $books[] = json_decode($val, true);
+//        }
         $this->assign([
             'books' => $books,
-            'header_title' => '阅读历史'
+            'header_title' => '阅读历史',
         ]);
         return view($this->tpl);
     }
@@ -121,7 +141,7 @@ class Users extends BaseUcenter
     public function bindphone()
     {
         $user = User::get($this->uid);
-        $redis = RedisHelper::GetInstance();
+//        $redis = RedisHelper::GetInstance();
         if ($this->request->isPost()) {
             $code = trim(input('txt_phonecode'));
             $phone = trim(input('txt_phone'));
@@ -161,7 +181,7 @@ class Users extends BaseUcenter
 
         //如果用户手机已经存在，并且没有进行修改手机验证，也就是没有解锁缓存
         if (!empty($user->mobile)) {
-            if (!$redis->exists($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid)) {
+            if (!\cache('xwx_mobile_unlock:' . $this->uid)) {
                 $this->redirect('/userphone'); //则重定向至手机信息页
             }
         }
@@ -200,8 +220,9 @@ class Users extends BaseUcenter
         if ($result['status'] == 0) { //如果发送成功
             session('xwx_sms_code', $code); //写入session
             session('xwx_cms_phone', $phone);
-            $redis = RedisHelper::GetInstance();
-            $redis->set($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid, 1, 300); //设置解锁缓存，让用户可以更改手机
+//            $redis = RedisHelper::GetInstance();
+//            $redis->set($this->redis_prefix . ':xwx_mobile_unlock:' . $this->uid, 1, 300); //设置解锁缓存，让用户可以更改手机
+            \cache('xwx_mobile_unlock:' . $this->uid, 1, 300);
         }
         return ['msg' => $result['msg']];
     }
@@ -220,6 +241,17 @@ class Users extends BaseUcenter
     {
         if ($this->request->isPost()) {
             $pwd = input('password');
+
+            //兼容MIP模板
+            if ($this->request->isMobile()) {
+                if (input('txt_password') != input('txt_password2') && input('?txt_password') && input('?txt_password2')) {
+                    return json(['status' => 0, 'msg' => '两次输入的密码不一样']);
+                } else {
+                    $pwd = input('txt_password');
+                }
+            }
+
+
             $validate = new \think\Validate;
             $validate->rule('password', 'require|min:6|max:21');
 
@@ -227,12 +259,12 @@ class Users extends BaseUcenter
                 'password' => $pwd,
             ];
             if (!$validate->check($data)) {
-                return ['msg' => '密码在6到21位之间', 'err' => 1];
+                return json(['msg' => '密码在6到21位之间', 'err' => 1, 'status' => 0]);
             }
             $user = User::get($this->uid);
             $user->password = $pwd;
             $user->isUpdate(true)->save();
-            return ['msg' => '修改成功', 'err' => 0];
+            return json(['msg' => '修改成功', 'err' => 0, 'status' => 0]);
         }
         $this->assign([
             'header_title' => '修改密码'
@@ -243,9 +275,9 @@ class Users extends BaseUcenter
     public function commentadd()
     {
         $book_id = input('book_id');
-        $redis = RedisHelper::GetInstance();
-        if ($redis->exists('comment_lock:' . $this->uid)) {
-            return json(['msg' => '每10秒只能评论一次', 'err' => 1]);
+//        $redis = RedisHelper::GetInstance();
+        if (time() - \cache('comment_lock:' . $this->uid) <= 10) {
+            return json(['msg' => '每10秒只能评论一次', 'err' => 1, 'status' => 0]);
         } else {
             $comment = new Comments();
             $comment->user_id = $this->uid;
@@ -253,16 +285,17 @@ class Users extends BaseUcenter
             $comment->content = strip_tags(input('comment'));
             $result = $comment->save();
             if ($result) {
-                $redis->set('comment_lock:' . $this->uid, 1, 10); //加10秒锁
+//                $redis->set('comment_lock:' . $this->uid, 1, 10); //加10秒锁
+                \cache('comment_lock:' . $this->uid, time());
 //                $dir = App::getRootPath() . 'public/static/upload/comments/' . $book_id;
 //                if (!file_exists($dir)) {
 //                    mkdir($dir, 0777, true);
 //                }
 //                file_put_contents($dir . '/' . $comment->id . '.txt', $content);
                 cache('comments:' . $book_id, null);
-                return json(['msg' => '评论成功', 'err' => 0]);
+                return json(['msg' => '评论成功', 'err' => 0, 'status' => 0]);
             } else {
-                return json(['msg' => '评论失败', 'err' => 1]);
+                return json(['msg' => '评论失败', 'err' => 1, 'status' => 0]);
             }
         }
     }
@@ -283,13 +316,17 @@ class Users extends BaseUcenter
 //                }
 //                $savename = $dir . 'msg.txt';
 //                file_put_contents($savename, $content);
-                return ['err' => 0, 'msg' => '留言成功'];
+                return json(['err' => 0, 'msg' => '留言成功', 'status' => 0]);
             } else {
-                return ['err' => 1, 'msg' => '留言失败'];
+                return json(['err' => 1, 'msg' => '留言失败', 'status' => 0]);
             }
         }
-        $this->assign('header_title', '留言反馈');
-        return view($this->tpl);
+        if ($this->request->isMobile()) {
+            return $this->message();
+        } else {
+            $this->assign('header_title', '留言反馈');
+            return view($this->tpl);
+        }
     }
 
     public function message()
@@ -319,10 +356,14 @@ class Users extends BaseUcenter
 //                $reply['content'] = file_get_contents($dir . $reply->id . '.txt');
 //            }
         });
-
+        $total = Message::where($map)->count();
+//        trace(__FUNCTION__);
         $this->assign([
             'msgs' => $msgs,
-            'header_title' => '查看回复'
+            'header_title' => '查看回复',
+            'total' => $total,
+            'page' => input('page'),
+            'current' => $this->request->action() == __FUNCTION__ ? 1 : 0,
         ]);
         return view($this->tpl);
     }

@@ -1,0 +1,47 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>购买记录 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="购买记录 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/ucenter.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/buyhistory.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <a data-type="mip" class="am-icon-info-circle d-fl" href="/spendinghistory">&nbsp;&nbsp;消费记录</a>
+    <a class="float-right " data-type="mip" href="/chargeHistory">充值记录</a>
+</div>
+
+{volist name="buys" id="vo"}
+<div class="buy-manga">
+    <div class="buy-manga-cover">
+        <a data-type="mip" href="/{$book_ctrl}/{$vo.book.param}">
+            {if empty($vo.cover_url)}
+            <mip-img src="{$img_site}/static/upload/book/{$vo.book_id}/cover.jpg"></mip-img>
+            {else /}
+            <mip-img src="{$vo.cover_url}"></mip-img>
+            {/if}
+        </a>
+    </div>
+    <div class="buy-manga-info">
+        <a data-type="mip" href="/{$book_ctrl}/{$vo.book.param}">
+            <p class="buy-manga-title">{$vo.chapter.book.book_name}</p>
+        </a>
+        <p class="buy-manga-author">购买时间：{$vo.create_time|date='Y-m-d'}</p>
+        <a data-type="mip" href="/{$chapter_ctrl}/{$vo.chapter_id}">
+            <p class="buy-manga-new">{$vo.chapter.chapter_name}</p>
+        </a>
+        <a data-type="mip" href="/{$chapter_ctrl}/{$vo.chapter_id}" class="buy-manga-right  active"> 点击阅读 </a>
+    </div>
+</div>
+{/volist}
+
+{/block}

@@ -1,0 +1,108 @@
+.wallet-main {
+    margin-top: 10px;
+    border-top: 1px solid #F4F4F4;
+    border-bottom: 1px solid #F4F4F4;
+    padding: 15px 20px;
+    background-color: #fff;
+}
+
+.wallet-main-coin {
+    overflow: hidden;
+    /* padding-top: 30px; */
+}
+
+.color-red {
+    color: red !important;
+}
+
+.wallet-main-coin-left {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.wallet-main-coin-title {
+    font-size: 15px;
+    color: #666666;
+    letter-spacing: 0;
+}
+
+.wallet-main-coin-right {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+
+.wallet-main-coin-value {
+    font-size: 20px;
+    color: #252525;
+    letter-spacing: 0;
+}
+
+.wallet-main-coin-btn {
+    background: #FD113A;
+    border-radius: 2px;
+    font-size: 15px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    display: block;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    margin-top: 14px;
+}
+
+#copy-text-mip-toggle {
+    display: none;
+}
+
+#copy-text-mip-toggle input {
+    width: 100%;
+}
+
+.copy-btns:hover {
+    color: #FFFFFF;
+}
+
+input#copy-text {
+    /*visibility: hidden;*/
+    display: none;
+}
+
+.wallet-main > ol {
+    /* padding: 0 21px; */
+    list-style: cjk-ideographic;
+}
+
+.wallet-menu {
+    margin-top: 10px;
+    border-bottom: 1px solid #f7f7f7;
+    background-color: #fff;
+}
+
+.wallet-menu-item {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    font-size: 16px;
+    color: #252525;
+    letter-spacing: 0;
+    border-top: 1px solid #f7f7f7;
+    padding: 0 10px;
+}
+
+.wallet-menu-arrow img {
+    float: right;
+    height: 14px;
+    margin-top: 18px;
+    display: inline-block;
+}
+
+
+.wallet-menu-arrow {
+    display: inline-block;
+    width: auto;
+    float: right;
+}

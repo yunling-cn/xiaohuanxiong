@@ -1,10 +1,585 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="1、加File缓存、Memcached缓存支持，支持切换缓存类型&#10;2、分离缓存设置&#10;3、默认添加采集数据表&#10;4、添加不传递referer的标签">
-      <change beforePath="$PROJECT_DIR$/.idea/hanman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hanman.iml" afterDir="false" />
+    <list default="true" id="7e28971b-6d16-47ff-83e3-4ccc7a041382" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/model/Booklogs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/model/HotSearch.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/model/ReadHistory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/service/ReadHistoryService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/booklist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/pc_booklist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/pc_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/pc_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/books/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/chapters/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/chapters/pc_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/index/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/index/pc_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/index/pc_search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/index/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/index/vip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/rank/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/rank/pc_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/index/tags/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/others.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/pc_base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/return_top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/top1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/top2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/top3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/pub/top4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/H-ui.login.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/H-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/H-ui.ucenter.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/h-ui.admin.pro.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/install.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/Hui-tags/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/acrossTab/acrossTab-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/acrossTab/acrossTab-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/acrossTab/acrossTab-close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/acrossTab/acrossTab.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/admin-login-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/admin-loginform-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/cn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/dataTable/sort_asc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/dataTable/sort_both.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/dataTable/sort_desc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/datetimepicker/datetimepicker.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/datetimepicker/glyphicons-halflings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/dropDown/icon-jt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/201.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/202.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/203.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/204.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/205.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/206.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/207.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/208.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/209.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/210.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/100.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/101.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/102.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/103.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/104.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/105.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/106.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/72.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/73.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/74.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/75.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/76.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/77.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/78.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/79.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/80.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/81.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/82.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/83.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/84.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/85.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/86.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/87.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/88.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/89.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/90.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/91.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/92.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/93.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/94.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/95.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/96.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/97.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/98.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/face/QQ/99.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/aero.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/aero@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/blue@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/green@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/grey.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/grey@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/minimal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/minimal@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/orange.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/orange@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/pink.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/pink@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/purple.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/purple@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/red@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iCheck/yellow@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/iconpic-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/jselect/iconpic-arrow-down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/loading.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/loading/loading-b.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/loading/loading-s.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/logo.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/rollpic/unslider-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/star/iconpic-star-S-default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/star/iconpic-star-S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/steps/step_arrow-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/steps/step_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/steps/step_bg-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/steps/step_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/ucnter/avatar-default-S.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/ucnter/avatar-default.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/ucnter/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/ucnter/noavatar_small.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/um.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/validform/iconpic-error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/validform/iconpic-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/validform/iconpic-warning.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav_right-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav_right-hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tabNav_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/images/verticalTab/tab_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/H-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/h-ui.admin.pro.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/js/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/Hui-iconfont/1.0.9/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/mobile/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/mobile/need/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/theme/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/lib/layer/3.1.1/更新日志.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/black/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/default/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/green/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/orange/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/red/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/admin/skin/yellow/skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/account.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/dm5_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/feedback.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/jquery-ui-1.7.3.custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/lunbo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/mstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/p.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/pc_read.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/userinfo-vendor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/css/view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/fonts/icon.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/html/version.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/html/wx.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/admin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/alipay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/banner-bottom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/banner_toplist_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/banner_toplist_text.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/book-list-bottom-right-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/buy-manga-cover-logo-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/buy-manga-cover-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/buy-manga-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-list-logo-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/center-main-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-bottom-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-bottom-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-collection-a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-comment-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-list-comment-right-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-list-comment-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-more.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-order-inverted.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/detail-order.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/feedback.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/forgetpwd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/header-class.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/header-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/header-search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/header-vip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-arrow-left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-arrow-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-menu-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-menu-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-menu-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-menu-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-rank-0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-rank-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-rank-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-rank-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-side-code.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-star-active.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-title-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-title-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-title-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-title-more.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/index-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/kami.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/key.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/list_new_logo_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/lock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/manga-list-right-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/manga-list-title-more.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/messages.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/mmrtx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/mrtx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/normal-top-back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/pay-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/paypal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/qq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/recharge-style-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/return-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/search-class-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/search-class-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/search-top-back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/selector-top-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/shutter_nextbtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/shutter_prevbtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/shutter_shadow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/top-right-search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/user-sidebar-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-back-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-bottom-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-bottom-logo-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-bottom-logo-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-top-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/view-top-logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/vip_img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/wallet-menu-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/weixin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/win-cross.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/images/wxqrcode.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/comment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/jquery.slimscroll.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/leavemsg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/loadNewBookmarker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/loadNewHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/phone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/shutter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/swiper2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/user-booklist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/userinfo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/velocity.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/js/vendor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/static/upload/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/pc_login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/pc_recovery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/pc_register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/recovery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/account/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/buychapter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/buyhistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/charge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/chargehistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/kami.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_buychapter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_buyhistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_charge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_chargehistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_kami.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_spendinghistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_vip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_vipexchange.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/pc_wallet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/spendinghistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/vip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/vipexchange.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/finance/wallet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/pub/pc_menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/bindphone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/bookshelf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/leavemsg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_bindphone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_bookshelf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_leavemsg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_promotion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_resetpwd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_ucenter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_userinfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/pc_userphone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/promotion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/resetpwd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/ucenter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/userinfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default2/ucenter/users/userphone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/books/booklist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/books/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/books/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/chapters/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/index/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/index/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/index/vip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/index/rank/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/back_top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/book_top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/home_top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/pub/search_top.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/account.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/amazeui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/booklist.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/buyhistory.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/leavemsg.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/mip.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/mstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/spendinghistory.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/ucenter.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/vip.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/css/wallet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/banner_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/banner_logo_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-list-logo-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/center-main-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/index.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/index@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/index@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/key.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/lock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_line_bak.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_line_logo_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_line_logo_1_a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_line_logo_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_line_logo_2_a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_show.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/login_show_a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/messages.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/mmrtx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/mrtx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/new_l_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/new_l_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/new_l_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/new_l_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/new_l_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/npc-not-found.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/pay-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/return_top_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/selector-top-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/images/wallet-menu-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-cambrian.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-gototop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-showmore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-sidebar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip-stats-baidu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/static/js/mip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/account/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/account/recovery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/account/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/buychapter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/buyhistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/charge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/chargehistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/feedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/kami.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/spendinghistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/vip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/vipexchange.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/finance/wallet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/bindphone.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/bookshelf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/leavemsg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/promotion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/resetpwd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/ucenter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/userinfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/template/default3/ucenter/users/userphone.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Write.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Write.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Base.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/index/controller/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Books.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Chapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Chapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Rank.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Rank.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/RedisHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/RedisHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/UserBook.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/UserBook.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/BookService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/BookService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/BaseUcenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Finance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/ucenter/controller/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/ucenter/controller/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/unittest/controller/Es.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/trace.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/trace.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +612,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -94,7 +669,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/template/default3/static/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -102,19 +677,19 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\www\xiaohuanxiong\public\static\images" />
-      <recent name="D:\www\xiaohuanxiong\application\api\controller" />
-      <recent name="D:\www\xiaohuanxiong\extend\util" />
-      <recent name="D:\www\xiaohuanxiong\extend" />
-      <recent name="D:\xiaohuanxiong\public\template\zymk\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\static\admin\images" />
       <recent name="D:\www\xiaohuanxiong\application\addons\test" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\index" />
       <recent name="D:\xiaohuanxiong\config" />
       <recent name="D:\xiaohuanxiong\public\template\zymk\index\index" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\template\default3\static\images" />
+      <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\template\default3\static\css" />
+      <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\template\default3" />
+      <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\template" />
+      <recent name="E:\workspace\IdeaProjects\xiaohuanxiong\public\template\default2" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -128,6 +703,9 @@
         </serviceView>
       </list>
     </option>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -661,7 +1239,15 @@
       <workItem from="1580529784623" duration="3662000" />
       <workItem from="1580566134439" duration="8589000" />
       <workItem from="1580628761841" duration="11195000" />
-      <workItem from="1580665280110" duration="26831000" />
+      <workItem from="1580665280110" duration="32949000" />
+      <workItem from="1580784723255" duration="8002000" />
+      <workItem from="1580926272544" duration="603000" />
+      <workItem from="1581006510246" duration="3002000" />
+      <workItem from="1581039668820" duration="36081000" />
+      <workItem from="1581110038010" duration="39861000" />
+      <workItem from="1581230643657" duration="28464000" />
+      <workItem from="1581299211573" duration="28765000" />
+      <workItem from="1581338971699" duration="20630000" />
     </task>
     <task id="LOCAL-00001" summary="1、加File缓存、Memcached缓存支持，支持切换缓存类型&#10;2、分离缓存设置&#10;3、默认添加采集数据表&#10;4、添加不传递referer的标签">
       <created>1580742149096</created>
@@ -670,7 +1256,28 @@
       <option name="project" value="LOCAL" />
       <updated>1580742149096</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修复采集后，点击开始阅读顺序不对">
+      <created>1580746692733</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580746692733</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修复采集后，点击开始阅读顺序不对">
+      <created>1580749314064</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580749314064</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修复广告什么的，记不得了">
+      <created>1580832554101</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580832554101</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +1302,9 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="1、加File缓存、Memcached缓存支持，支持切换缓存类型&#10;2、分离缓存设置&#10;3、默认添加采集数据表&#10;4、添加不传递referer的标签" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、加File缓存、Memcached缓存支持，支持切换缓存类型&#10;2、分离缓存设置&#10;3、默认添加采集数据表&#10;4、添加不传递referer的标签" />
+    <MESSAGE value="修复采集后，点击开始阅读顺序不对" />
+    <MESSAGE value="修复广告什么的，记不得了" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复广告什么的，记不得了" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -703,10 +1312,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="515" y="179" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1580741846490" />
-    <state x="712" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580708006057">
+    <state x="712" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581103927064">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="712" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1580708006057" />
+    <state x="712" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1581103927064" />
     <state x="640" y="246" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575946662845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -715,22 +1324,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579685752539" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580645137465">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1581237814460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580645137465" />
-    <state x="523" y="114" key="CommitChangelistDialog2" timestamp="1580742128500">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581237814460" />
+    <state x="523" y="114" key="CommitChangelistDialog2" timestamp="1580832550770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="523" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580742128500" />
+    <state x="523" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580832550770" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1579869246854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1579869246854" />
-    <state x="774" y="333" key="NewPhpClassDialog" timestamp="1580737949119">
+    <state x="774" y="333" key="NewPhpClassDialog" timestamp="1581342067395">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="774" y="333" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580737949119" />
+    <state x="774" y="333" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581342067395" />
     <state x="776" y="443" key="NewPhpFileDialog" timestamp="1580737938532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -743,25 +1352,45 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1578039721483" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1580744543247">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1580832557594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1580744543247" />
-    <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1580665279737">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1580832557594" />
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1581360823820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580665279737" />
-    <state x="567" y="225" width="786" height="600" key="find.popup" timestamp="1580736414487">
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581360823820" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581258159558">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="567" y="225" width="786" height="600" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580736414487" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1581258159558" />
+    <state x="660" y="115" width="1346" height="832" key="dock-window-1" timestamp="1581320967052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="660" y="115" width="1346" height="832" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1581320967052" />
+    <state x="-37" y="149" width="1481" height="1027" key="dock-window-2" timestamp="1581336014217">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-37" y="149" width="1481" height="1027" key="dock-window-2/0.0.1920.1040@0.0.1920.1040" timestamp="1581336014217" />
+    <state x="-158" y="149" width="1481" height="1027" key="dock-window-3" timestamp="1581336012048">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-158" y="149" width="1481" height="1027" key="dock-window-3/0.0.1920.1040@0.0.1920.1040" timestamp="1581336012048" />
+    <state x="567" y="225" width="786" height="600" key="find.popup" timestamp="1581352586056">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="567" y="225" width="786" height="600" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581352586056" />
+    <state x="334" y="152" key="new project wizard" timestamp="1580836291320">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="334" y="152" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1580836291320" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1580730822204">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580730822204" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577258501977">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581347023048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577258501977" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581347023048" />
   </component>
 </project>

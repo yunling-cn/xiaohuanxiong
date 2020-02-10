@@ -64,7 +64,6 @@ class Write extends Controller
                 return 'api密钥错误！';
             }
 
-            $book_id = -1;
             $where[] = ['src_url', '=', $data['src_url']];
             $where[] = ['src', '=', $data['src']];
             $booklog = $this->db()->name('booklogs')->where($where)->find();
@@ -87,7 +86,7 @@ class Write extends Controller
                 $book->end = trim($data['end']);
                 $book->cover_url = trim($data['cover_url']);
                 $book->summary = trim($data['summary']);
-                $book->last_time = time();
+                $book->last_time = array_key_exists('last_time', $data) ? $data['last_time'] : time();
 //                $str = $this->convert($book->book_name); //生成标识
 
                 $book->unique_id = $this->convert($book->book_name . $data['src_url'] . microtime(true)); //生成标识
@@ -142,7 +141,7 @@ class Write extends Controller
             $this->db()->name('chapterlogs')->insert([
                 'book_id' => $book_id,
                 'chapter_id' => $chapter->id,
-                'c_src_url' => 'c_src_url'
+                'c_src_url' => $data["c_src_url"]
             ]);
             $preg = '/\bsrc\b\s*=\s*[\'\"]?([^\'\"]*)[\'\"]?/i';
             preg_match_all($preg, $data['images'], $img_urls);

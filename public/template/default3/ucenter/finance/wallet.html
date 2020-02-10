@@ -1,0 +1,42 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>我的钱包 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="我的钱包 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/wallet.css">
+{/block}
+
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="wallet-main">
+    <div class="wallet-main-coin">
+        <div class="wallet-main-coin-left">
+            <span class="wallet-main-coin-title"> 账户余额 </span>
+        </div>
+        <div class="wallet-main-coin-right">
+            <span class="wallet-main-coin-value">{$balance}</span> 元
+        </div>
+    </div>
+    <a data-type="mip" href="/charge" class="wallet-main-coin-btn">去充值</a>
+</div>
+
+<div class="wallet-menu">
+    <a data-type="mip" class="wallet-menu-item" href="/chargehistory">充值记录
+        <mip-img class="wallet-menu-arrow" src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+    </a>
+    <a data-type="mip" class="wallet-menu-item" href="/spendinghistory">消费记录
+        <mip-img class="wallet-menu-arrow" src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+    </a>
+    <a data-type="mip" class="wallet-menu-item" href="/buyhistory">购买的作品
+        <mip-img class="wallet-menu-arrow" src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+    </a>
+</div>
+
+{/block}

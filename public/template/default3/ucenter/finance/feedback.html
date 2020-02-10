@@ -1,0 +1,24 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>充值成功 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="充值成功 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default2/static/css/feedback.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/home_top.html" /}
+<div class="margin-top-60">
+    <div class="pay-con">
+        <mip-img class="pay-con-img" src="/template/default3/static/images/pay-logo-1.png"></mip-img>
+        <p class="pay-con-title">支付成功</p>
+        <div class="pay-con-btn-group">
+            <a data-type="mip" class="pay-con-btn" href="/wallet">完成</a>
+        </div>
+    </div>
+</div>
+{/block}

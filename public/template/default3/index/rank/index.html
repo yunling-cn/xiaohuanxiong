@@ -1,0 +1,97 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>漫画排行榜 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="漫画排行榜 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+
+
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;搜索微信公众号“<span class="red">土豪次元漫</span>”关注不丢失</span>
+</div>
+
+<mip-vd-tabs>
+    <section>
+        <li>新番榜</li>
+        <li>人气榜</li>
+        <li>完结榜</li>
+        <li>充值榜</li>
+    </section>
+    {volist name="list" id="item" key="k"}
+
+    <div class="classList">
+        <ul class="am-avg-sm-3 am-thumbnails list">
+            {volist name="item['keyword']" id="keyword" key="j"}
+            <li class="am-thumbnail">
+                <a data-type="mip" href="/{$book_ctrl}/{$keyword.param}" title="{$keyword.book_name}">
+                    <div class="container">
+                        <mip-img layout="fill" src="{$keyword.cover_url}" alt="{$keyword.book_name}"></mip-img>
+                        <span class="tip">{$keyword.author.author_name}</span>
+                    </div>
+                </a>
+                <p class="d-nowrap l">
+                    <a data-type="mip" href="/{$book_ctrl}/{$keyword.param}" title="{$keyword.book_name}">{$keyword.book_name}</a>
+                </p>
+            </li>
+            {/volist}
+        </ul>
+
+        <!-- 分页功能 -->
+        <footer class="clearfix mb10">
+            <div class="page-pagination mt20">
+                <ul>
+                    {if $page>1}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{php}echo $page-1;{/php}"><</a></li>
+                    {/if}
+
+                    {if $page>=4}
+                    {if $page+2 <= $item['pages']}
+                    {for start="$page-2" end="$page+3" name="fori"}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{$fori}" {if $fori==$page}class="active"{/if}>{$fori}</a>
+                    </li>
+                    {/for}
+                    {else /}
+                    {for start="$page-2" end="$item['pages']+1" name="fori"}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{$fori}" {if $fori==$page}class="active"{/if}>{$fori}</a>
+                    </li>
+                    {/for}
+                    {/if}
+                    {else /}
+                    {if $item['pages']+1>6}
+                    {for start="1" end="6" name="fori"}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{$fori}" {if $fori==$page}class="active"{/if}>{$fori}</a>
+                    </li>
+                    {/for}
+                    {else /}
+                    {for start="1" end="$item['pages']+1" name="fori"}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{$fori}" {if $fori==$page}class="active"{/if}>{$fori}</a>
+                    </li>
+                    {/for}
+                    {/if}
+                    {/if}
+
+                    {if $page!=$item['pages']}
+                    <li><a data-type="mip" href="/{$rank_ctrl}/page/{php}echo $page+1;{/php}">></a></li>
+                    {/if}
+                </ul>
+            </div>
+        </footer>
+
+
+    </div>
+
+    {/volist}
+</mip-vd-tabs>
+
+
+{/block}
+
+{block name="script"}
+<script src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

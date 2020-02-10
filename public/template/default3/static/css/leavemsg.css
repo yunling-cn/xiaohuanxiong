@@ -1,0 +1,61 @@
+.a-clear {
+    text-decoration: none !important;
+    color: #333 !important;
+}
+
+textarea {
+    height: 120px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.a-clear {
+    text-decoration: none !important;
+    color: #333 !important;
+}
+
+textarea {
+    height: 120px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.msgCon .msgBox {
+    background: #fff;
+    padding: 10px;
+    /* margin-top: 20px; */
+}
+
+.msgCon .msgBox dl {
+    height: 60px;
+    margin: 0;
+    border-bottom: 1px dotted #ddd;
+}
+
+.msgCon .msgBox dl dt {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.msgCon .msgBox dl dt img {
+    border-radius: 25px;
+}
+
+.msgCon .msgBox dl dd {
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin: 0 0 0 5px;
+    font-size: 16px;
+    font-family: "微软雅黑";
+}
+
+.msgCon .msgBox .msgTxt {
+    font-size: 14px;
+    color: #666;
+    line-height: 25px;
+}

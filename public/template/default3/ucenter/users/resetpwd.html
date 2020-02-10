@@ -1,0 +1,52 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>修改密码 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="修改密码 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/template/default3/static/css/account.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/ucenter.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+
+<mip-form method="post" url="/resetpwd" fetch-url="/resetpwd" class="margin-0-10">
+    <input class="form-input margin-top-5" type="password" id="txt_password" name="txt_password"
+           placeholder="请输入新密码（6-20位数字、字符和字母组成）" autocomplete="off">
+    <div target="txt_password">新密码不能为空</div>
+
+    <input class="margin-top-5 form-input" type="password" id="txt_password2" name="txt_password2" placeholder="请确认新密码"
+           autocomplete="off">
+    <div target="txt_password2">确认新密码不能为空</div>
+
+    <input class="display-inline-block width-100 margin-top-5 margin-bottom-10" type="submit" value="确认修改">
+
+    <div submitting>
+        <template type="mip-mustache">
+            <p>正在提交申请，请耐心等待</p>
+        </template>
+    </div>
+    <div submit-success>
+        <template type="mip-mustache">
+            <p>{{msg}}
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Sorry, 请求发生了一点错误
+        </template>
+    </div>
+</mip-form>
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+{/block}

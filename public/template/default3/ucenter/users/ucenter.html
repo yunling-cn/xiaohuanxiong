@@ -1,0 +1,115 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>个人中心 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="个人中心 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/ucenter.css">
+{/block}
+
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="center-main">
+    <div class="center-main-info">
+        <div class="center-main-info-cover">
+            <mip-img src="/template/default3/static/images/mrtx.gif"></mip-img>
+        </div>
+        <div class="center-main-info-right">
+            <p class="center-main-info-title">{$user.nick_name|default="无昵称"}</p>
+            <p class="center-main-info-tip">VIP：剩余 {$day} 天</p>
+        </div>
+        <a data-type="mip" href="/userinfo">
+            <mip-img class="center-main-info-right-logo"
+                     src="/template/default3/static/images/center-main-right.png"></mip-img>
+        </a>
+    </div>
+</div>
+<ul class="center-main-list">
+    <li>
+        <a data-type="mip" href="/promotion">
+            <mip-img class="center-main-list-logo" src="/template/default3/static/images/reward.png"></mip-img>
+            <span class="center-main-list-title">推广赚币</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/bookshelf">
+            <mip-img class="center-main-list-logo"
+                     src="/template/default3/static/images/center-main-list-logo-1.png"></mip-img>
+            <span class="center-main-list-title">我的收藏</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/history">
+            <mip-img class="center-main-list-logo"
+                     src="/template/default3/static/images/center-main-list-logo-2.png"></mip-img>
+            <span class="center-main-list-title">阅读历史</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/wallet">
+            <mip-img class="center-main-list-logo"
+                     src="/template/default3/static/images/center-main-list-logo-3.png"></mip-img>
+            <span class="center-main-list-title">我的钱包</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/vip">
+            <mip-img class="center-main-list-logo"
+                     src="/template/default3/static/images/center-main-list-logo-4.png"></mip-img>
+            <span class="center-main-list-title">VIP会员</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/vipexchange">
+            <mip-img class="center-main-list-logo"
+                     src="/template/default3/static/images/center-main-list-logo-4.png"></mip-img>
+            <span class="center-main-list-title">兑换VIP</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    {/*
+    <li>
+        <a data-type="mip" href="/bindphone">
+            <mip-img class="center-main-list-logo" src="/template/default3/static/images/lock.png"></mip-img>
+            <span class="center-main-list-title">绑定手机</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    */}
+    <li>
+        <a data-type="mip" href="/resetpwd">
+            <mip-img class="center-main-list-logo" src="/template/default3/static/images/key.png"></mip-img>
+            <span class="center-main-list-title">修改密码</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+    <li>
+        <a data-type="mip" href="/leavemsg">
+            <mip-img class="center-main-list-logo" src="/template/default3/static/images/messages.png"></mip-img>
+            <span class="center-main-list-title">反馈留言</span>
+            <mip-img class="center-main-list-right"
+                     src="/template/default3/static/images/wallet-menu-arrow.png"></mip-img>
+        </a>
+    </li>
+</ul>
+<a data-type="mip" href="/logout" class="center-main-bottom-btn">退出登录</a>
+{/block}

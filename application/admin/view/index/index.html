@@ -28,6 +28,31 @@
                                 </div>
 
                                 <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>站点副标题：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$site_sub_name}"
+                                               name="site_sub_name">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>关键字：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$keyword}" name="keyword">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>描述：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$description}" name="description">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
                                     <label class="form-label col-xs-4 col-sm-3">网站域名：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
                                         <input type="text" class="input-text" value="{$url}" name="url">
@@ -38,6 +63,13 @@
                                     <label class="form-label col-xs-4 col-sm-3">图片域名：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
                                         <input type="text" class="input-text" value="{$img_site}" name="img_site">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3">静态资源域名：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$static_site}" name="static_site">
                                     </div>
                                 </div>
 
@@ -64,13 +96,30 @@
                                 </div>
 
                                 <div class="row clearfix">
-                                    <label class="form-label col-xs-4 col-sm-3">模板目录名：</label>
+                                    <label class="form-label col-xs-4 col-sm-3">移动端模板目录名：</label>
                                     <div class="formControls col-xs-8 col-sm-9">
                                          <span class="select-box" style="width:150px;">
-                                        <select name="front_tpl" class="select">
+                                        <select name="touch_front_tpl" class="select">
                                             {volist name="tpl_dirs" id="vo"}
                                             <option value="{$vo}"
-                                                    {if $vo== $front_tpl}
+                                                    {if $vo== $touch_front_tpl}
+                                                    selected
+                                                    {/if}
+                                            >{$vo}</option>
+                                            {/volist}
+                                        </select>
+                                         </span>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3">电脑端模板目录名：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                         <span class="select-box" style="width:150px;">
+                                        <select name="pc_front_tpl" class="select">
+                                            {volist name="tpl_dirs" id="vo"}
+                                            <option value="{$vo}"
+                                                    {if $vo== $pc_front_tpl}
                                                     selected
                                                     {/if}
                                             >{$vo}</option>
@@ -174,6 +223,24 @@
                                     <div class="formControls col-xs-8 col-sm-9">
                                         <input type="text" class="input-text" value="{$search_result_mobile}"
                                                name="search_result_mobile">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>pc端排行数：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$rank_result_pc}"
+                                               name="rank_result_pc">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-3"><span
+                                            class="c-red">*</span>移动端排行数：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <input type="text" class="input-text" value="{$rank_result_mobile}"
+                                               name="rank_result_mobile">
                                     </div>
                                 </div>
 

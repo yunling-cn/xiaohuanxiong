@@ -1,0 +1,188 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>{$book['book_name']}「免费阅读」 - 全集作者：{$book['author_name']} - {:config('site.site_name')} -
+    {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name"
+      content="{$book['book_name']}「免费阅读」 - 全集作者：{$book['author_name']} - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="header_script"}
+<script type="application/ld+json">
+    {
+        "@context": "https://zhanzhang.baidu.com/contexts/cambrian.jsonld",
+        "@id": "{$custom_url}",
+        "appid": "appid",
+        "title": "{$book['book_name']}「免费阅读」 - 全集作者：{$book['author_name']} - {:config('site.site_name')} - {:config('site.site_sub_name')}",
+        "images": [
+            "{$book.cover_url}"
+        ],
+        "description": "{$book['summary']}",
+        "pubDate": "{$book.last_time|date='Y-m-dTH:i:s'}",
+        "isOriginal": "0"
+    }
+</script>
+
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/book_top.html" /}
+<div class="detailInfo d-border">
+    <!--封面图片-->
+    <div class="coverForm">
+        <mip-img layout="container" src="{$book.cover_url}" alt="{$book['book_name']}"
+                 title="{$book['book_name']}"></mip-img>
+    </div>
+    <!--漫画详情-->
+    <div class="detailForm ">
+        <div class="main d-item">
+            <div class="info d-item-content">
+                <h1 class="title d-nowrap"> {$header_title} </h1>
+                <p class="subtitle d-nowrap yunling-float-left "> 作者： {$book.author_name} </p>
+                <p class="subtitle d-nowrap yunling-float-right "> 标签：
+                    {volist name="tags" id="vo"}
+                    <a data-type="mip" href="/{$booklist_act}/?tag={$vo}">{$vo}</a>
+                    {/volist}
+                </p>
+                <p class="subtitle d-nowrap yunling-float-left yunling-clear"> 状态： {if $book['end']}已完结{else
+                    /}连载中{/if} </p>
+                <p class="subtitle d-nowrap yunling-float-right "> 更新时间： {$book.last_time|date='Y-m-d'} </p>
+                <p class="bottom d-nowrap yunling-clear">
+                    最新:{$book['chapters'][count($book['chapters'])-1]['chapter_name']}
+                </p></div>
+        </div>
+        <ul class="am-avg-sm-2 am-thumbnails toolBar">
+            <li class="am-thumbnail" id="shownextchapter">
+                <a data-type="mip" href="/{$chapter_ctrl}/{$start}">
+                    <span id="readInfo"></span>
+                    <mip-img layout="container" id="readBtnImg"
+                             src="https://mh1.zhengdongwuye.cn/muban/mip/images/detail_btn_1_n.png" alt="阅读"></mip-img>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="detailContent">
+    <mip-showmore maxheight='55' animatetime='.3' id="showmore01">
+        <div class="ccontent">{$book['summary']}
+        </div>
+    </mip-showmore>
+    <div on="tap:showmore01.toggle" data-closetext="∧" class="mip-showmore-btn">∨</div>
+</div>
+
+<!--章节列表-->
+<div class="chapterList d-border">
+    <ul class="am-avg-sm-1 am-thumbnails selecter">
+        <li class="ib active">目录<span></span>
+        </li>
+    </ul>
+    <div class="chapters" id="chapterList_1">
+        <mip-showmore maxheight='215' animatetime='.3' id="showmore02">
+            <div>
+                <ul class="am-avg-sm-4 am-thumbnails list">
+                    {volist name="book.chapters" id="vo"}
+                    <li><a data-type="mip" href="/{$chapter_ctrl}/{$vo.id}" class="d-nowrap">{$vo.chapter_name}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </mip-showmore>
+        <div on="click:showmore02.toggle" data-closetext="收起更多目录" class="mip-showmore-btn">戳我看更多目录(￣▽￣)</div>
+    </div>
+</div>
+
+<!--推荐漫画列表-->
+<div class="recommendList d-border mt5">
+    <h2 class="top">骚年们正在看</h2>
+    <div class="am-scrollable-horizontal">
+        <ul class="am-avg-sm-5 am-thumbnails list f_list pagelistul">
+            {volist name="recommand" id="vo"}
+            <li>
+                <a data-type="mip" href="/{$book_ctrl}/{$vo.param}/" title="{$vo.book_name}">
+                    <div class="container">
+                        {if empty($vo.cover_url)}
+                        <mip-img layout="fill" class="halfImg" src="{$img_site}/static/upload/book/{$vo.id}/cover.jpg"
+                                 alt="{$vo.book_name}"></mip-img>
+                        {else /}
+                        <mip-img layout="fill" class="halfImg" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                        {/if}
+                    </div>
+                </a>
+                <p>
+                    <a data-type="mip" href="/{$book_ctrl}/{$vo.param}/" title="{$vo.book_name}">{$vo.book_name}</a>
+                </p>
+            </li>
+            {/volist}
+
+        </ul>
+    </div>
+</div>
+
+<div class="recommendList d-border mt5">
+    <h2 class="top">用户评论</h2>
+    <div class="am-scrollable-horizontal">
+
+
+        <div class="info clearfix" id="formpl2">
+            <mip-form method="post" url="/commentadd" fetch-url="/commentadd">
+                <input type="hidden" value="{$book.id}" name="book_id"/>
+                <textarea validatetarget="comment" required class="comment-input js_max_text_length" name="comment"
+                          id="des" placeholder="{if is_login()}我来说两句...{else /}请先登录{/if}"></textarea>
+                <div target="comment">内容不能为空</div>
+                <input {if is_login()}type="submit" {else /}type="button"
+                on="tap:no_login.show"{/if}
+                id="sendbutton" class="btn commentbtn"
+                value="{if is_login()}发表评论{else /}请先登录{/if}"/>
+                <div submitting>
+                    <template type="mip-mustache">
+                        <p>正在提交申请，请耐心等待</p>
+                    </template>
+                </div>
+                <div submit-success>
+                    <template type="mip-mustache">
+                        {{msg}}
+                    </template>
+                </div>
+                <div submit-error>
+                    <template type="mip-mustache">
+                        Sorry, 请求发生了一点错误
+                    </template>
+                </div>
+            </mip-form>
+        </div>
+
+        <mip-toast
+                id="no_login"
+                info-text="请先登录"
+                station="center"
+        >
+        </mip-toast>
+
+        <ul class="postlist clearfix">
+            {volist name="comments" id="vo"}
+            <li class="dashed">
+                <div class="cover">
+                    <mip-img layout="container" src="/template/default2/static/images/mrtx.gif"></mip-img>
+                </div>
+                <div class="info">
+                    <p class="title">{$vo.user.nick_name|default=$vo.user.username}</p>
+                    <p class="content">{$vo.content|raw}</p>
+                    <p class="bottom">
+                        {$vo.create_time|date='Y-m-d'}
+                    </p>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+
+
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-toast/mip-toast.js"></script>
+{/block}

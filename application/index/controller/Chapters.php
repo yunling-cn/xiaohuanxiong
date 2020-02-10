@@ -11,6 +11,7 @@ namespace app\index\controller;
 use app\model\Chapter;
 use app\model\UserBuy;
 use app\service\PhotoService;
+use MongoDB\BSON\ObjectId;
 use think\Db;
 
 class Chapters extends Base
@@ -103,7 +104,56 @@ class Chapters extends Base
             if (count($next) > 0) {
                 $this->assign('next', $next[0]);
             } else {
-                $this->assign('next', 'null');
+                $this->assign('next', []);
+            }
+
+//            trace($chapter -> toArray());
+//            trace($chapters -> toArray());
+            trace($data['photos']);
+//            trace($next);
+//            trace(empty($next));
+
+            /*
+             * <div class="contentimg">
+    {volist name="photos" id="vo"}
+    {if empty($vo.img_url)}
+    <mip-img layout="container" src="{$img_site}/static/upload/book/{$chapter.book.id}/{$chapter.id}/{$vo.id}.jpg"></mip-img>
+    {else /}
+    <mip-img layout="container" src="{$vo.img_url}"></mip-img>
+    {/if}
+    {/volist}
+</div>
+             */
+            if (input('get.callback')) {
+//                input('get.pn')
+                if (array_key_exists(input('get.pn'), $data['photos'])) {
+//                    $img = new \ArrayObject(['img' => $data['photos'][input('get.pn')+1]['img_url']]);
+//                    $return = new \ArrayObject();
+//                    $return -> status = 0;
+//                    $datas = new \ArrayObject(['img' => $data['photos'][input('get.pn')+1]['img_url']]);
+//                    var_dump($datas);
+//                    $return -> data['items']  = $img;
+////                    trace(json_encode($return));
+//                    var_dump($return);
+//                    return json_encode($return);
+                    $img = ['img' => $data['photos'][input('get.pn')]['img_url']];
+                    return jsonp([
+                        'status' => 0,
+                        'data' => [
+                            'items' => [
+                                (Object)$img,
+                            ],
+                        ],
+                    ]);
+                } else {
+                    return jsonp([
+                        'status' => 0,
+                        'data' => [
+                            'items' => [],
+                        ],
+                    ]);
+                }
+
             }
 
             $this->assign([
@@ -118,5 +168,10 @@ class Chapters extends Base
         } else {
             return redirect('/buychapter', ['chapter_id' => $id]);
         }
+    }
+
+    public function getJsonp($pageNum, $callback)
+    {
+
     }
 }

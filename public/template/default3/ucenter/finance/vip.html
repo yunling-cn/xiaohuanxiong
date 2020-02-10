@@ -1,0 +1,95 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>VIP - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="VIP - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/vip.css">
+{/block}
+
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;VIP套餐</span>
+    <a class="float-right underline color-DAB77C" data-type="mip" href="/promotion">推广赢VIP</a>
+</div>
+
+<ul class="recharge-set">
+    <mip-selector class="sample-selector" layout="container">
+        {volist name="vips" id="vo"}
+        <li on='tap:MIP.setData({
+            "vip":{
+                "month":{$vo.month}
+                },
+    })' option="{$vo.month}">
+            <mip-data id="{$vo.month}" scope>
+                <script type="application/json">
+                    {
+                        "style": 1
+                    }
+                </script>
+            </mip-data>
+            <div class="recharge-set-info">
+                <p class="recharge-set-title">{$vo.month}个月VIP</p>
+                <p class="recharge-set-tip">每月￥{:floor($vo.price/$vo.month)}</p>
+            </div>
+            <span class="recharge-set-right"> ￥{$vo.price} </span>
+        </li>
+        {/volist}
+    </mip-selector>
+</ul>
+
+<mip-data id="vip" scope>
+    <script type="application/json">
+        {
+            "month": 1
+        }
+    </script>
+</mip-data>
+
+<mip-form method="post" url="/vip" fetch-url="/vip" class="margin-0-10">
+    <!-- 隐藏表单 通过数据绑定语法写入 -->
+    <input hidden type="text" m-bind:value="vip.month" name="month">
+
+    <div submitting>
+        <template type="mip-mustache">
+            <p>正在提交申请，请耐心等待</p>
+        </template>
+    </div>
+    <div submit-success>
+        <template type="mip-mustache">
+            {{msg}}
+            {{#success}}
+            <a href="/ucenter" data-type="mip">点我跳转</a>
+            {{/success}}
+            {{#error}}
+            <a href="/charge" data-type="mip">点我跳转</a>
+            {{/error}}
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Sorry, 请求发生了一点错误
+        </template>
+    </div>
+
+    <input class="display-inline-block margin-x-auto margin-bottom-10" type="submit" value="确认开通">
+
+</mip-form>
+
+
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-selector/mip-selector.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

@@ -1,0 +1,207 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>{$chapter.chapter_name} {$chapter.book.book_name}「免费阅读」 - {:config('site.site_name')} -
+    {:config('site.site_sub_name')}</title>
+<meta content="{$chapter.book.summary}" name="description"/>
+<meta content="{$chapter.book.book_name},{:config('keywords')}" name="keywords"/>
+<meta itemprop="name"
+      content="{$chapter.chapter_name} {$chapter.book.book_name}「免费阅读」 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<style mip-custom>
+    .menuListForceA {
+        display: inline-block !important;
+        width: 30px !important;
+        height: 56px !important;
+    }
+
+    .menuList li a {
+        color: #ccc;
+    }
+
+    .menuList {
+        background: #333;
+    }
+
+    .rightMenu {
+        width: 100%;
+        min-width: 70px;
+    }
+
+    .rightMenu .menuList {
+        padding: 0 10px 0 10px;
+    }
+
+    .rightMenu .menuList li a {
+        display: initial;
+        width: auto;
+        height: auto;
+    }
+
+    #right-sidebar {
+        background: #333;
+    }
+
+    ol, ul {
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .topBar .fanhui {
+        display: inline;
+        font-size: 1.6rem;
+        color: #fff;
+        float: left;
+    }
+
+    .tiao {
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .contentimg .mip-fill-content {
+        width: inherit;
+    }
+
+    .pagenation {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        border-top: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
+    }
+
+    .pagenation .grid-half {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 49%;
+        padding: 15px 0;
+        box-sizing: border-box;
+    }
+
+    .pagenation .grid-half .btn {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        color: #757575;
+        font-size: 1.6rem;
+    }
+
+    .pagenation .prev {
+        border-right: 1px solid #ccc;
+    }
+
+    .pagenation .btn .icon {
+        margin: 0 .6rem;
+        width: .9rem;
+        vertical-align: sub;
+    }
+
+    .dibutip {
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+</style>
+{/block}
+
+
+{block name="header_script"}
+
+{/block}
+
+
+{block name="content"}
+<div class="topBar d-ft">
+    <mip-history history="go, -1" class="d-fl fanhui">
+        <span>返回</span>
+    </mip-history>
+    <span>{$chapter.chapter_name} {$chapter.book.book_name}</span>
+    <span class="d-fr" on="tap:right-sidebar.open">
+        <mip-img layout="container" src="https://mh1.zhengdongwuye.cn/muban/mip/images/menu_logo.png"
+                 class="menulogo"></mip-img>
+    </span>
+    <a data-type="mip" class="d-fr menul" href="/{$search_ctrl}">
+        <mip-img layout="container" src="https://mh1.zhengdongwuye.cn/muban/mip/images/search_logo.png"
+                 class="searchlogo"></mip-img>
+    </a>
+</div>
+
+
+<div class="gongzhonghao clearfix"><span class="am-icon-info-circle d-fl">&nbsp;&nbsp;微信公众号搜索“<span
+        class="red">奇妙漫画</span>”关注更新</span><!--<span class="d-fr am-icon-close"></span>--></div>
+
+<div class="contentimg">
+
+    <mip-infinitescroll data-src="/{$chapter_ctrl}/{$chapter.id}/book_id/{$chapter.book.id}">
+        <script type="application/json">
+            {
+                "pn": 0,
+                "prn": 1,
+                "rn": "{:count($photos)}",
+                "loadingHtml": "<div style=\"text-align:center;\">↑上拉加载更多</div>",
+                "loadFailHtml": "<div style=\"text-align:center;\">数据加载失败啦</div>",
+                "loadOverHtml": "<div class=\"txtCenter mt10\">^_^感谢您的阅读，本章节已经结束了哦！</div>",
+                "bufferHeightPx": 400
+            }
+        </script>
+        <template type="mip-mustache">
+            <li>
+                <mip-img src="{{img}}" layout="container"></mip-img>
+            </li>
+        </template>
+        <div class="mip-infinitescroll-results"></div>
+        <div class="bg">
+            <div class="mip-infinitescroll-loading"></div>
+        </div>
+    </mip-infinitescroll>
+</div>
+
+
+{if !empty($next)}
+<div class="tiao">
+    <a data-type="mip" href="/{$chapter_ctrl}/{$next.id}.html">
+        <font color=red>点我跳转到下一章：
+            <br>{$next.chapter_name}</font>
+    </a>
+</div>
+{else /}
+<div class="txtCenter mb10">本漫画暂时无下一章节了
+    <br/>关注微信公众号“<font color=red>土豪漫画</font>”及时了解更新！
+</div>
+{/if}
+
+<!-- 章节侧边栏 -->
+<mip-sidebar
+        id="right-sidebar"
+        side="right"
+        layout="nodisplay"
+        class="mip-hidden">
+    <div class="rightMenu clearfix">
+        <ul class="menuList">
+            <li on="tap:right-sidebar.close">
+                <span> X </span>
+            </li>
+            <li><a data-type="mip" href="{:url('/index/index/index')}" class="menu_logo_1 menuListForceA"></a></li>
+            <!--首页按钮-->
+            {volist name="chapters" id="vo"}
+            <li><a data-type="mip" href="/{$chapter_ctrl}/{$vo.id}.html" class="d-nowrap">{$vo.chapter_name}</a></li>
+            {/volist}
+        </ul>
+    </div>
+</mip-sidebar>
+
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-infinitescroll/mip-infinitescroll.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-access/mip-access.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+{/block}

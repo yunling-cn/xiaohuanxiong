@@ -20,12 +20,19 @@ class Index extends BaseAdmin
     public function index()
     {
         $site_name = config('site.site_name');
+        $keyword = config('site.keyword');
+        $description = config('site.description');
+        $site_sub_name = config('site.site_sub_name');
         $url = config('site.url');
         $img_site = config('site.img_site');
+        $static_site = config('site.static_site');
         $salt = config('site.salt');
         $api_key = config('site.api_key');
         $app_key = config('site.app_key');
-        $front_tpl = config('site.tpl');
+
+        $touch_front_tpl = config('site.touch_front_tpl');
+        $pc_front_tpl = config('site.pc_front_tpl');
+
         $payment = config('site.payment');
 
         $back_end_page = config('page.back_end_page');
@@ -35,6 +42,8 @@ class Index extends BaseAdmin
         $update_mobile_page = config('page.update_mobile_page');
         $search_result_pc = config('page.search_result_pc');
         $search_result_mobile = config('page.search_result_mobile');
+        $rank_result_mobile = config('page.rank_result_mobile');
+        $rank_result_pc = config('page.rank_result_pc');
         $img_per_page = config('page.img_per_page');
 
         $cache_type = config('cache.type');
@@ -53,18 +62,25 @@ class Index extends BaseAdmin
 
         $this->assign([
             'site_name' => $site_name,
+            'site_sub_name' => $site_sub_name,
+            'keyword' => $keyword,
+            'description' => $description,
             'url' => $url,
             'img_site' => $img_site,
+            'static_site' => $static_site,
             'salt' => $salt,
             'api_key' => $api_key,
             'app_key' => $app_key,
-            'front_tpl' => $front_tpl,
+            'pc_front_tpl' => $pc_front_tpl,
+            'touch_front_tpl' => $touch_front_tpl,
             'payment' => $payment,
             'back_end_page' => $back_end_page,
             'booklist_pc_page' => $booklist_pc_page,
             'booklist_mobile_page' => $booklist_mobile_page,
             'update_pc_page' => $update_pc_page,
             'update_mobile_page' => $update_mobile_page,
+            'rank_result_mobile' => $rank_result_mobile,
+            'rank_result_pc' => $rank_result_pc,
             'cache_host' => $cache_host ? $cache_host : '127.0.0.1',
             'cache_type' => $cache_type,
             'cache_port' => $cache_port ? $cache_port : -1,
@@ -82,23 +98,33 @@ class Index extends BaseAdmin
     {
         if ($this->request->isPost()) {
             $site_name = input('site_name');
+            $site_sub_name = input('site_sub_name');
+            $keyword = input('keyword');
+            $description = input('description');
             $url = input('url');
             $img_site = input('img_site');
+            $static_site = input('static_site');
             $salt = input('salt');
             $api_key = input('api_key');
             $app_key = input('app_key');
-            $front_tpl = input('front_tpl');
+            $pc_front_tpl = input('pc_front_tpl');
+            $touch_front_tpl = input('touch_front_tpl');
             $payment = input('payment');
             $site_code = <<<INFO
         <?php
         return [
             'url' => '{$url}',
+            'keyword' => '{$keyword}',
+            'description' => '{$description}',
             'img_site' => '{$img_site}',
+            'static_site' => '{$static_site}',
             'site_name' => '{$site_name}',
+            'site_sub_name' => '{$site_sub_name}',
             'salt' => '{$salt}',
             'api_key' => '{$api_key}', 
             'app_key' => '{$app_key}',
-            'tpl' => '{$front_tpl}',
+            'touch_front_tpl' => '{$touch_front_tpl}',
+            'pc_front_tpl' => '{$pc_front_tpl}',
             'payment' => '{$payment}'         
         ];
 INFO;
@@ -110,11 +136,6 @@ INFO;
     public function cache()
     {
         if ($this->request->isPost()) {
-//            $cache_host = input('redis_host');
-//            $cache_port = input('redis_port');
-//            $cache_pwd = input('redis_auth');
-//            $redis_prefix = input('redis_prefix');
-
             $data = input();
             $storage = [
                 'type' => $data['cache_type'] && $data['cache_host'] && $data['cache_port'] ? $data['cache_type'] : 'File',
@@ -128,24 +149,8 @@ INFO;
             ];
             $cache_code = "<?php \nreturn \n" . var_export($storage, true) . ';';
 
-//            $cache_code = <<<INFO
-//        <?php
-//        return [
-//            // 驱动方式
-//            'type'   => 'redis',
-//            'host' => '{$cache_host}',
-//            'port' => {$cache_port},
-//            'password'   => '{$cache_pwd}',
-//            // 缓存保存目录
-//            'path'   => '../runtime/cache/',
-//            // 缓存前缀
-//            'prefix' => '{$redis_prefix}',
-//            // 缓存有效期 0表示永久缓存
-//            'expire' => 600,
-//        ];
-//INFO;
             file_put_contents(App::getRootPath() . 'config/cache.php', $cache_code);
-            $this->success('修改成功');
+            $this->success('修改成功', 'index');
         }
     }
 
@@ -164,6 +169,8 @@ INFO;
             $update_mobile_page = input('update_mobile_page');
             $search_result_mobile = input('search_result_mobile');
             $search_result_pc = input('search_result_pc');
+            $rank_result_pc = input('rank_result_pc');
+            $rank_result_mobile = input('rank_result_mobile');
             $img_per_page = input('img_per_page');
             $code = <<<INFO
         <?php
@@ -173,13 +180,15 @@ INFO;
             'booklist_mobile_page' => {$booklist_mobile_page},
             'search_result_pc' => {$search_result_pc},
             'search_result_mobile' => {$search_result_mobile},
+            'rank_result_pc' => {$rank_result_pc},
+            'rank_result_mobile' => {$rank_result_mobile},
             'update_pc_page' => {$update_pc_page},
             'update_mobile_page' => {$update_mobile_page},
             'img_per_page' => {$img_per_page}
         ];
 INFO;
             file_put_contents(App::getRootPath() . 'config/page.php', $code);
-            $this->success('修改成功');
+            $this->success('修改成功', 'index');
         }
     }
 

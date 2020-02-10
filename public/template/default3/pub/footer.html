@@ -1,0 +1,15 @@
+<!--侧边栏-->
+<mip-sidebar id="right-sidebar" side="right" layout="nodisplay" class="mip-hidden">
+    <div class="rightMenu">
+        <ul class="menuList">
+            <li on="tap:right-sidebar.close">
+                <span> X </span>
+            </li>
+            <li><a data-type="mip" href="{:url('/index/index/index')}" class="menu_logo_1"></a></li><!--首页按钮-->
+            <li><a data-type="mip" href="/{$search_ctrl}" class="menu_logo_2"></a></li><!--分类按钮-->
+            <li><a data-type="mip" href="/{$update_act}" class="menu_logo_3"></a></li><!--最新按钮-->
+            <li><a data-type="mip" href="/{$rank_ctrl}" class="menu_logo_4"></a></li><!--排行按钮-->
+            <li><a data-type="mip" href="/ucenter" class="menu_logo_5"></a></li><!--个人中心-->
+        </ul>
+    </div>
+</mip-sidebar>

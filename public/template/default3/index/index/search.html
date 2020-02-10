@@ -1,0 +1,184 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>漫画搜索 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="漫画搜索 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{:config('site.url')}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/style.css">
+<style mip-custom>
+    .menuList li a {
+        color: #ccc;
+    }
+
+    .menuList {
+        background: #333;
+    }
+
+    .rightMenu {
+        width: 100%;
+    }
+
+    .rightMenu .menuList li a {
+        display: initial;
+        width: auto;
+        height: auto;
+    }
+
+    #right-sidebar {
+        background: #333;
+    }
+
+    ol, ul {
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .searchBar .fanhui {
+        display: inline;
+        font-size: 1.4rem;
+        color: #fff;
+        float: left;
+        line-height: 41px;
+        padding-left: 5px;
+    }
+
+    .tiao {
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .searchBar .menulogo {
+        height: 16px;
+        position: relative;
+        top: 2px;
+    }
+
+    mip-form div {
+        padding: 0;
+        display: block;
+        color: #000;
+    }
+
+    .searchBar .rightBtn {
+        background: none;
+        border: 0;
+        padding-right: 10px;
+        height: auto;
+        line-height: normal
+    }
+
+    .list .mip-layout-container img {
+        width: inherit;
+    }
+</style>
+{/block}
+
+{block name="content"}
+
+{include file="./template/default3/pub/search_top.html" /}
+
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;微信公众号搜索“<span class="red">奇妙漫画</span>”关注更新</span>
+</div>
+
+{if $count==0}
+<p class="search-title">热门搜索</p>
+<div class="search-label">
+    {volist name="hot_search" id="vo"}
+    {empty name="vo"}
+    <a class="search-label-item" href="/{$search_ctrl}?keyword=斗破苍穹">斗破苍穹</a>
+    {else /}
+    <a class="search-label-item" href="/{$search_ctrl}?keyword={$vo}">{$vo}</a>
+    {/empty}
+    {/volist}
+</div>
+
+<!--分类列表-->
+<div class="classList">
+    <ul class="am-avg-sm-3 am-thumbnails list">
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$rank_ctrl}">
+                <mip-img layout="container"
+                         src="https://mh1.zhengdongwuye.cn/muban/mip/images/class_logo_1.png"></mip-img>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$rank_ctrl}">排行榜</a>
+            </p>
+        </li>
+        <li class="am-thumbnail"><a data-type="mip" href="/{$update_act}">
+            <mip-img layout="container" src="https://mh1.zhengdongwuye.cn/muban/mip/images/class_logo_2.png"></mip-img>
+        </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$update_act}">最新更新</a>
+            </p>
+        </li>
+        <li class="am-thumbnail"><a data-type="mip" href="/{$booklist_act}">
+            <mip-img layout="container" src="https://mh1.zhengdongwuye.cn/muban/mip/images/class_logo_3.png"></mip-img>
+        </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$booklist_act}">最新上架</a>
+            </p>
+        </li>
+    </ul>
+
+    <ul class="am-avg-sm-3 am-thumbnails list">
+        {volist name="tags" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$booklist_act}?tag={$vo.tag_name}">
+                <mip-img layout="container" src="{$img_site}/static/upload/tags/{$vo.id}.jpg"></mip-img>
+            </a>
+            <p class="d-nowrap">
+                <a data-type="mip" href="/{$booklist_act}?tag={$vo.tag_name}">{$vo.tag_name}</a>
+            </p>
+        </li>
+        {/volist}
+    </ul>
+</div>
+{else /}
+
+<div class="searchtip">当前结果共有<span class="red">{$count}</span>条结果</div>
+<!--分类列表-->
+<div class="classList" id="classList_1">
+    <ul class="am-avg-sm-3 am-thumbnails list">
+        {volist name="$books" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                    <span class="tip">{$vo.author.author_name}</span>
+                </div>
+            </a>
+            <p class="d-nowrap l">
+                <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+    </ul>
+</div>
+
+<footer class="clearfix mb10">
+    <div class="page-pagination mt20">
+        <ul>
+            {//TODO: 分页没写完}
+            <li>
+                <a data-type="mip" href="/action/Search?keyword={:urlencode($keyword)}&page=1" class="active">1</a>
+            </li>
+
+        </ul>
+    </div>
+</footer>
+
+
+{/if}
+{/block}
+
+{block name="script"}
+<script src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+{/block}

@@ -1,0 +1,14 @@
+<!--标题栏-->
+<mip-form method="get" url="/{$search_ctrl}" target="_self">
+    <div class="searchBar d-item d-ft">
+        <mip-history history="go, -1" class="d-fl fanhui">
+            <span>返回</span>
+        </mip-history>
+        <!--        <a data-type="mip" href="/" class="fanhui">首页</a>-->
+        <!--搜索栏-->
+        <div class="inputForm d-item-content">
+            <input type="text" value="{$keyword }" id="searchtxt" name="keyword" placeholder="搜索关键词">
+        </div>
+        <input type="submit" value="搜索" class="rightBtn">
+    </div>
+</mip-form>

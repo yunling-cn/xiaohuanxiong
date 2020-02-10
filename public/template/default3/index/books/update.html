@@ -1,0 +1,95 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>漫画更新榜 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="漫画更新榜 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+
+
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;搜索微信公众号“<span class="red">土豪次元漫</span>”关注不丢失</span>
+</div>
+
+<mip-vd-tabs>
+    <section>
+
+        <li><a href="" data-type="mip">{$header_title}</a></li>
+    </section>
+
+
+    <div class="classList">
+        <ul class="am-avg-sm-3 am-thumbnails list">
+            {volist name="books" id="item" key="k"}
+            <li class="am-thumbnail">
+                <a data-type="mip" href="/{$book_ctrl}/{$item.param}" title="{$item.book_name}">
+                    <div class="container">
+                        <mip-img layout="fill" src="{$item.cover_url}" alt="{$item.book_name}"></mip-img>
+                        <span class="tip">{$item.author_name}</span>
+                    </div>
+                </a>
+                <p class="d-nowrap l">
+                    <a data-type="mip" href="/{$book_ctrl}/{$item.param}"
+                       title="{$item.book_name}">{$item.book_name}</a>
+                </p>
+            </li>
+            {/volist}
+        </ul>
+
+    </div>
+
+</mip-vd-tabs>
+
+
+<!-- 完整分页功能 -->
+{if $page.last_page > 1}
+<footer class="clearfix mb10">
+    <div class="page-pagination mt20">
+        <ul>
+            {if $page.current_page>1}
+            <li><a data-type="mip" href="/{$update_act}?page={$page.current_page-1}{$param}"><</a></li>
+            {/if}
+
+            {if $page.current_page>=4}
+            {if $page.current_page+2 <= $page.last_page}
+            {for start="$page.current_page-2" end="$page.current_page+3" name="fori"}
+            <li><a data-type="mip" href="/{$update_act}?page={$fori}{$param}" {if
+                   $fori==$page.current_page}class="active"{/if}>{$fori}</a></li>
+            {/for}
+            {else /}
+            {for start="$page.current_page-2" end="$page.last_page+1" name="fori"}
+            <li><a data-type="mip" href="/{$update_act}?page={$fori}{$param}" {if
+                   $fori==$page.current_page}class="active"{/if}>{$fori}</a></li>
+            {/for}
+            {/if}
+            {else /}
+            {if $page.last_page+1>6}
+            {for start="1" end="6" name="fori"}
+            <li><a data-type="mip" href="/{$update_act}?page={$fori}{$param}" {if
+                   $fori==$page.current_page}class="active"{/if}>{$fori}</a></li>
+            {/for}
+            {else /}
+            {for start="1" end="$page.last_page+1" name="fori"}
+            <li><a data-type="mip" href="/{$update_act}?page={$fori}{$param}" {if
+                   $fori==$page.current_page}class="active"{/if}>{$fori}</a></li>
+            {/for}
+            {/if}
+            {/if}
+
+            {if $page.current_page!=$page.last_page}
+            <li><a data-type="mip" href="/{$update_act}?page={$page.current_page+1}{$param}">></a></li>
+            {/if}
+        </ul>
+    </div>
+</footer>
+{/if}
+
+
+{/block}
+
+{block name="script"}
+<script src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

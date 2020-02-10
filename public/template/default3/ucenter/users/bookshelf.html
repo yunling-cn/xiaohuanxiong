@@ -1,0 +1,91 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>我的收藏 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="我的收藏 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;我的收藏</span>
+    <a class="float-right " data-type="mip" href="/history">阅读历史</a>
+</div>
+
+<div class="manList">
+    <ul class="am-avg-sm-3 am-thumbnails list f_list">
+        {volist name="favors" id="vo"}
+        <li class="am-thumbnail">
+            <a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">
+                <div class="container">
+                    <mip-img layout="fill" src="{$vo.cover_url}" alt="{$vo.book_name}"></mip-img>
+                    <span class="tip">{$vo.last_time|date='Y-m-d'}更新</span>
+                </div>
+            </a>
+            <p class="d-nowrap"><a data-type="mip" href="/{$book_ctrl}/{$vo.param}" title="{$vo.book_name}">{$vo.book_name}</a>
+            </p>
+        </li>
+        {/volist}
+
+    </ul>
+</div>
+
+
+<!-- 完整分页功能 -->
+{if $favors_arr.last_page >= 1}
+<footer class="clearfix mb10">
+    <div class="page-pagination mt20">
+        <ul class="ul-common">
+            {if $favors_arr.current_page>1}
+            <li><a data-type="mip" href="/history?page={$favors_arr.current_page-1}"><</a></li>
+            {/if}
+
+            {if $favors_arr.current_page>=4}
+            {if $favors_arr.current_page+2 <= $favors_arr.last_page}
+            {for start="$favors_arr.current_page-2" end="$favors_arr.current_page+3" name="fori"}
+            <li><a data-type="mip" href="/history?page={$fori}" {if $fori==$favors_arr.current_page}class="active"{/if}>{$fori}</a>
+            </li>
+            {/for}
+            {else /}
+            {for start="$favors_arr.current_page-2" end="$favors_arr.last_page+1" name="fori"}
+            <li><a data-type="mip" href="/history?page={$fori}" {if $fori==$favors_arr.current_page}class="active"{/if}>{$fori}</a>
+            </li>
+            {/for}
+            {/if}
+            {else /}
+            {if $favors_arr.last_page+1>6}
+            {for start="1" end="6" name="fori"}
+            <li><a data-type="mip" href="/history?page={$fori}" {if $fori==$favors_arr.current_page}class="active"{/if}>{$fori}</a>
+            </li>
+            {/for}
+            {else /}
+            {for start="1" end="$favors_arr.last_page+1" name="fori"}
+            <li><a data-type="mip" href="/history?page={$fori}" {if $fori==$favors_arr.current_page}class="active"{/if}>{$fori}</a>
+            </li>
+            {/for}
+            {/if}
+            {/if}
+
+            {if $favors_arr.current_page!=$favors_arr.last_page}
+            <li><a data-type="mip" href="/history?page={$favors_arr.current_page+1}">></a></li>
+            {/if}
+        </ul>
+    </div>
+</footer>
+{/if}
+
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-selector/mip-selector.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}

@@ -1,0 +1,138 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>找回密码 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="找回密码 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/template/default3/static/css/account.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<mip-data id="modal" scope>
+    <script type="application/json">
+        {
+            "visible": false,
+            "captcha_src": "/captcha",
+            "emailorphone": ""
+        }
+    </script>
+</mip-data>
+<mip-toast
+        id="miptoast"
+        info-text="验证码正确"
+        station="center"
+>
+</mip-toast>
+<mip-modal
+        title="图形验证码"
+        m-bind:visible="modal.visible"
+        mask-closable="false"
+        cancel-text="取消"
+        on='ok:captcha_form.submit cancel:MIP.setData({"modal":{"visible": false}})'
+>
+    <template slot="body">
+        <p class="mip-modal-form-hint">请输入图形验证码</p>
+        <!-- 获取手机/邮箱验证码之前图形验证码校验 -->
+        <mip-form method="get"
+                  id="captcha_form"
+                  url="/getCaptcha"
+                  fetch-url="/getCaptcha"
+        >
+            <input validatetarget="captcha_code" class="width-100" type="text" required name="captcha_code"
+                   placeholder="请输入图形验证码" class="mip-input">
+            <div target="captcha_code">图形验证码不能为空</div>
+
+            <mip-img on='
+                tap:MIP.setData({
+                    "modal":{
+                        "captcha_src":"/captcha?rnd="+Math.random() * 256
+                        }
+                    })' m-bind:src="modal.captcha_src" class="margin-top-5 " src="{:captcha_src()}"></mip-img>
+
+            <div submitting>
+                <template type="mip-mustache">
+                    <p>正在提交申请，请耐心等待</p>
+                </template>
+            </div>
+            <div submit-success>
+                <template type="mip-mustache">
+                    {{msg}}
+                    {{#success}}
+                    <input on='tap:MIP.setData({"modal":{"visible": false}})' class="width-100 margin-top-5"
+                           type="button" value="点我关闭">
+                    {{/success}}
+                </template>
+            </div>
+            <div submit-error>
+                <template type="mip-mustache">
+                    Sorry, 请求发生了一点错误
+                </template>
+            </div>
+        </mip-form>
+    </template>
+</mip-modal>
+
+
+<mip-form method="post" url="/recovery" fetch-url="/recovery" class="margin-0-10">
+    <input m-bind:value="modal.emailorphone" class="margin-top-5 form-input" type="text" name="emailorphone"
+           validatetarget="emailorphone" required placeholder="手机号/邮箱" autocomplete="off">
+    <div target="emailorphone">手机号/邮箱不能为空</div>
+
+    <input class="display-inline-block margin-top-5 width-68-important form-input"
+           type="text" name="code" validatetarget="code" required placeholder="验证码" autocomplete="off">
+    <input on='tap:MIP.setData({"modal":{"visible": true}})'
+           class="margin-top-5 display-inline-block float-right width-30-important" type="button" value="获取验证码">
+    <div target="code">验证码不能为空</div>
+
+
+    <input class="margin-top-5 form-input" type="password" name="password" validatetarget="password" required
+           placeholder="密码" autocomplete="off">
+    <div target="password">密码不能为空</div>
+
+    <input class="margin-top-5 form-input" type="password" name="password2" validatetarget="password2" required
+           placeholder="确认密码" autocomplete="off">
+    <div target="password2">确认密码不能为空</div>
+
+
+    <input class="width-auto margin-top-5" type="submit" value="提交">
+
+    <div submitting>
+        <template type="mip-mustache">
+            <p>正在提交申请，请耐心等待</p>
+        </template>
+    </div>
+    <div submit-success>
+        <template type="mip-mustache">
+            {{msg}}
+            {{#success}}
+            <a href="/ucenter" data-type="mip">点我跳转</a>
+            {{/success}}
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Sorry, 请求发生了一点错误
+        </template>
+    </div>
+</mip-form>
+<div class="line-tip margin-0-10 width-95 margin-top-5">
+    <a data-type="mip" href="/login">直接登录</a>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-fastclick/mip-fastclick.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-dialog/mip-dialog.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-modal/mip-modal.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-toggle/mip-toggle.js"></script>
+{/block}

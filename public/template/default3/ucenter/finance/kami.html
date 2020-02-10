@@ -1,0 +1,65 @@
+{extend name="./template/default3/pub/base.html" /}
+{block name="seo"}
+<title>卡密充值 - {:config('site.site_name')} - {:config('site.site_sub_name')}</title>
+<meta content="{:config('description')}" name="description"/>
+<meta content="{:config('keywords')}" name="keywords"/>
+<meta itemprop="name" content="卡密充值 - {:config('site.site_name')} - {:config('site.site_sub_name')}"/>
+<link rel="canonical" href="{$custom_url}"/>
+{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/mstyle.css">
+<link rel="stylesheet" type="text/css" href="/template/default3/static/css/wallet.css">
+{/block}
+
+{block name="content"}
+{include file="./template/default3/pub/back_top.html" /}
+<div class="gongzhonghao clearfix">
+    <span class="am-icon-info-circle d-fl">&nbsp;&nbsp;卡密充值</span>
+</div>
+
+<div class="wallet-main">
+    <mip-form method="post" url="/kami" fetch-url="/kami" class="margin-0-10">
+        <input class="form-input margin-top-5" type="text" name="code" placeholder="输入充值码" autocomplete="off">
+        <div target="code">新密码不能为空</div>
+
+        <input class="display-inline-block margin-top-5 width-100" type="submit" value="确认修改">
+        <input on="tap:MIP.navigateTo({ url: '{$url}', target: '_blank' })"
+               class="display-inline-block margin-top-5 width-100" type="button" value="购买充值卡">
+
+        <div submitting>
+            <template type="mip-mustache">
+                <p>正在提交申请，请耐心等待</p>
+            </template>
+        </div>
+        <div submit-success>
+            <template type="mip-mustache">
+                <p>{{msg}}
+            </template>
+        </div>
+        <div submit-error>
+            <template type="mip-mustache">
+                Sorry, 请求发生了一点错误
+            </template>
+        </div>
+    </mip-form>
+
+    <ol>
+        <li class="wallet-main-coin-title">
+            请在有效期内输入卡密进行充值
+        </li>
+        <li class="wallet-main-coin-title">
+            卡密会通过邮箱或手机短信发送给您，请保存好购买的卡密
+        </li>
+    </ol>
+
+</div>
+
+{/block}
+
+
+{block name="script"}
+<script async src="https://c.mipcdn.com/static/v2/mip-form/mip-form.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-mustache/mip-mustache.js"></script>
+<script async src="https://c.mipcdn.com/static/v2/mip-vd-tabs/mip-vd-tabs.js"></script>
+{/block}
